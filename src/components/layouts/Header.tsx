@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
-    <div className='z-50 bg-[#000000bf] text-white text-center py-2 text-[13px] mt-auto flex justify-between px-4 fixed top-0 w-full'>
+    <div className='z-50 bg-[#000000bf] max-w-xl mx-auto text-white text-center py-2 text-[13px] mt-auto flex justify-between px-4 fixed top-0 w-full'>
       <div className='flex items-center gap-5'>
         <Menu />
         <Link to={'/service'}>

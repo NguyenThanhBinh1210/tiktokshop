@@ -3,7 +3,7 @@ import notice from '~/assets/menu-icon3.d998f7a8.svg'
 const Tnc = () => {
   const navigate = useNavigate()
   return (
-    <div>
+    <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
         <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate('/')}>
           <svg
@@ -42,7 +42,7 @@ const Tnc = () => {
           Please note: The above rules and guidelines are designed to ensure smooth transactions and platform usage. It is important to adhere to these rules for a seamless experience. If you have any questions or require assistance, please contact our customer service team.
         </p>
       </div>
-      <div className='text-center py-2 text-sm text-gray-600 border-t fixed bottom-0 left-0 right-0  bg-white'>
+      <div className='text-center py-2 text-sm text-gray-600 border-t fixed bottom-0 left-0 right-0  bg-white max-w-xl mx-auto'>
         © 2019 - 2025 TIKTOK-GIG Global Inc.
       </div>
     </div>

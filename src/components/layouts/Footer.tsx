@@ -12,7 +12,7 @@ const Footer = () => {
   const isDeal = location.pathname === '/deal'
   const isDealingSlip = location.pathname === '/dealing_slip'
   return (
-    <div className='bg-black text-white text-center py-4 text-[13px] mt-auto flex justify-between px-10 fixed bottom-0 w-full'>
+    <div className='bg-black text-white text-center py-4 text-[13px] mt-auto flex justify-between px-10 fixed bottom-0 w-full max-w-xl mx-auto'>
       <Link to='/'>
         {isHome ? (
           <img src={home_on} alt='home' className='size-8' />

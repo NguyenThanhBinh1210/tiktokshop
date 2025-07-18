@@ -7,7 +7,7 @@ const Recharge = () => {
 
   const amounts = [50, 100, 200, 1000, 3000, 5000, 10000, 30000, 50000]
   return (
-    <div>
+    <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
         <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate('/')}>
           <svg

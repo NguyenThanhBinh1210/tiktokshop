@@ -4,7 +4,7 @@ import gust_logo from '~/assets/gust_logo.png'
 const Service = () => {
   const navigate = useNavigate()
   return (
-    <div className='bg-black text-white min-h-screen'>
+    <div className='bg-black text-white min-h-screen max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
         <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate('/')}>
           <svg

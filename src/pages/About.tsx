@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 const About = () => {
   const navigate = useNavigate()
   return (
-    <div>
+    <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
         <button className=' text-white px-4 py-3.5 rounded-full absolute left-0 top-0' onClick={() => navigate('/')}>
           <svg
@@ -39,7 +39,7 @@ const About = () => {
           Overall, TikTok-Booking's international branches, combined with its diverse marketing strategies, allow the company to connect with customers worldwide, offer personalized services, and effectively promote its travel solutions in different markets.
         </p>
       </div>
-      <div className='text-center py-2 text-sm text-gray-600 border-t fixed bottom-0 left-0 right-0  bg-white'>
+      <div className='text-center py-2 text-sm text-gray-600 border-t fixed bottom-0 left-0 right-0  bg-white max-w-xl mx-auto'>
         © 2019 - 2025 TIKTOK-GIG Global Inc.
       </div>
     </div>

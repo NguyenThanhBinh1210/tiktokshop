@@ -3,7 +3,7 @@ import notice from '~/assets/language.2ba63ab6.svg'
 const Lang = () => {
   const navigate = useNavigate()
   return (
-    <div>
+    <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
         <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate('/')}>
           <svg

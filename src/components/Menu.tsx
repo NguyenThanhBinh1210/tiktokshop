@@ -31,7 +31,7 @@ const Menu = () => {
           e.stopPropagation()
           setIsOpen(false)
         }}
-        className={`inset-0 bg-black/30 fixed top-0 left-0 z-[51] ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        className={`inset-0 bg-black/30 max-w-xl mx-auto fixed top-0 left-0 z-[51] ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           } transition-all duration-300`}
       >
         <div

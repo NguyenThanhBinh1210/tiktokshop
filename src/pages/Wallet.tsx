@@ -5,7 +5,7 @@ const Wallet = () => {
   const navigate = useNavigate()
   const [status, setStatus] = useState<string>('bankinfo')
   return (
-    <div>
+    <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
         <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate('/')}>
           <svg
@@ -37,8 +37,8 @@ const Wallet = () => {
           <div className=' rounded-xl  text-center'>
             <button
               className={` rounded-full w-full  py-2.5  ${status === 'bankinfo'
-                  ? ' text-primary font-bold bg-[#fdfdfd] border-2 border-[#eee] '
-                  : 'text-[#7f7f7f]'
+                ? ' text-primary font-bold bg-[#fdfdfd] border-2 border-[#eee] '
+                : 'text-[#7f7f7f]'
                 }`}
               onClick={() => setStatus('bankinfo')}
             >
@@ -48,8 +48,8 @@ const Wallet = () => {
           <div className=' rounded-xl  text-center'>
             <button
               className={` rounded-full w-full  py-2.5 ${status === 'withdrawalinfo'
-                  ? ' text-primary font-bold bg-[#fdfdfd] border-2 border-[#eee] '
-                  : 'text-[#7f7f7f]'
+                ? ' text-primary font-bold bg-[#fdfdfd] border-2 border-[#eee] '
+                : 'text-[#7f7f7f]'
                 }`}
               onClick={() => setStatus('withdrawalinfo')}
             >

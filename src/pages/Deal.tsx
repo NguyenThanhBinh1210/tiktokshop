@@ -9,7 +9,7 @@ const Deal = () => {
   const [showCommission, setShowCommission] = useState(false)
   const [showBalance, setShowBalance] = useState(false)
   return (
-    <div className='pt-14 px-4 text-sm pb-24 text-white'>
+    <div className='pt-14 px-4 text-sm pb-24 text-white max-w-xl mx-auto'>
       <div className='flex items-center gap-3 py-2'>
         <img src={opennow} alt='opennow' className='size-9' />
         <span className='uppercase  font-bold text-2xl'>

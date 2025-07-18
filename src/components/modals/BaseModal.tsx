@@ -20,7 +20,7 @@ const BaseModal = ({ isOpen = true, onClose, children, size = 'md' }: Props) => 
           ${size === 'xs' && 'max-w-xs'} 
           ${size === 'lg' && 'max-w-lg'} 
           ${size === 'xl' && 'max-w-xl'} 
-          ${size === '2xl' && 'max-w-2xl'} 
+          ${size === '2xl' && 'max-w-xl'} 
           ${size === '3xl' && 'max-w-3xl'}`}
       >
         {children}

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 const Team = () => {
   const navigate = useNavigate()
   return (
-    <div>
+    <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
         <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate('/')}>
           <svg
@@ -41,7 +41,7 @@ const Team = () => {
           By expanding their network and nurturing their downlines' success, agents can benefit from a sustainable and mutually beneficial business model.
         </p>
       </div>
-      <div className='text-center py-2 text-sm text-gray-600 border-t fixed bottom-0 left-0 right-0  bg-white'>
+      <div className='text-center py-2 text-sm text-gray-600 border-t fixed bottom-0 left-0 right-0  bg-white max-w-xl mx-auto'>
         © 2019 - 2025 TIKTOK-GIG Global Inc.
       </div>
     </div>

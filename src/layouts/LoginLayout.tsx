@@ -6,7 +6,7 @@ const LoginLayout = ({ children }: LayoutPropsInterface) => {
   const location = useLocation()
   const isRegister = location.pathname === '/register'
   return (
-    <div className='bg-black max-w-2xl mx-auto min-h-screen flex flex-col relative'>
+    <div className='bg-black max-w-xl mx-auto min-h-screen flex flex-col relative'>
       <img src={logo} alt='logo' className='w-full' />
       {children}
 
