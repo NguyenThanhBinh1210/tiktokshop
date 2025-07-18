@@ -6,7 +6,14 @@ const Login = () => {
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
   return (
     <div className='flex flex-col items-center justify-center  bg-black px-5 text-sm'>
+      <div className=''>
+        <p className='text-white text-3xl max-w-[400px] mx-auto font-semibold '>
+          Phát triển kinh doanh với <span className='text-primary'>TikTok Việt Nam </span> ngay hôm nay!
+        </p>
+        <p className='text-white text-sm max-w-[400px] mx-auto mt-2'>Nếu là bán lẻ, thương hiệu hay doanh nghiệp, bạn luôn có thể bán hàng trên TikTok với số lượng người theo dõi bất kỳ. Tiktok góp phần mang cho bạn lượng truy cập khổng lồ thông qua video ngắn và LIVE.</p>
+      </div>
       <div className='bg-black py-8 rounded-lg w-full max-w-[400px] mx-auto'>
+
         <div className='mb-7 relative'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -27,7 +34,6 @@ const Login = () => {
             className='pl-10 pr-4 py-3 w-full rounded-full bg-white focus:outline-none '
           />
         </div>
-
         <div className='mb-7 relative'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -56,7 +62,7 @@ const Login = () => {
           </button>
         </div>
 
-        <div className='flex items-center mb-12'>
+        <div className='flex items-center mb-6'>
           <input type='checkbox' id='remember' className='mr-2' defaultChecked />
           <label htmlFor='remember' className='text-white text-sm'>
             Ghi nhớ tôi
@@ -66,11 +72,24 @@ const Login = () => {
         <button className='w-full bg-primary hover:bg-primary/80 text-white py-3 rounded-full text-lg font-semibold transition'>
           ĐĂNG NHẬP
         </button>
+        <div className='text-white text-xs mt-4'>
+          Tiếp tục nghĩa là bạn đồng ý với Điều khoản dịch vụ thương gia dành cho TikTok Shop, Điều khoản dịch vụ thương
+          mại TikTok, đồng thời công nhận oạn đã đọc Chính sách quyền riêng tư của TIkTok dành cho đối tác để tìm hiểu
+          cách chúng tôi thu thập, sử dụng và chia sẻ dỡ liệu của bạn. Bạn có thể sử dụng cùng thông tin đăng nhập này
+          để truy cập Trung tâm doanh nghiệp và Trinh quản tý quảng cáo, Bên cạnh đó, bạn sẽ có thể sử dụng thu nhập của
+          cửa hàng mình để thanh toán chỉ tiêu quảng cáo.
+          <br />
+          <br />
+          Bạn cũng dòng ý ràng các sản phẩm của bạn sẽ được tự động thêm vào Cộng
+          tác mở trong chương trình liên kết, với tỷ lệ hoa hồng xác định theo hạng mục
+          sản phẩm
 
+        </div>
         <div className='text-center mt-4'>
           <span className='text-white text-sm'>Không có tài khoản? </span>
-          <button className='text-primary font-bold text-sm hover:underline '><Link to='/register'>
-            Đăng ký</Link></button>
+          <button className='text-primary font-bold text-sm hover:underline '>
+            <Link to='/register'>Đăng ký</Link>
+          </button>
         </div>
       </div>
     </div>

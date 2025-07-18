@@ -22,6 +22,7 @@ const Lang = () => {
           <p className='uppercase text-white text-xl font-bold'>Chuyển ngôn ngữ</p>
         </div>
       </div>
+      <div className="text-center pt-10">Hoàn thành code sẽ làm phần này sau</div>
     </div>
   )
 }

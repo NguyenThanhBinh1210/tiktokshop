@@ -32,9 +32,12 @@ const LoginLayout = ({ children }: LayoutPropsInterface) => {
           </button>
         </Link>
       )}
-      <button className='absolute top-0 right-0 p-2 w-max h-max flex items-center justify-center text-white'>
+      {/* <button className='absolute top-0 right-0 p-2 w-max h-max flex items-center justify-center text-white'>
         <img src={lang} alt='lang' className='size-8' />
-      </button>
+      </button> */}
+      <p className='absolute top-0 right-0 p-2 w-max h-max flex items-center justify-center text-white'>
+        Người bán Việt Nam <Link to='/lang' className='ml-2 text-primary flex items-center gap-2'>Đổi quốc gia <img src={lang} alt='lang' className='size-8' /></Link>
+      </p>
     </div>
   )
 }
