@@ -1,7 +1,8 @@
+import logo from '~/assets/TKBG.svg'
 const Register = () => {
   return (
     <div className='flex flex-col items-center justify-center  bg-black px-5 text-sm'>
-
+      <img src={logo} alt='logo' className='w-full' />
       <div className='bg-black py-8 rounded-lg w-full max-w-[400px] mx-auto'>
         <div className='mb-7 relative flex items-center bg-white rounded-full'>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 text-primary absolute left-3 top-1/2 transform -translate-y-1/2">

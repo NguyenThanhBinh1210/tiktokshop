@@ -1,18 +1,19 @@
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import banner from '~/assets/downloadbg.svg'
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
   return (
-    <div className='flex flex-col items-center justify-center  bg-black px-5 text-sm'>
-      <div className=''>
+    <div style={{ backgroundImage: `url(${banner})` }} className='flex flex-col items-center justify-center  bg-black px-5 text-sm'>
+      <div className='pt-20'>
         <p className='text-white text-3xl max-w-[400px] mx-auto font-semibold '>
           Phát triển kinh doanh với <span className='text-primary'>TikTok Việt Nam </span> ngay hôm nay!
         </p>
         <p className='text-white text-sm max-w-[400px] mx-auto mt-2'>Nếu là bán lẻ, thương hiệu hay doanh nghiệp, bạn luôn có thể bán hàng trên TikTok với số lượng người theo dõi bất kỳ. Tiktok góp phần mang cho bạn lượng truy cập khổng lồ thông qua video ngắn và LIVE.</p>
       </div>
-      <div className='bg-black py-8 rounded-lg w-full max-w-[400px] mx-auto'>
+      <div className=' py-8 rounded-lg w-full max-w-[400px] mx-auto'>
 
         <div className='mb-7 relative'>
           <svg
@@ -72,6 +73,13 @@ const Login = () => {
         <button className='w-full bg-primary hover:bg-primary/80 text-white py-3 rounded-full text-lg font-semibold transition'>
           ĐĂNG NHẬP
         </button>
+
+        <div className='text-center mt-4'>
+          <span className='text-white text-sm'>Không có tài khoản? </span>
+          <button className='text-primary font-bold text-sm hover:underline '>
+            <Link to='/register'>Đăng ký</Link>
+          </button>
+        </div>
         <div className='text-white text-xs mt-4'>
           Tiếp tục nghĩa là bạn đồng ý với Điều khoản dịch vụ thương gia dành cho TikTok Shop, Điều khoản dịch vụ thương
           mại TikTok, đồng thời công nhận oạn đã đọc Chính sách quyền riêng tư của TIkTok dành cho đối tác để tìm hiểu
@@ -84,12 +92,6 @@ const Login = () => {
           tác mở trong chương trình liên kết, với tỷ lệ hoa hồng xác định theo hạng mục
           sản phẩm
 
-        </div>
-        <div className='text-center mt-4'>
-          <span className='text-white text-sm'>Không có tài khoản? </span>
-          <button className='text-primary font-bold text-sm hover:underline '>
-            <Link to='/register'>Đăng ký</Link>
-          </button>
         </div>
       </div>
     </div>

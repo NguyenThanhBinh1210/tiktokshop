@@ -79,7 +79,7 @@ const Deal = () => {
         )}
       </div>
       <button className='bg-primary w-full text-white  p-3 py-4 rounded-full mt-3 flex flex-col gap-2 text-xl font-bold'>
-        Bắt đầu săn đơn (0/0)
+        Bắt đầu nhận đơn (0/0)
       </button>
       <div className='bg-black text-white  p-3 py-2 rounded-md mt-3 flex flex-col gap-2 text-lg'>
         <p>

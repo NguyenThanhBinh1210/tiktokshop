@@ -1,5 +1,4 @@
 import { LayoutPropsInterface } from '~/types/base.type'
-import logo from '~/assets/TKBG.svg'
 import lang from '~/assets/language.svg'
 import { Link, useLocation } from 'react-router-dom'
 const LoginLayout = ({ children }: LayoutPropsInterface) => {
@@ -7,7 +6,7 @@ const LoginLayout = ({ children }: LayoutPropsInterface) => {
   const isRegister = location.pathname === '/register'
   return (
     <div className='bg-black max-w-xl mx-auto min-h-screen flex flex-col relative'>
-      <img src={logo} alt='logo' className='w-full' />
+
       {children}
 
       <div className='bg-[#212121bf] text-white text-center py-4 text-[13px] mt-auto'>
