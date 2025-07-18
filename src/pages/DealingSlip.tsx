@@ -2,8 +2,10 @@ import home_9_on from '~/assets/menu-icon9_on.svg'
 import { useState } from 'react'
 import noOrder from '~/assets/noOrder.png'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 const DealingSlip = () => {
   const [status, setStatus] = useState<string>('all')
+  const { t } = useTranslation()
   const navigate = useNavigate()
   return (
     <div className='max-w-xl mx-auto'>
@@ -22,7 +24,7 @@ const DealingSlip = () => {
         </button>
         <div className='flex items-center gap-2 absolute left-1/2 -translate-x-1/2 w-max h-max'>
           <img src={home_9_on} alt='' className='size-6' />
-          <p className='uppercase text-white text-xl font-bold'>Gửi đơn</p>
+          <p className='uppercase text-white text-xl font-bold'>{t('dealing_slip.deal')}</p>
         </div>
         <button></button>
       </div>
@@ -37,7 +39,7 @@ const DealingSlip = () => {
                 }`}
               onClick={() => setStatus('all')}
             >
-              Tất cả
+              {t('dealing_slip.all')}
             </button>
           </div>
           <div className=' rounded-xl  text-center'>
@@ -46,7 +48,7 @@ const DealingSlip = () => {
                 }`}
               onClick={() => setStatus('pending')}
             >
-              Đang chờ
+              {t('dealing_slip.pending')}
             </button>
           </div>
           <div className=' rounded-xl  text-center'>
@@ -55,7 +57,7 @@ const DealingSlip = () => {
                 }`}
               onClick={() => setStatus('completed')}
             >
-              Hoàn thành
+              {t('dealing_slip.completed')}
             </button>
           </div>
           <div className=' rounded-xl  text-center'>
@@ -64,15 +66,15 @@ const DealingSlip = () => {
                 }`}
               onClick={() => setStatus('frozen')}
             >
-              Đóng băng
+              {t('dealing_slip.frozen')}
             </button>
           </div>
         </div>
       </div>
-      <div className='text-primary text-end text-sm py-2 px-3 border-t font-bold mb-4'>0 Hồ sơ</div>
+      <div className='text-primary text-end text-sm py-2 px-3 border-t font-bold mb-4'>0 {t('dealing_slip.profile')}</div>
       <div className='flex flex-col items-center justify-center'>
         <img src={noOrder} alt='' className='w-[174px]' />
-        <p className='text-xl font-bold mt-2 text-black '>Không có đơn nào</p>
+        <p className='text-xl font-bold mt-2 text-black '>{t('dealing_slip.no_order')}</p>
       </div>
     </div>
   )

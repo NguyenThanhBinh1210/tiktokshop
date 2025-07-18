@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import notice from '~/assets/menu-icon6.4845e69c.svg'
+import { useTranslation } from 'react-i18next'
 const Recharge = () => {
   const navigate = useNavigate()
   const [amount, setAmount] = useState(0)
-
+  const { t } = useTranslation()
   const amounts = [50, 100, 200, 1000, 3000, 5000, 10000, 30000, 50000]
   return (
     <div className='max-w-xl mx-auto'>
@@ -23,13 +24,13 @@ const Recharge = () => {
         </button>
         <div className='flex items-center gap-2 absolute left-1/2 -translate-x-1/2 w-max h-max'>
           <img src={notice} alt='notice' className='size-6' />
-          <p className='uppercase text-white text-xl font-bold'>Giao dịch</p>
+          <p className='uppercase text-white text-xl font-bold'>{t('recharge.title')}</p>
         </div>
       </div>
       <div className='p-3'>
         <div className='border  rounded-lg overflow-hidden'>
           <Link to={'/recharge-history'} className='bg-primary text-white block px-3 py-2 text-center '>
-            Lịch sử
+            {t('recharge.history')}
           </Link>
           <div
             style={{
@@ -37,17 +38,17 @@ const Recharge = () => {
             }}
             className=' text-black  px-3 py-4'
           >
-            Số dư tài khoản: <span className='text-[#003857] font-bold ml-1'>$0.00</span>
+            {t('recharge.balance')}: <span className='text-[#003857] font-bold ml-1'>$0.00</span>
           </div>
         </div>
       </div>
       <div className=' mx-auto p-6 bg-white rounded-lg  space-y-4'>
         <div>
-          <label className='text-sm font-semibold text-red-600'>Số tiền nạp</label>
+          <label className='text-sm font-semibold text-red-600'>{t('recharge.amount')}</label>
           <div className='flex items-center space-x-2 mt-2'>
             <span className='text-xl mr-3'>$</span>
             <input
-              placeholder='Nhập số tiền'
+              placeholder={t('recharge.amount')}
               type='text'
               className='text-xl '
               value={amount}
@@ -74,7 +75,7 @@ const Recharge = () => {
           disabled={!amount}
           className='disabled:bg-[#bebebe]  py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
         >
-          Xác nhận
+          {t('recharge.confirm')}
         </button>
       </div>
     </div>

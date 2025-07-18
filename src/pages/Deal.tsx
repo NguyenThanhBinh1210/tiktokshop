@@ -4,25 +4,26 @@ import commission from '~/assets/commission.d610ca3c.svg'
 import balance from '~/assets/balance.0d759c99.svg'
 import help from '~/assets/help.67d36206.svg'
 import { useState } from 'react'
-
+import { useTranslation } from 'react-i18next'
 const Deal = () => {
   const [showCommission, setShowCommission] = useState(false)
   const [showBalance, setShowBalance] = useState(false)
+  const { t } = useTranslation()
   return (
     <div className='pt-14 px-4 text-sm pb-24 text-white max-w-xl mx-auto'>
       <div className='flex items-center gap-3 py-2'>
         <img src={opennow} alt='opennow' className='size-9' />
         <span className='uppercase  font-bold text-2xl'>
-          Săn đơn
+          {t('deal.deal')}
         </span>
       </div>
       <div className="bg-black text-white  p-3 py-2 rounded-md mt-3 flex items-center justify-between">
         <div>
           <p className='font-bold text-sm'>
-            Introduction
+            {t('deal.introduction')}
           </p>
           <p className='text-[8px] leading-3'>
-            TikTok Shop là tính năng thương mại điện tử của dịch vụ lưu trữ video TikTok. Ra mắt chính thức vào tháng 9 năm 2023, tính năng này cho phép người dùng quan tâm đến việc khởi nghiệp và tạo thu nhập tải các sản phẩm được tuyển chọn của họ lên TikTok để những người khác khám phá và mua.
+            {t('deal.tiktok_shop_description')}
           </p>
         </div>
         <img src={tiksp} alt='tiksp' className='size-[96px] flex-shrink-0' />
@@ -34,7 +35,7 @@ const Deal = () => {
             <img src={commission} alt='commission' className='size-10' />
             <div>
               <p className=' font-bold'>
-                Hoa hồng hôm nay
+                {t('deal.commission')}
               </p>
               <p>
                 $0
@@ -53,7 +54,7 @@ const Deal = () => {
             <img src={balance} alt='balance' className='size-10' />
             <div>
               <p className=' font-bold'>
-                Số dư tài khoản
+                {t('deal.balance')}
               </p>
               <p>
                 $0
@@ -69,27 +70,27 @@ const Deal = () => {
         </div>
         {showCommission && (
           <div className='bg-[#fff9] text-white text-lg rounded-full px-5 py-1  leading-6'>
-            Thu nhập từ mỗi đơn đặt hàng sẽ được cộng vào tổng số dư
+            {t('deal.commission_description')}
           </div>
         )}
         {showBalance && (
           <div className='bg-[#fff9] text-white text-lg rounded-full px-5 py-1'>
-            Hệ thống sẽ tự động cập nhật thu nhập hôm nay
+            {t('deal.balance_description')}
           </div>
         )}
       </div>
       <button className='bg-primary w-full text-white  p-3 py-4 rounded-full mt-3 flex flex-col gap-2 text-xl font-bold'>
-        Bắt đầu nhận đơn (0/0)
+        {t('deal.start_receiving_orders')} (0/0)
       </button>
       <div className='bg-black text-white  p-3 py-2 rounded-md mt-3 flex flex-col gap-2 text-lg'>
         <p>
-          1. Về việc gửi đơn hàng , nhấn bắt đầu gửi đơn để tìm kiếm những đơn hàng Sale,và chờ hệ thống lựa chọn ngẫu nhiên.
+          {t('deal.order_description_1')}
         </p>
         <p>
-          2. Tất cả những đơn hàng ngẫu nhiên không thể thay đổi hoặc hủy bỏ, hoặc bỏ qua.
+          {t('deal.order_description_2')}
         </p>
         <p>
-          3. Mỗi đơn hàng cần được thanh toán trong vòng 10 phút, bạn cần liên hệ chăm sóc khách hàng trực tuyến để lấy thông tin thẻ ngân hàng.
+          {t('deal.order_description_3')}
         </p>
       </div>
 

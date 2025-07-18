@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import notice from '~/assets/menu-icon12.68eba35f.svg'
 import noOrder from '~/assets/noOrder.png'
 const Withdrawal = () => {
   const navigate = useNavigate()
   const [status, setStatus] = useState('atm')
+  const { t } = useTranslation()
   return (
     <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -22,7 +24,7 @@ const Withdrawal = () => {
         </button>
         <div className='flex items-center gap-2 absolute left-1/2 -translate-x-1/2 w-max h-max'>
           <img src={notice} alt='notice' className='size-6' />
-          <p className='uppercase text-white text-xl font-bold'>ATM</p>
+          <p className='uppercase text-white text-xl font-bold'>{t('withdrawal.title')}</p>
         </div>
       </div>
       <div className='py-2 px-3 text-sm'>
@@ -36,7 +38,7 @@ const Withdrawal = () => {
                 }`}
               onClick={() => setStatus('atm')}
             >
-              ATM
+              {t('withdrawal.atm')}
             </button>
           </div>
           <div className=' rounded-xl  text-center'>
@@ -45,7 +47,7 @@ const Withdrawal = () => {
                 }`}
               onClick={() => setStatus('history')}
             >
-              Lịch sử rút tiền
+              {t('withdrawal.history')}
             </button>
           </div>
         </div>
@@ -56,11 +58,12 @@ const Withdrawal = () => {
 }
 
 const WithdrawalHistory = () => {
+  const { t } = useTranslation()
   return (
     <div>
       <div className='w-max mx-auto mt-10'>
         <img src={noOrder} alt='noOrder' className='w-[182px]' />
-        <p className='text-xl font-bold mt-4 text-center '>Không có hồ sơ</p>
+        <p className='text-xl font-bold mt-4 text-center '>{t('withdrawal.no_history')}</p>
       </div>
     </div>
   )
@@ -69,18 +72,19 @@ const WithdrawalHistory = () => {
 const WithdrawalATM = () => {
   const [withdrawalMethod, setWithdrawalMethod] = useState('bank')
   const [waletAmount] = useState(23123123)
+  const { t } = useTranslation()
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount)
   }
   return (
     <div className='mx-auto  bg-white rounded-lg  space-y-4'>
-      <p className='text-sm '>Hệ thống sẽ xử lý yêu cầu sau khi liên kết ngân hàng của bạn</p>
+      <p className='text-sm '>{t('withdrawal.system_will_process_request_after_linking_bank')}</p>
       <div className='p-3 py-2.5 rounded-lg bg-white border text-[#a16600] font-bold leading-5'>
-        <p>Số dư tài khoản</p>
+        <p>{t('withdrawal.account_balance')}</p>
         <p>{formatCurrency(waletAmount)}</p>
       </div>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Phương thức rút tiền</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_method')}</label>
         <div className='grid grid-cols-2 gap-3'>
           <button
             type='button'
@@ -88,7 +92,7 @@ const WithdrawalATM = () => {
             className={`    rounded-lg border py-3  text-sm transition ${withdrawalMethod === 'bank' ? 'bg-primary text-white' : 'text-black'
               }`}
           >
-            Chuyển tới ngân hàng
+            {t('withdrawal.transfer_to_bank')}
           </button>
           <button
             type='button'
@@ -96,7 +100,7 @@ const WithdrawalATM = () => {
             className={`    rounded-lg border py-3  text-sm transition ${withdrawalMethod === 'wallet' ? 'bg-primary text-white' : 'text-black'
               }`}
           >
-            Chuyển tới ví điện tử
+            {t('withdrawal.transfer_to_wallet')}
           </button>
         </div>
       </div>
@@ -113,36 +117,37 @@ const WithdrawalWallet = ({ waletAmount }: { waletAmount: number }) => {
   const [amount, setAmount] = useState('')
   const [address, setAddress] = useState('')
   const [password, setPassword] = useState('')
+  const { t } = useTranslation()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (amount === '' || address === '' || password === '') {
-      alert('Vui lòng nhập đầy đủ thông tin!')
+      alert(t('withdrawal.please_enter_all_information'))
       return
     }
     // Gửi dữ liệu tới API ở đây
-    alert('Tạo yêu cầu rút tiền thành công!')
+    alert(t('withdrawal.withdrawal_request_created_successfully'))
   }
   return (
     <form onSubmit={handleSubmit} className='mx-auto  bg-white rounded-lg  space-y-4'>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Địa chỉ ví</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.wallet_address')}</label>
         <input
           type='text'
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          placeholder='Địa chỉ ví'
+          placeholder={t('withdrawal.wallet_address')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Số tiền rút</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_amount')}</label>
         <div className='relative'>
           <input
             type='text'
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder='Số tiền rút'
+            placeholder={t('withdrawal.withdrawal_amount')}
             className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
           />
           <button
@@ -150,18 +155,18 @@ const WithdrawalWallet = ({ waletAmount }: { waletAmount: number }) => {
             type='button'
             className='text-sm text-primary absolute right-4 top-1/2 -translate-y-1/2 uppercase font-bold'
           >
-            Tất cả
+            {t('withdrawal.all')}
           </button>
         </div>
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Mật khẩu rút tiền</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_password')}</label>
         <input
           type='text'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder='Mật khẩu rút tiền'
+          placeholder={t('withdrawal.withdrawal_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
@@ -170,7 +175,7 @@ const WithdrawalWallet = ({ waletAmount }: { waletAmount: number }) => {
         disabled={!amount || !address || !password}
         className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
       >
-        Xác nhận
+        {t('withdrawal.confirm')}
       </button>
     </form>
   )
@@ -178,29 +183,29 @@ const WithdrawalWallet = ({ waletAmount }: { waletAmount: number }) => {
 const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
   const [amount, setAmount] = useState('')
   const [password, setPassword] = useState('')
-
+  const { t } = useTranslation()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (amount === '' || password === '') {
-      alert('Vui lòng nhập đầy đủ thông tin!')
+      alert(t('withdrawal.please_enter_all_information'))
       return
     }
     // Gửi dữ liệu tới API ở đây
-    alert('Tạo yêu cầu rút tiền thành công!')
+    alert(t('withdrawal.withdrawal_request_created_successfully'))
   }
   return (
     <form onSubmit={handleSubmit} className='mx-auto  bg-white rounded-lg  space-y-4'>
       <p>
-        <label className='block font-semibold mb-1 text-[#003857]'>Tài khoản ngân hàng</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.bank_account')}</label>
       </p>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Số tiền rút</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_amount')}</label>
         <div className='relative'>
           <input
             type='text'
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder='Số tiền rút'
+            placeholder={t('withdrawal.withdrawal_amount')}
             className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
           />
           <button
@@ -208,18 +213,18 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
             type='button'
             className='text-sm text-primary absolute right-4 top-1/2 -translate-y-1/2 uppercase font-bold'
           >
-            Tất cả
+            {t('withdrawal.all')}
           </button>
         </div>
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Mật khẩu rút tiền</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_password')}</label>
         <input
           type='text'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder='Mật khẩu rút tiền'
+          placeholder={t('withdrawal.withdrawal_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
@@ -228,7 +233,7 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
         disabled={!amount || !password}
         className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
       >
-        Xác nhận
+        {t('withdrawal.confirm')}
       </button>
     </form>
   )

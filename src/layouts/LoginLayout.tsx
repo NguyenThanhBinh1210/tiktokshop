@@ -1,16 +1,22 @@
 import { LayoutPropsInterface } from '~/types/base.type'
 import lang from '~/assets/language.svg'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { languages } from '~/components/LangueChange'
 const LoginLayout = ({ children }: LayoutPropsInterface) => {
+  const { i18n } = useTranslation()
   const location = useLocation()
   const isRegister = location.pathname === '/register'
+  const currentLang = languages.find((l) => l.code === i18n.language) || languages[0]
+  console.log(currentLang)
+  const { t } = useTranslation()
   return (
     <div className='bg-black max-w-xl mx-auto min-h-screen flex flex-col relative'>
 
       {children}
 
       <div className='bg-[#212121bf] text-white text-center py-4 text-[13px] mt-auto'>
-        © 2019 - 2025 TIKTOK-GIG Global Inc.
+        {t('copyright')}
       </div>
       {isRegister && (
         <Link to='/login'>
@@ -35,7 +41,7 @@ const LoginLayout = ({ children }: LayoutPropsInterface) => {
         <img src={lang} alt='lang' className='size-8' />
       </button> */}
       <p className='absolute top-0 right-0 p-2 w-max h-max flex items-center justify-center text-white'>
-        Người bán Việt Nam <Link to='/lang' className='ml-2 text-primary flex items-center gap-2'>Đổi quốc gia <img src={lang} alt='lang' className='size-8' /></Link>
+        {t('seller')} {currentLang.label} <Link to='/lang' className='ml-2 text-primary flex items-center gap-2'>{t('change_country')} <img src={lang} alt='lang' className='size-8' /></Link>
       </p>
     </div>
   )

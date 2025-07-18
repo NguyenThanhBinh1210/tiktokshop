@@ -1,7 +1,9 @@
 import notice from '~/assets/TKBG.fb331a14.svg'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 const About = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   return (
     <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -23,24 +25,24 @@ const About = () => {
       </div>
       <div className='px-4 py-2'>
         <p className='text-[#003857] font-bold text-xl mb-2'>
-          Intro
+          {t('about.intro')}
         </p>
         <p className=' text-sm text-gray-600'>
-          TikTok-Booking is a global online travel agency and metasearch engine with a significant international presence. Founded in 2012, alongside its headquarters in Brno, Czech Republic, TikTok-Booking has established branches and offices in various locations worldwide, allowing it to cater to travelers across the globe.
+          {t('about.description')}
           <br />
-          The company operates in multiple continents, including Europe, North America, Asia, and Oceania. It has strategically positioned branches and offices in key cities such as London (United Kingdom), Barcelona (Spain), Miami (United States), Sydney (Australia), and Singapore. This global footprint enables TikTok-Booking to provide localized services, support, and expertise to customers in different regions.
+          {t('about.description_2')}
           <br />
-          In terms of marketing, TikTok-Booking employs various strategies to reach and engage its target audience. The company invests in digital marketing channels such as search engine advertising, social media campaigns, and email marketing to raise brand awareness and promote its services. Additionally, TikTok-Booking collaborates with influencers and travel bloggers to showcase its offerings and generate buzz among potential travelers.
+          {t('about.description_3')}
           <br />
-          TikTok-Booking also utilizes affiliate marketing programs, partnering with relevant websites and platforms to expand its reach and attract more customers. By offering attractive commissions and incentives, TikTok-Booking incentivizes affiliates to promote its services and drive bookings.
+          {t('about.description_4')}
           <br />
-          Furthermore, TikTok-Booking&nbsp;implements customer loyalty programs and referral schemes to encourage repeat business and word-of-mouth marketing. Through these initiatives, satisfied customers are rewarded for their loyalty and incentivized to refer their friends and family to use TikTok-Booking&nbsp;for their travel needs.
+          {t('about.description_5')}
           <br />
-          Overall, TikTok-Booking's international branches, combined with its diverse marketing strategies, allow the company to connect with customers worldwide, offer personalized services, and effectively promote its travel solutions in different markets.
+          {t('about.description_6')}
         </p>
       </div>
       <div className='text-center py-2 text-sm text-gray-600 border-t fixed bottom-0 left-0 right-0  bg-white max-w-xl mx-auto'>
-        © 2019 - 2025 TIKTOK-GIG Global Inc.
+        {t('about.copyright')}
       </div>
     </div>
   )

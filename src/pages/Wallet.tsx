@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import notice from '~/assets/menu-icon13.f9f15e6f.svg'
+import { useTranslation } from 'react-i18next'
 const Wallet = () => {
   const navigate = useNavigate()
   const [status, setStatus] = useState<string>('bankinfo')
+  const { t } = useTranslation()
   return (
     <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -21,13 +23,13 @@ const Wallet = () => {
         </button>
         <div className='flex items-center gap-2 absolute left-1/2 -translate-x-1/2 w-max h-max'>
           <img src={notice} alt='notice' className='size-6' />
-          <p className='uppercase text-white text-xl font-bold'>Thông tin ví</p>
+          <p className='uppercase text-white text-xl font-bold'>{t('wallet.title')}</p>
         </div>
       </div>
 
       <div className='bg-black text-white px-3 py-4'>
-        <p>*Lưu ý liên kết chính xác thông tin tài khoản ngân hàng trước khi tạo lệnh rút tiền</p>
-        <p>*Do sự chậm trễ của mạng ERC20, khuyến nghị sử dụng mạng TRC20</p>
+        <p>{t('wallet.note_1')}</p>
+        <p>{t('wallet.note_2')}</p>
       </div>
       <div className='py-2 px-3 text-sm'>
         <div
@@ -42,7 +44,7 @@ const Wallet = () => {
                 }`}
               onClick={() => setStatus('bankinfo')}
             >
-              Thông tin ngân hàng
+              {t('wallet.bank_info')}
             </button>
           </div>
           <div className=' rounded-xl  text-center'>
@@ -53,7 +55,7 @@ const Wallet = () => {
                 }`}
               onClick={() => setStatus('withdrawalinfo')}
             >
-              Thông tin ví
+              {t('wallet.withdrawal_info')}
             </button>
           </div>
         </div>
@@ -67,47 +69,47 @@ const BankInfo = () => {
   const [bankName, setBankName] = useState('')
   const [bankAccount, setBankAccount] = useState('')
   const [bankNumber, setBankNumber] = useState('')
-
+  const { t } = useTranslation()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (bankName === '' || bankAccount === '' || bankNumber === '') {
-      alert('Vui lòng nhập đầy đủ thông tin!')
+      alert(t('wallet.please_enter_all_information'))
       return
     }
     // Gửi dữ liệu tới API ở đây
-    alert('Thông tin tài khoản ngân hàng đã được cập nhật!')
+    alert(t('wallet.bank_information_has_been_updated'))
   }
   return (
     <form onSubmit={handleSubmit} className=' mx-auto mt-5 bg-white rounded-lg  space-y-4'>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Họ và tên</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('wallet.name')}</label>
         <input
           type='text'
           value={bankName}
           onChange={(e) => setBankName(e.target.value)}
-          placeholder='Họ và tên'
+          placeholder={t('wallet.name')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Tên ngân hàng</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('wallet.bank_name')}</label>
         <input
           type='text'
           value={bankAccount}
           onChange={(e) => setBankAccount(e.target.value)}
-          placeholder='Tên ngân hàng'
+          placeholder={t('wallet.bank_name')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Số tài khoản</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('wallet.bank_account')}</label>
         <input
           type='text'
           value={bankNumber}
           onChange={(e) => setBankNumber(e.target.value)}
-          placeholder='Số tài khoản'
+          placeholder={t('wallet.bank_account')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
@@ -117,7 +119,7 @@ const BankInfo = () => {
         disabled={!bankName || !bankAccount || !bankNumber}
         className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
       >
-        Xác nhận
+        {t('wallet.confirm')}
       </button>
     </form>
   )
@@ -127,6 +129,7 @@ const WithdrawalInfo = () => {
   const [mangluoi, setMangluoi] = useState('')
   const [address, setAddress] = useState('')
   const [network, setNetwork] = useState('TRC20')
+  const { t } = useTranslation()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -136,28 +139,28 @@ const WithdrawalInfo = () => {
   return (
     <form onSubmit={handleSubmit} className=' mx-auto mt-5 bg-white rounded-lg  space-y-4'>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Mạng lưới</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('wallet.network')}</label>
         <input
           type='text'
           value={mangluoi}
           onChange={(e) => setMangluoi(e.target.value)}
-          placeholder='Mạng lưới'
+          placeholder={t('wallet.network')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Địa chỉ ví</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('wallet.address')}</label>
         <input
           type='text'
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          placeholder='Địa chỉ ví'
+          placeholder={t('wallet.address')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Mạng lưới</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('wallet.network')}</label>
         <div className='grid grid-cols-2 gap-3'>
           <button
             type='button'
@@ -183,7 +186,7 @@ const WithdrawalInfo = () => {
         disabled={!mangluoi || !address}
         className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
       >
-        Xác nhận
+        {t('wallet.confirm')}
       </button>
     </form>
   )

@@ -1,8 +1,10 @@
 import notice from '~/assets/menu-icon11.90d56ac5.svg'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 const Security = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [status, setStatus] = useState<string>('password')
   return (
     <div className='max-w-xl mx-auto'>
@@ -21,7 +23,7 @@ const Security = () => {
         </button>
         <div className='flex items-center gap-2 absolute left-1/2 -translate-x-1/2 w-max h-max'>
           <img src={notice} alt='notice' className='size-6' />
-          <p className='uppercase text-white text-xl font-bold'>Cài đặt mật khẩu</p>
+          <p className='uppercase text-white text-xl font-bold'>{t('security.title')}</p>
         </div>
       </div>
       <div className='py-2 px-3 text-sm'>
@@ -35,7 +37,7 @@ const Security = () => {
                 }`}
               onClick={() => setStatus('password')}
             >
-              Mật khẩu đăng nhập
+              {t('security.login_password')}
             </button>
           </div>
           <div className=' rounded-xl  text-center'>
@@ -44,7 +46,7 @@ const Security = () => {
                 }`}
               onClick={() => setStatus('withdrawal')}
             >
-              Mật khẩu rút tiền
+              {t('security.withdrawal_password')}
             </button>
           </div>
         </div>
@@ -58,47 +60,47 @@ const Password = () => {
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-
+  const { t } = useTranslation()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (newPassword !== confirmPassword) {
-      alert('Mật khẩu xác nhận không khớp!')
+      alert(t('security.password_confirmation_does_not_match'))
       return
     }
     // Gửi dữ liệu tới API ở đây
-    alert('Đổi mật khẩu thành công!')
+    alert(t('security.password_changed_successfully'))
   }
   return (
     <form onSubmit={handleSubmit} className=' mx-auto mt-5 bg-white rounded-lg  space-y-4'>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Mật khẩu cũ</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('security.old_password')}</label>
         <input
           type='password'
           value={oldPassword}
           onChange={(e) => setOldPassword(e.target.value)}
-          placeholder='Mật khẩu cũ'
+          placeholder={t('security.old_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Mật khẩu đăng nhập mới</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('security.new_login_password')}</label>
         <input
           type='password'
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
-          placeholder='Mật khẩu đăng nhập mới'
+          placeholder={t('security.new_login_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Xác nhận mật khẩu</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('security.confirm_password')}</label>
         <input
           type='password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder='Xác nhận mật khẩu'
+          placeholder={t('security.confirm_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
@@ -108,7 +110,7 @@ const Password = () => {
         disabled={!oldPassword || !newPassword || !confirmPassword}
         className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
       >
-        Xác nhận
+        {t('security.confirm')}
       </button>
     </form>
   )
@@ -118,47 +120,47 @@ const WithdrawalPassword = () => {
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-
+  const { t } = useTranslation()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (newPassword !== confirmPassword) {
-      alert('Mật khẩu xác nhận không khớp!')
+      alert(t('security.password_confirmation_does_not_match'))
       return
     }
     // Gửi dữ liệu tới API ở đây
-    alert('Đổi mật khẩu thành công!')
+    alert(t('security.password_changed_successfully'))
   }
   return (
     <form onSubmit={handleSubmit} className=' mx-auto mt-5 bg-white rounded-lg  space-y-4'>
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Mật khẩu cũ</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('security.old_password')}</label>
         <input
           type='password'
           value={oldPassword}
           onChange={(e) => setOldPassword(e.target.value)}
-          placeholder='Mật khẩu cũ'
+          placeholder={t('security.old_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Mật khẩu rút tiền mới</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('security.new_withdrawal_password')}</label>
         <input
           type='password'
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
-          placeholder='Mật khẩu rút tiền mới'
+          placeholder={t('security.new_withdrawal_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
 
       <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>Xác nhận mật khẩu rút tiền</label>
+        <label className='block font-semibold mb-1 text-[#003857]'>{t('security.confirm_withdrawal_password')}</label>
         <input
           type='password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder='Xác nhận mật khẩu rút tiền'
+          placeholder={t('security.confirm_withdrawal_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
@@ -168,7 +170,7 @@ const WithdrawalPassword = () => {
         disabled={!oldPassword || !newPassword || !confirmPassword}
         className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
       >
-        Xác nhận
+        {t('security.confirm')}
       </button>
     </form>
   )

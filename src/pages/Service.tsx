@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import menu_icon7 from '~/assets/menu-icon7.15b1b83f.svg'
 import gust_logo from '~/assets/gust_logo.png'
+import { useTranslation } from 'react-i18next'
 const Service = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   return (
     <div className='bg-black text-white min-h-screen max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -26,20 +28,20 @@ const Service = () => {
       <div className='flex flex-col items-center justify-center gap-4 px-5'>
         <img src={menu_icon7} alt='menu_icon7' className='size-24' />
         <p className='text-2xl font-bold uppercase'>
-          Dịch vụ hỗ trợ
+          {t('service.title')}
         </p>
         <p className='text- '>
-          Liên hệ với chúng tôi nếu bạn có bất kỳ vấn đề gì
+          {t('service.description')}
         </p>
         <img src={gust_logo} alt='gust_logo' className='w-52' />
         <p className='text-xl uppercase font-bold text-center px-3'>
-          Liên hệ với chúng tôi qua hệ thống dịch vụ khách hàng
+          {t('service.description_contact')}
         </p>
         <p>
-          Thời gian hoạt động dịch vụ: 10:00 - 23:59
+          {t('service.description_time')}
         </p>
         <button className='bg-primary text-white px-4 py-3 mt-20 rounded-full font-bold w-full '>
-          Liên hệ dịch vụ khách hàng
+          {t('service.description_contact_service')}
         </button>
       </div>
     </div>

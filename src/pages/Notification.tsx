@@ -1,7 +1,9 @@
 import notice from '~/assets/notice.5b7a1636.svg'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 const Notification = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   return (
     <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -19,7 +21,7 @@ const Notification = () => {
         </button>
         <div className='flex items-center gap-2 absolute left-1/2 -translate-x-1/2 w-max h-max'>
           <img src={notice} alt='notice' className='size-6' />
-          <p className='uppercase text-white text-xl font-bold'>Tin nhắn hệ thống</p>
+          <p className='uppercase text-white text-xl font-bold'>{t('notification.system_message')}</p>
         </div>
         <button></button>
       </div>

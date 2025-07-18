@@ -1,20 +1,29 @@
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import banner from '~/assets/downloadbg.svg'
+import { languages } from '~/components/LangueChange'
 const Login = () => {
+  const { t, i18n } = useTranslation()
   const [showPassword, setShowPassword] = useState(false)
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
+  const currentLang = languages.find((l) => l.code === i18n.language) || languages[0]
   return (
-    <div style={{ backgroundImage: `url(${banner})` }} className='flex flex-col items-center justify-center  bg-black px-5 text-sm'>
+    <div
+      style={{ backgroundImage: `url(${banner})` }}
+      className='flex flex-col items-center justify-center  bg-black px-5 text-sm'
+    >
       <div className='pt-20'>
         <p className='text-white text-3xl max-w-[400px] mx-auto font-semibold '>
-          Phát triển kinh doanh với <span className='text-primary'>TikTok Việt Nam </span> ngay hôm nay!
+          {t('login.grow_your_business_with')} <span className='text-primary'>TikTok {currentLang.label} </span>{' '}
+          {t('login.now_day')}!
         </p>
-        <p className='text-white text-sm max-w-[400px] mx-auto mt-2'>Nếu là bán lẻ, thương hiệu hay doanh nghiệp, bạn luôn có thể bán hàng trên TikTok với số lượng người theo dõi bất kỳ. Tiktok góp phần mang cho bạn lượng truy cập khổng lồ thông qua video ngắn và LIVE.</p>
+        <p className='text-white text-sm max-w-[400px] mx-auto mt-2'>
+          {t('login.if_you_are_retail_brand_or_business')}
+        </p>
       </div>
       <div className=' py-8 rounded-lg w-full max-w-[400px] mx-auto'>
-
         <div className='mb-7 relative'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -51,7 +60,7 @@ const Login = () => {
 
           <input
             type={showPassword ? 'text' : 'password'}
-            placeholder='Mật khẩu đăng nhập'
+            placeholder={t('login.password')}
             className='pl-10 pr-10 py-3 w-full rounded-full bg-white focus:outline-none '
           />
           <button
@@ -66,31 +75,26 @@ const Login = () => {
         <div className='flex items-center mb-6'>
           <input type='checkbox' id='remember' className='mr-2' defaultChecked />
           <label htmlFor='remember' className='text-white text-sm'>
-            Ghi nhớ tôi
+            {t('login.remember_me')}
           </label>
         </div>
 
-        <button className='w-full bg-primary hover:bg-primary/80 text-white py-3 rounded-full text-lg font-semibold transition'>
-          ĐĂNG NHẬP
+        <button className='w-full bg-primary hover:bg-primary/80 text-white py-3 uppercase rounded-full text-lg font-semibold transition'>
+          {t('login.login')}
         </button>
 
         <div className='text-center mt-4'>
-          <span className='text-white text-sm'>Không có tài khoản? </span>
+          <span className='text-white text-sm'>{t('login.no_account')} </span>
           <button className='text-primary font-bold text-sm hover:underline '>
-            <Link to='/register'>Đăng ký</Link>
+            <Link to='/register'>{t('login.register')}</Link>
           </button>
         </div>
         <div className='text-white text-xs mt-4'>
-          Tiếp tục nghĩa là bạn đồng ý với Điều khoản dịch vụ thương gia dành cho TikTok Shop, Điều khoản dịch vụ thương
-          mại TikTok, đồng thời công nhận oạn đã đọc Chính sách quyền riêng tư của TIkTok dành cho đối tác để tìm hiểu
-          cách chúng tôi thu thập, sử dụng và chia sẻ dỡ liệu của bạn. Bạn có thể sử dụng cùng thông tin đăng nhập này
-          để truy cập Trung tâm doanh nghiệp và Trinh quản tý quảng cáo, Bên cạnh đó, bạn sẽ có thể sử dụng thu nhập của
-          cửa hàng mình để thanh toán chỉ tiêu quảng cáo.
+
+          {t('login.continue_login')}
           <br />
           <br />
-          Bạn cũng dòng ý ràng các sản phẩm của bạn sẽ được tự động thêm vào Cộng
-          tác mở trong chương trình liên kết, với tỷ lệ hoa hồng xác định theo hạng mục
-          sản phẩm
+          {t('login.continue_login_2')}
 
         </div>
       </div>

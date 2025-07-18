@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import notice from '~/assets/menu-icon3.d998f7a8.svg'
-
+import { useTranslation } from 'react-i18next'
 const FAQ = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   return (
-    <div className='max-w-xl mx-auto'>
+    <div className='max-w-xl mx-auto pb-10'>
       <div className='flex items-center justify-between bg-black relative '>
         <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate('/')}>
           <svg
@@ -20,92 +21,93 @@ const FAQ = () => {
         </button>
         <div className='flex items-center gap-2 absolute left-1/2 -translate-x-1/2 w-max h-max'>
           <img src={notice} alt='notice' className='size-6' />
-          <p className='uppercase text-white text-xl font-bold'>Thông báo quan trọng</p>
+          <p className='uppercase text-white text-xl font-bold'>{t('faq.system_message')}</p>
         </div>
       </div>
       <div className='px-3 mx-auto p-6 pt-3 bg-white  text-sm rounded-md text-gray-800 space-y-3'>
         <section>
-          <h2 className='text-lg font-semibold mb-2'>I. Caution</h2>
+          <h2 className='text-lg font-semibold mb-2'>{t('faq.caution')}</h2>
           <ul className='list-disc list-inside space-y-1'>
             <li>
-              Members are strictly forbidden to register more than one account and repeatedly use the same wallet
-              address for reservation deals.
+              {t('faq.members_are_strictly_forbidden_to_register_more_than_one_account_and_repeatedly_use_the_same_wallet_address_for_reservation_deals')}
             </li>
-            <li>All malicious money laundering is strictly prohibited and will be penalized legally.</li>
+            <li>
+              {t('faq.all_malicious_money_laundering_is_strictly_prohibited_and_will_be_penalized_legally')}
+            </li>
           </ul>
         </section>
 
         <section>
-          <h2 className='text-lg font-semibold mb-2'>II. Deposit</h2>
+          <h2 className='text-lg font-semibold mb-2'>{t('faq.deposit')}</h2>
           <ul className='list-decimal list-inside space-y-1'>
-            <li>Transfer to customer service to assist with deposits.</li>
-            <li>Provide a screenshot of the successful transfer.</li>
-            <li>Ensure accurate information during deposits.</li>
-            <li>Contact customer service if any issue occurs.</li>
-            <li>Double-check account details before depositing.</li>
+            <li>{t('faq.transfer_to_customer_service')}</li>
+            <li>{t('faq.provide_screenshot')}</li>
+            <li>{t('faq.ensure_accurate_information')}</li>
+            <li>{t('faq.contact_customer_service')}</li>
+            <li>{t('faq.double_check_account_details')}</li>
           </ul>
         </section>
 
         <section>
-          <h2 className='text-lg font-semibold mb-2'>III. Withdrawal</h2>
+          <h2 className='text-lg font-semibold mb-2'>{t('faq.withdrawal')}</h2>
           <ul className='list-decimal list-inside space-y-1'>
-            <li>Withdrawals only after bookings are completed.</li>
-            <li>Credit rating of 100 required to withdraw.</li>
-            <li>Withdrawals processed between 10am-10pm.</li>
+            <li>{t('faq.withdrawals_only_after_bookings_are_completed')}</li>
+            <li>{t('faq.credit_rating_of_100_required_to_withdraw')}</li>
+            <li>{t('faq.withdrawals_processed_between_10am-10pm')}</li>
           </ul>
         </section>
 
         <section>
-          <h2 className='text-lg font-semibold mb-2'>IV. Funds</h2>
+          <h2 className='text-lg font-semibold mb-2'>{t('faq.funds')}</h2>
           <ul className='list-disc list-inside space-y-1'>
-            <li>Funds held securely and claimable after bookings.</li>
-            <li>System allocates bookings to avoid fund loss.</li>
-            <li>Platform responsible for unexpected losses.</li>
+            <li>{t('faq.funds_held_securely_and_claimable_after_bookings')}</li>
+            <li>{t('faq.system_allocates_bookings_to_avoid_fund_loss')}</li>
+            <li>{t('faq.platform_responsible_for_unexpected_losses')}</li>
           </ul>
         </section>
 
         <section>
-          <h2 className='text-lg font-semibold mb-2'>V. Account Security</h2>
+          <h2 className='text-lg font-semibold mb-2'>{t('faq.account_security')}</h2>
           <ul className='list-disc list-inside space-y-1'>
-            <li>Do not disclose passwords to others.</li>
-            <li>Contact support if you forget your password.</li>
+            <li>{t('faq.do_not_disclose_passwords_to_others')}</li>
+            <li>{t('faq.contact_support_if_you_forget_your_password')}</li>
           </ul>
         </section>
 
         <section>
-          <h2 className='text-lg font-semibold mb-2'>VI. General Rating</h2>
+          <h2 className='text-lg font-semibold mb-2'>{t('faq.general_rating')}</h2>
           <ul className='list-decimal list-inside space-y-1'>
-            <li>Normal and special deals (0-6 special deals).</li>
-            <li>Member users: 0.7% - 3.5% commission.</li>
-            <li>Discoverist users: 1.1% - 6.6% commission.</li>
-            <li>Explorist users: 1.5% - 10.5% commission.</li>
-            <li>Globalist users: 2% - 16% commission.</li>
-            <li>Special deals return earnings to user account.</li>
-            <li>Bookings are automatic and non-cancellable.</li>
+            <li>{t('faq.normal_and_special_deals')}</li>
+            <li>{t('faq.member_users')}</li>
+            <li>{t('faq.discoverist_users')}</li>
+            <li>{t('faq.explorist_users')}</li>
+            <li>{t('faq.globalist_users')}</li>
+            <li>{t('faq.special_deals_return_earnings_to_user_account')}</li>
+            <li>{t('faq.bookings_are_automatic_and_non_cancellable')}</li>
           </ul>
         </section>
 
         <section>
-          <h2 className='text-lg font-semibold mb-2'>VII. Platform Agent Mode</h2>
+          <h2 className='text-lg font-semibold mb-2'>{t('faq.platform_agent_mode')}</h2>
           <ul className='list-disc list-inside space-y-1'>
-            <li>Earn commission by referring users.</li>
-            <li>25% commission from downline earnings.</li>
+            <li>{t('faq.earn_commission_by_referring_users')}</li>
+            <li>{t('faq.25_commission_from_downline_earnings')}</li>
           </ul>
         </section>
 
         <section>
-          <h2 className='text-lg font-semibold mb-2'>VIII. Operation Hour</h2>
+          <h2 className='text-lg font-semibold mb-2'>{t('faq.operation_hour')}</h2>
           <ul className='list-disc list-inside space-y-1'>
-            <li>Bookings can be made between 10am - 10pm.</li>
+            <li>{t('faq.bookings_can_be_made_between_10am_10pm')}</li>
           </ul>
         </section>
 
         <p className='text-center text-red-600 font-semibold mt-4'>
-          (Note: For any further assistance, please contact our customer service.)
+          {t('faq.note_for_any_further_assistance_please_contact_our_customer_service')}
         </p>
       </div>
-      <div className='text-center py-2 text-sm text-gray-600 border-t fixed bottom-0 left-0 right-0  bg-white max-w-xl mx-auto'>
-        © 2019 - 2025 TIKTOK-GIG Global Inc.
+      <div className='text-center py-2 text-sm text-gray-600 border-t  fixed bottom-0 left-0 right-0  bg-white max-w-xl mx-auto'>
+        {t('faq.copyright')}
       </div>
     </div>
   )

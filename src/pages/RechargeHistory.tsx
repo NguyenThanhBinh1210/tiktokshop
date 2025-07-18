@@ -1,7 +1,9 @@
 import notice from '~/assets/menu-icon6.4845e69c.svg'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 const RechargeHistory = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   return (
     <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -19,14 +21,14 @@ const RechargeHistory = () => {
         </button>
         <div className='flex items-center gap-2 absolute left-1/2 -translate-x-1/2 w-max h-max'>
           <img src={notice} alt='notice' className='size-6' />
-          <p className='uppercase text-white text-xl font-bold'>Giao dịch</p>
+          <p className='uppercase text-white text-xl font-bold'>{t('recharge.title_history')}</p>
         </div>
       </div>
       <div className='p-4'>
         <div className='flex justify-between items-center py-3 border-b'>
           <p>CZ2507172236073728</p>
           <div className='flex items-center gap-8'>
-            <p className='text-white bg-[#aaa] rounded-full px-2 text-xs py-0.5'>Đang chờ xử lý</p>
+            <p className='text-white bg-[#aaa] rounded-full px-2 text-xs py-0.5'>{t('recharge.pending')}</p>
             <p className='text-[#003857] font-bold'>$50000.00</p>
           </div>
         </div>
