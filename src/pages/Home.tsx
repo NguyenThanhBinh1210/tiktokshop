@@ -10,19 +10,20 @@ import image7 from '~/assets/1.png'
 import image8 from '~/assets/4.png'
 import image9 from '~/assets/77.png'
 import image10 from '~/assets/78.png'
+import image11 from '~/assets/bannerhomess.jpg'
 import { useTranslation } from 'react-i18next'
 const Home = () => {
   const { t } = useTranslation()
-  const [messages] = useState([
-    'bb***258 Quỹ 52870 Rút tiền thành công',
-    'aa***123 Quỹ 12500 Nạp tiền thành công',
-    'cc***789 Quỹ 30000 Rút tiền thành công',
-    'dd***456 Quỹ 7000 Nạp tiền thành công',
-    'ee***111 Quỹ 85000 Rút tiền thành công',
-    'ff***222 Quỹ 45000 Rút tiền thành công'
-  ])
+  // const [messages] = useState([
+  //   'bb***258 Quỹ 52870 Rút tiền thành công',
+  //   'aa***123 Quỹ 12500 Nạp tiền thành công',
+  //   'cc***789 Quỹ 30000 Rút tiền thành công',
+  //   'dd***456 Quỹ 7000 Nạp tiền thành công',
+  //   'ee***111 Quỹ 85000 Rút tiền thành công',
+  //   'ff***222 Quỹ 45000 Rút tiền thành công'
+  // ])
   const [images] = useState([image1, image2, image3, image4, image5, image6, image7, image8, image9, image10])
-  const loopedMessages = [...messages, ...messages]
+  // const loopedMessages = [...messages, ...messages]
   return (
     <div className='pt-14 px-4 text-sm pb-24'>
       <div className='bg-black text-white font-bold p-3 py-2 rounded-md'>{t('home.welcome_customer')}: vn6688</div>
@@ -32,7 +33,7 @@ const Home = () => {
           {t('home.tiktok_shop_description')}
         </p>
       </div>
-      <div className='bg-black text-white p-3 py-2 rounded-md mt-5 text-center h-[250px] overflow-hidden relative'>
+      {/* <div className='bg-black text-white p-3 py-2 rounded-md mt-5 text-center h-[250px] overflow-hidden relative'>
         <div className='animate-scroll flex flex-col space-y-4'>
           {loopedMessages.map((message, index) => (
             <p key={index} className='py-4'>
@@ -40,8 +41,10 @@ const Home = () => {
             </p>
           ))}
         </div>
+      </div> */}
+      <div className='mt-5 rounded-md overflow-hidden'>
+        <img src={image11} alt='banner' className='w-full h-full object-cover' />
       </div>
-
       <div className='bg-black text-white  p-3 py-4 rounded-md mt-5'>
         <div className='bg-white text-gray-500 text-center font-bold p-3 py-3 text-base rounded-full flex items-center justify-center gap-2'>
           <img src={index_icon} alt='index_icon' className='size-5' />
