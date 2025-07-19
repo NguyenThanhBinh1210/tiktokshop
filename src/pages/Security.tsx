@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { AppContext } from '~/contexts/app.context'
 import { useMutation } from 'react-query'
 import { updatePassword } from '~/apis/auth.api'
+import toast from 'react-hot-toast'
 const Security = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -38,8 +39,8 @@ const Security = () => {
           <div className=' rounded-xl  text-center'>
             <button
               className={` rounded-full w-full  py-2.5  ${status === 'password'
-                  ? ' text-primary font-bold bg-[#fdfdfd] border-2 border-[#eee] '
-                  : 'text-[#7f7f7f]'
+                ? ' text-primary font-bold bg-[#fdfdfd] border-2 border-[#eee] '
+                : 'text-[#7f7f7f]'
                 }`}
               onClick={() => setStatus('password')}
             >
@@ -49,8 +50,8 @@ const Security = () => {
           <div className=' rounded-xl  text-center'>
             <button
               className={` rounded-full w-full  py-2.5 ${status === 'withdrawal'
-                  ? ' text-primary font-bold bg-[#fdfdfd] border-2 border-[#eee] '
-                  : 'text-[#7f7f7f]'
+                ? ' text-primary font-bold bg-[#fdfdfd] border-2 border-[#eee] '
+                : 'text-[#7f7f7f]'
                 }`}
               onClick={() => setStatus('withdrawal')}
             >
@@ -89,29 +90,29 @@ const Password = () => {
       })
 
     if (formState.newPassword !== formState.confirmPassword) {
-      newErrors.confirmPassword = 'Mật khẩu không khớp'
+      newErrors.confirmPassword = t('security.password_confirmation_does_not_match')
     }
     if (formState.password === formState.newPassword) {
-      newErrors.newPassword = 'Mật khẩu mới không được trùng với mật khẩu cũ'
+      newErrors.newPassword = t('security.new_password_cannot_be_the_same_as_the_old_password')
     }
 
     // Mật khẩu (ít nhất 6 ký tự)
     if (!formState.password) {
-      newErrors.password = 'Vui lòng nhập mật khẩu'
+      newErrors.password = t('security.please_enter_password')
     } else if (formState.password.length < 6) {
-      newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự'
+      newErrors.password = t('security.password_must_be_at_least_6_characters')
     }
 
     if (!formState.newPassword) {
-      newErrors.newPassword = 'Vui lòng nhập mật khẩu'
+      newErrors.newPassword = t('security.please_enter_password')
     } else if (formState.newPassword.length < 6) {
-      newErrors.newPassword = 'Mật khẩu phải có ít nhất 6 ký tự'
+      newErrors.newPassword = t('security.password_must_be_at_least_6_characters')
     }
 
     if (!formState.confirmPassword) {
-      newErrors.confirmPassword = 'Vui lòng nhập mật khẩu'
+      newErrors.confirmPassword = t('security.please_enter_password')
     } else if (formState.confirmPassword.length < 6) {
-      newErrors.confirmPassword = 'Mật khẩu phải có ít nhất 6 ký tự'
+      newErrors.confirmPassword = t('security.password_must_be_at_least_6_characters')
     }
 
     setErrors(newErrors)
@@ -143,11 +144,11 @@ const Password = () => {
           setIsAuthenticated(false)
           setProfile(null)
           reset()
-          alert('Đổi mật khẩu thành công, hãy đăng nhập lại!')
+          toast.success(t('security.password_changed_successfully'))
           navigate('/login')
         },
         onError: () => {
-          alert('Lỗi không thể thay đổi mật khẩu!')
+          toast.error(t('security.error_changing_password'))
         }
       })
     }
@@ -206,11 +207,11 @@ const WithdrawalPassword = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (newPassword !== confirmPassword) {
-      alert(t('security.password_confirmation_does_not_match'))
+      toast.error(t('security.password_confirmation_does_not_match'))
       return
     }
     // Gửi dữ liệu tới API ở đây
-    alert(t('security.password_changed_successfully'))
+    toast.success(t('security.password_changed_successfully'))
   }
   return (
     <form onSubmit={handleSubmit} className=' mx-auto mt-5 bg-white rounded-lg  space-y-4'>

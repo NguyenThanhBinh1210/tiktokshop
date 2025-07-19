@@ -9,7 +9,9 @@
     "no_account": "Non hai un account?",
     "register": "Registrati",
     "continue_login": "Continua significa che accetti i Termini di servizio di TikTok Shop, i Termini di servizio di TikTok e riconosci che hai letto la Politica di privacy di TikTok per i partner per capire come raccogliamo, utilizziamo e condividiamo i tuoi dati. Puoi usare le stesse informazioni di accesso per accedere al Centro di business e al Gestore degli annunci commerciali di TikTok. Inoltre, potrai usare i guadagni della tua negozio per pagare le metriche di pubblicità.",
-    "continue_login_2": "Accetti anche che i tuoi prodotti saranno automaticamente aggiunti al programma di collaborazione aperta, con un tipo di commissione per categoria di prodotto."
+    "continue_login_2": "Accetti anche che i tuoi prodotti saranno automaticamente aggiunti al programma di collaborazione aperta, con un tipo di commissione per categoria di prodotto.",
+    "login_success": "Accesso riuscito!",
+    "login_failed": "Accesso fallito!"
   },
   "register": {
     "phone_number": "Numero di telefono",
@@ -17,7 +19,16 @@
     "password": "Password",
     "confirm_password": "Conferma password",
     "referral_code": "Codice di riferimento",
-    "register_now": "Registrati ora"
+    "register_now": "Registrati ora",
+    "register_success": "Registrazione completata con successo, effettua il login!",
+    "password_not_match": "Le password non corrispondono",
+    "username_must_be_at_least_4_characters": "Il nome utente deve contenere almeno 4 caratteri",
+    "please_enter_username": "Inserisci il nome utente",
+    "invalid_phone_number": "Numero di telefono non valido (9-10 cifre)",
+    "please_enter_phone_number": "Inserisci il numero di telefono",
+    "password_must_be_at_least_6_characters": "La password deve contenere almeno 6 caratteri",
+    "please_enter_password": "Inserisci la password",
+    "register_failed": "Registrazione fallita!"
   },
   "about": {
     "intro": "Chi siamo",
@@ -48,7 +59,27 @@
     "start_receiving_orders": "Inizia a ricevere ordini",
     "order_description_1": "1. Per quanto riguarda l'invio degli ordini, clicca su Invia ordine per cercare le vendite ordine e attendi che il sistema selezioni casualmente.",
     "order_description_2": "2. Tutti gli ordini casuali non possono essere modificati o annullati, o ignorati.",
-    "order_description_3": "3. Ogni ordine deve essere pagato entro 10 minuti, è necessario contattare il supporto clienti online per ottenere le informazioni della carta di pagamento."
+    "order_description_3": "3. Ogni ordine deve essere pagato entro 10 minuti, è necessario contattare il supporto clienti online per ottenere le informazioni della carta di pagamento.",
+    "still_have_1_order_not_paid": "Hai ancora un ordine non pagato!",
+    "your_account_has_been_frozen": "Il tuo account è stato bloccato.",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "Non hai abbastanza soldi per iniziare a fare un ordine.",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "Hai raggiunto il limite di ordini per oggi. Riprova più tardi.",
+    "order_completed": "Ordine completato!",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "Non hai abbastanza soldi per pagare questo ordine.",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "Non hai abbastanza soldi per pagare questo ordine, contatta il servizio clienti per aggiungere fondi!",
+    "server_error_please_reload_the_page": "Errore del server, ricarica la pagina!",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "Non hai abbastanza soldi per completare questo ordine, contatta il servizio clienti per aggiungere fondi!",
+    "please_contact_customer_service_to_add_money": "Contatta il servizio clienti per aggiungere fondi!",
+    "order_code": "Codice ordine",
+    "updated_at": "Aggiornato alle",
+    "product_price": "Prezzo del prodotto",
+    "quantity": "Quantità",
+    "total_price": "Prezzo totale",
+    "order_details": "Dettagli dell'ordine",
+    "order_status": "Stato dell'ordine",
+    "countdown_payment": "Countdown pagamento",
+    "payment": "Pagamento",
+    "back": "Indietro"
   },
   "dealing_slip": {
     "deal": "Acquista",
@@ -57,7 +88,18 @@
     "completed": "Completato",
     "frozen": "Congelato",
     "profile": "Profilo",
-    "no_order": "Nessun ordine"
+    "no_order": "Nessun ordine",
+    "updateSuccess": "Aggiornamento riuscito",
+    "notEnoughMoney": "Fondi insufficienti",
+    "pleaseContactCustomerServiceToAddMoney": "Si prega di contattare il servizio clienti per aggiungere fondi",
+    "quantity": "Quantità",
+    "originalPrice": "Prezzo originale",
+    "totalPrice": "Prezzo totale",
+    "status": "Stato",
+    "payment": "Pagamento",
+    "no_history": "Nessuna cronologia",
+    "commission": "Commissione",
+    "pending_payment": "In attesa di pagamento"
   },
   "faq": {
     "system_message": "Messaggio del sistema",
@@ -127,21 +169,24 @@
     "copyright": "© 2019 - 2025 TIKTOK-GIG Global Inc."
   },
   "security": {
-    "title": "Impostazioni password",
+    "title": "Impostazione della password",
     "login_password": "Password di accesso",
     "withdrawal_password": "Password di prelievo",
-    "password_confirmation_does_not_match": "Le password non corrispondono!",
-    "password_changed_successfully": "Password cambiata con successo!",
-    "old_password": "Password vecchia",
-    "new_login_password": "Password di accesso nuova",
-    "new_withdrawal_password": "Password di prelievo nuova",
+    "password_confirmation_does_not_match": "La conferma della password non corrisponde!",
+    "password_changed_successfully": "Password modificata con successo!",
+    "old_password": "Vecchia password",
+    "new_login_password": "Nuova password di accesso",
+    "new_withdrawal_password": "Nuova password di prelievo",
     "confirm_password": "Conferma password",
     "confirm": "Conferma",
     "confirm_withdrawal_password": "Conferma password di prelievo",
     "change_password": "Cambia password",
-    "change_password_success": "Password cambiata con successo!",
+    "change_password_success": "Cambio password riuscito!",
     "change_password_failed": "Cambio password fallito!",
-    "change_password_failed_reason": "Motivo: La password vecchia non è corretta!"
+    "change_password_failed_reason": "Motivo: la vecchia password non è corretta!",
+    "please_enter_password": "Inserisci la password!",
+    "password_must_be_at_least_6_characters": "La password deve contenere almeno 6 caratteri!",
+    "error_changing_password": "Errore durante la modifica della password!"
   },
   "recharge": {
     "title": "Deposito",
@@ -150,7 +195,14 @@
     "amount": "Quantità",
     "confirm": "Conferma",
     "title_history": "Storico deposito",
-    "pending": "In attesa"
+    "pending": "In attesa",
+    "min_amount": "Deposito minimo 200$. Per favore riprova",
+    "success_message": "Richiesta di deposito creata con successo!",
+    "error_message": "Errore, per favore riprova!",
+    "select_payment_account": "Seleziona il metodo di pagamento!",
+    "no_history": "Nessun storico",
+    "deny": "Bloccato",
+    "success": "Deposito riuscito"
   },
   "service": {
     "title": "Servizio",
@@ -173,7 +225,9 @@
     "address": "Indirizzo del portafoglio",
     "note_1": "*Nota: Assicurati di collegare le informazioni del conto bancario correttamente prima di creare un ordine di prelievo",
     "note_2": "*A causa del ritardo della rete ERC20, è consigliato l'uso della rete TRC20",
-    "update": "Aggiorna"
+    "update": "Aggiorna",
+    "success_message": "Informazioni del portafoglio aggiornate con successo!",
+    "error_message": "Errore, per favore riprova!"
   },
   "withdrawal": {
     "title": "Prelievo",
@@ -192,7 +246,14 @@
     "confirm": "Conferma",
     "bank_account": "Conto bancario",
     "withdrawal_amount": "Importo prelievo",
-    "withdrawal_password": "Password prelievo"
+    "withdrawal_password": "Password prelievo",
+    "pending": "In attesa",
+    "success": "Prelievo riuscito",
+    "deny": "Bloccato",
+    "min_amount": "Prelievo minimo 20$. Per favore riprova",
+    "success_message": "Richiesta prelievo creata con successo!",
+    "error_message": "Errore, per favore riprova!",
+    "please_update_payment_account_before_withdrawing": "Per favore aggiorna il metodo di pagamento prima di prelevare!"
   },
   "menu": {
     "trust_level": "Livello di fiducia",

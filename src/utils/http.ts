@@ -1,5 +1,6 @@
 import axios, { type AxiosInstance } from 'axios'
 import { getAccessTokenFromLS, setAccesTokenToLS, setProfileFromLS, clearLS, getOrCreateDeviceId } from './auth' // Assume clearLS clears local storage
+import toast from 'react-hot-toast'
 // import { toast } from 'react-toastify'
 
 class Http {
@@ -49,7 +50,7 @@ class Http {
           this.isLogoutToastShown = true // Set the flag to true
           clearLS() // Xóa token và thông tin người dùng khỏi localStorage
           // toast.error('Bạn đã bị đăng nhập bởi thiết bị khác!')
-          alert('Bạn đã bị đăng nhập bởi thiết bị khác!')
+          toast.error('Bạn đã bị đăng nhập bởi thiết bị khác!')
           // Delay redirect to show the toast
           setTimeout(() => {
             this.isLogoutToastShown = false // Reset the flag after handling the error
@@ -59,7 +60,7 @@ class Http {
           this.isLogoutToastShown = true
           clearLS() // Xóa token và thông tin người dùng khỏi localStorage
           // toast.error('Thiết bị bạn hết hạn đăng nhập hãy đăng nhập lại!')
-          alert('Thiết bị bạn hết hạn đăng nhập hãy đăng nhập lại!')
+          toast.error('Thiết bị bạn hết hạn đăng nhập hãy đăng nhập lại!')
           setTimeout(() => {
             this.isLogoutToastShown = false // Reset the flag after handling the error
             window.location.href = '/login'

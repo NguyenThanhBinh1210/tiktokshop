@@ -9,7 +9,9 @@
     "no_account": "Não tem uma conta?",
     "register": "Registrar",
     "continue_login": "Continuar significa que você concorda com os Termos de serviço do TikTok Shop, os Termos de serviço do TikTok e reconhece que leu a Política de privacidade do TikTok para parceiros para entender como coletamos, usamos e compartilhamos seus dados. Você pode usar as mesmas informações de login para acessar o Centro de negócios e o Gerenciador de anúncios comerciais do TikTok. Além disso, você poderá usar os lucros da sua loja para pagar as métricas de publicidade.",
-    "continue_login_2": "Também concorda que seus produtos serão automaticamente adicionados ao programa de colaboração aberta, com uma taxa de comissão por categoria de produto."
+    "continue_login_2": "Também concorda que seus produtos serão automaticamente adicionados ao programa de colaboração aberta, com uma taxa de comissão por categoria de produto.",
+    "login_success": "Login bem-sucedido!",
+    "login_failed": "Login falhou!"
   },
   "register": {
     "phone_number": "Número de telefone",
@@ -17,7 +19,16 @@
     "password": "Senha",
     "confirm_password": "Confirmar senha",
     "referral_code": "Código de referência",
-    "register_now": "Registrar agora"
+    "register_now": "Registrar agora",
+    "register_success": "Registro bem-sucedido, faça login!",
+    "password_not_match": "As senhas não coincidem",
+    "username_must_be_at_least_4_characters": "O nome de usuário deve ter pelo menos 4 caracteres",
+    "please_enter_username": "Por favor, insira o nome de usuário",
+    "invalid_phone_number": "O número de telefone é inválido (9-10 dígitos)",
+    "please_enter_phone_number": "Por favor, insira o número de telefone",
+    "password_must_be_at_least_6_characters": "A senha deve ter pelo menos 6 caracteres",
+    "please_enter_password": "Por favor, insira a senha",
+    "register_failed": "Registro falhou!"
   },
   "about": {
     "intro": "Sobre nós",
@@ -48,7 +59,27 @@
     "start_receiving_orders": "Começar a receber pedidos",
     "order_description_1": "1. Sobre o envio de pedidos, clique em começar a enviar pedidos para buscar pedidos de venda e aguarde o sistema escolher aleatoriamente.",
     "order_description_2": "2. Todos os pedidos aleatórios não podem ser alterados ou cancelados, ou ignorados.",
-    "order_description_3": "3. Cada pedido deve ser pago em 10 minutos, você precisa entrar em contato com o atendimento ao cliente online para obter informações sobre a conta bancária."
+    "order_description_3": "3. Cada pedido deve ser pago em 10 minutos, você precisa entrar em contato com o atendimento ao cliente online para obter informações sobre a conta bancária.",
+    "still_have_1_order_not_paid": "Você ainda tem 1 pedido não pago!",
+    "your_account_has_been_frozen": "Sua conta foi congelada.",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "Você não tem dinheiro suficiente para começar a colocar um pedido.",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "Você atingiu o limite de pedidos para o dia. Por favor, volte mais tarde",
+    "order_completed": "Pedido concluído!",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "Você não tem dinheiro suficiente para pagar este pedido",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "Você não tem dinheiro suficiente para pagar este pedido. Por favor, entre em contato com o serviço de atendimento ao cliente para adicionar mais dinheiro!",
+    "server_error_please_reload_the_page": "Erro do servidor, por favor, recarregue a página!",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "Você não tem dinheiro suficiente para completar este pedido. Por favor, entre em contato com o serviço de atendimento ao cliente para adicionar mais dinheiro!",
+    "please_contact_customer_service_to_add_money": "Por favor, entre em contato com o serviço de atendimento ao cliente para adicionar mais dinheiro!",
+    "order_code": "Código do pedido",
+    "updated_at": "Atualizado em",
+    "product_price": "Preço do produto",
+    "quantity": "Quantidade",
+    "total_price": "Preço total",
+    "order_details": "Detalhes do pedido",
+    "order_status": "Status do pedido",
+    "countdown_payment": "Contagem regressiva para pagamento",
+    "payment": "Pagamento",
+    "back": "Voltar"
   },
   "dealing_slip": {
     "deal": "Comprar",
@@ -57,7 +88,18 @@
     "completed": "Concluído",
     "frozen": "Congelado",
     "profile": "Perfil",
-    "no_order": "Nenhum pedido"
+    "no_order": "Nenhum pedido",
+    "updateSuccess": "Atualização bem-sucedida",
+    "notEnoughMoney": "Não tem dinheiro suficiente",
+    "pleaseContactCustomerServiceToAddMoney": "Por favor, entre em contato com o serviço de atendimento ao cliente para adicionar mais dinheiro",
+    "quantity": "Quantidade",
+    "originalPrice": "Preço original",
+    "totalPrice": "Preço total",
+    "status": "Status",
+    "payment": "Pagamento",
+    "no_history": "Nenhum histórico",
+    "commission": "Comissão",
+    "pending_payment": "Pendente"
   },
   "faq": {
     "system_message": "Mensagem do sistema",
@@ -130,18 +172,21 @@
     "title": "Configuração de senha",
     "login_password": "Senha de login",
     "withdrawal_password": "Senha de saque",
-    "password_confirmation_does_not_match": "A senha de confirmação não corresponde!",
+    "password_confirmation_does_not_match": "A confirmação da senha não corresponde!",
     "password_changed_successfully": "Senha alterada com sucesso!",
     "old_password": "Senha antiga",
-    "new_login_password": "Senha de login nova",
-    "new_withdrawal_password": "Senha de saque nova",
+    "new_login_password": "Nova senha de login",
+    "new_withdrawal_password": "Nova senha de saque",
     "confirm_password": "Confirmar senha",
     "confirm": "Confirmar",
     "confirm_withdrawal_password": "Confirmar senha de saque",
     "change_password": "Alterar senha",
     "change_password_success": "Senha alterada com sucesso!",
-    "change_password_failed": "Senha alterada com falha!",
-    "change_password_failed_reason": "Motivo: A senha antiga não está correta!"
+    "change_password_failed": "Falha ao alterar a senha!",
+    "change_password_failed_reason": "Motivo: a senha antiga está incorreta!",
+    "please_enter_password": "Por favor, insira a senha!",
+    "password_must_be_at_least_6_characters": "A senha deve ter pelo menos 6 caracteres!",
+    "error_changing_password": "Erro ao alterar a senha!"
   },
   "recharge": {
     "title": "Depósito",
@@ -150,7 +195,14 @@
     "amount": "Quantidade",
     "confirm": "Confirmar",
     "title_history": "Histórico de depósito",
-    "pending": "Pendente"
+    "pending": "Pendente",
+    "min_amount": "Depósito mínimo de 200$. Por favor, tente novamente",
+    "success_message": "Criação de depósito bem-sucedida!",
+    "error_message": "Erro, por favor, tente novamente!",
+    "select_payment_account": "Por favor, selecione a conta de pagamento!",
+    "no_history": "Não há histórico",
+    "deny": "Rejeitado",
+    "success": "Depósito bem-sucedido"
   },
   "service": {
     "title": "Serviço",
@@ -173,7 +225,9 @@
     "address": "Endereço da carteira",
     "note_1": "*Nota: Antes de criar um pedido de saque, por favor, verifique as informações da conta bancária",
     "note_2": "*Devido ao atraso da rede ERC20, recomendamos usar a rede TRC20",
-    "update": "Atualizar"
+    "update": "Atualizar",
+    "success_message": "Informações da carteira atualizadas com sucesso!",
+    "error_message": "Erro, por favor, tente novamente!"
   },
   "withdrawal": {
     "title": "Saque",
@@ -192,7 +246,14 @@
     "confirm": "Confirmar",
     "bank_account": "Conta bancária",
     "withdrawal_amount": "Quantidade de saque",
-    "withdrawal_password": "Senha de saque"
+    "withdrawal_password": "Senha de saque",
+    "pending": "Pendente",
+    "success": "Saque bem-sucedido",
+    "deny": "Saque rejeitado",
+    "min_amount": "Saque mínimo de 20$. Por favor, tente novamente",
+    "success_message": "Solicitação de saque criada com sucesso!",
+    "error_message": "Erro, por favor, tente novamente!",
+    "please_update_payment_account_before_withdrawing": "Por favor, atualize a conta de pagamento antes de sacar!"
   },
   "menu": {
     "trust_level": "Nível de confiança",

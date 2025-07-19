@@ -9,7 +9,9 @@
     "no_account": "No account?",
     "register": "Register",
     "continue_login": "Continue means you agree to the TikTok Shop Terms of Service, TikTok Terms of Service, and acknowledge that you have read the TikTok Privacy Policy for partners to understand how we collect, use, and share your data. You can use the same login information to access the Business Center and TikTok Ads Manager. In addition, you will be able to use the revenue of your store to pay for advertising metrics.",
-    "continue_login_2": "You also agree that your products will be automatically added to the Open Collaboration program, with a product category-based commission rate."
+    "continue_login_2": "You also agree that your products will be automatically added to the Open Collaboration program, with a product category-based commission rate.",
+    "login_success": "Login successful!",
+    "login_failed": "Login failed!"
   },
   "register": {
     "phone_number": "Phone number",
@@ -17,7 +19,16 @@
     "password": "Password",
     "confirm_password": "Confirm password",
     "referral_code": "Referral code",
-    "register_now": "Register now"
+    "register_now": "Register now",
+    "register_success": "Registration successful, please log in!",
+    "password_not_match": "Passwords do not match",
+    "username_must_be_at_least_4_characters": "Username must be at least 4 characters",
+    "please_enter_username": "Please enter a username",
+    "invalid_phone_number": "Invalid phone number (9-10 digits)",
+    "please_enter_phone_number": "Please enter a phone number",
+    "password_must_be_at_least_6_characters": "Password must be at least 6 characters",
+    "please_enter_password": "Please enter a password",
+    "register_failed": "Registration failed!"
   },
   "about": {
     "intro": "About us",
@@ -48,7 +59,27 @@
     "start_receiving_orders": "Start receiving orders",
     "order_description_1": "1. For the order submission, click on Submit order to search for the sale order and wait for the system to randomly select.",
     "order_description_2": "2. All random orders cannot be changed or canceled, or ignored.",
-    "order_description_3": "3. Each order must be paid within 10 minutes, you need to contact the online customer support to obtain information about the credit card information."
+    "order_description_3": "3. Each order must be paid within 10 minutes, you need to contact the online customer support to obtain information about the credit card information.",
+    "still_have_1_order_not_paid": "You still have 1 order not paid!",
+    "your_account_has_been_frozen": "Your account has been frozen.",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "You do not have enough money to start placing an order.",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "You have reached the order limit for the day. Please come back later.",
+    "order_completed": "Order completed!",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "You do not have enough money to pay for this order.",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "You do not have enough money to pay for this order, please contact customer service to add money!",
+    "server_error_please_reload_the_page": "Server error, please reload the page!",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "You do not have enough money to complete this order, please contact customer service to add money!",
+    "please_contact_customer_service_to_add_money": "Please contact customer service to add money!",
+    "order_code": "Order code",
+    "updated_at": "Updated at",
+    "product_price": "Product price",
+    "quantity": "Quantity",
+    "total_price": "Total price",
+    "order_details": "Order details",
+    "order_status": "Order status",
+    "countdown_payment": "Countdown payment",
+    "payment": "Payment",
+    "back": "Back"
   },
   "dealing_slip": {
     "deal": "Deal",
@@ -57,7 +88,18 @@
     "completed": "Completed",
     "frozen": "Frozen",
     "profile": "Profile",
-    "no_order": "No order"
+    "no_order": "No order",
+    "updateSuccess": "Update success",
+    "notEnoughMoney": "Not enough money",
+    "pleaseContactCustomerServiceToAddMoney": "Please contact customer service to add money",
+    "quantity": "Quantity",
+    "originalPrice": "Original price",
+    "totalPrice": "Total price",
+    "status": "Status",
+    "payment": "Payment",
+    "no_history": "No history",
+    "commission": "Commission",
+    "pending_payment": "Pending payment"
   },
   "faq": {
     "system_message": "System message",
@@ -127,21 +169,24 @@
     "copyright": "© 2019 - 2025 TIKTOK-GIG Global Inc."
   },
   "security": {
-    "title": "Password settings",
-    "login_password": "Login password",
-    "withdrawal_password": "Withdrawal password",
+    "title": "Password Settings",
+    "login_password": "Login Password",
+    "withdrawal_password": "Withdrawal Password",
     "password_confirmation_does_not_match": "Password confirmation does not match!",
     "password_changed_successfully": "Password changed successfully!",
-    "old_password": "Old password",
-    "new_login_password": "New login password",
-    "new_withdrawal_password": "New withdrawal password",
-    "confirm_password": "Confirm password",
+    "old_password": "Old Password",
+    "new_login_password": "New Login Password",
+    "new_withdrawal_password": "New Withdrawal Password",
+    "confirm_password": "Confirm Password",
     "confirm": "Confirm",
-    "confirm_withdrawal_password": "Confirm withdrawal password",
-    "change_password": "Change password",
+    "confirm_withdrawal_password": "Confirm Withdrawal Password",
+    "change_password": "Change Password",
     "change_password_success": "Password changed successfully!",
-    "change_password_failed": "Change password failed!",
-    "change_password_failed_reason": "Reason: Old password is incorrect!"
+    "change_password_failed": "Failed to change password!",
+    "change_password_failed_reason": "Reason: Old password is incorrect!",
+    "please_enter_password": "Please enter your password!",
+    "password_must_be_at_least_6_characters": "Password must be at least 6 characters!",
+    "error_changing_password": "Error changing password!"
   },
   "recharge": {
     "title": "Recharge",
@@ -150,7 +195,14 @@
     "amount": "Amount",
     "confirm": "Confirm",
     "title_history": "Recharge history",
-    "pending": "Pending"
+    "pending": "Pending",
+    "min_amount": "Minimum deposit 200$. Please try again",
+    "success_message": "Deposit request created successfully!",
+    "error_message": "Error, please try again!",
+    "select_payment_account": "Please select a payment method!",
+    "no_history": "No history",
+    "deny": "Denied",
+    "success": "Success"
   },
   "service": {
     "title": "Service",
@@ -173,7 +225,9 @@
     "address": "Wallet address",
     "note_1": "*Note: Please link the bank account information correctly before creating a withdrawal order",
     "note_2": "*Due to the delay of the ERC20 network, it is recommended to use the TRC20 network",
-    "update": "Update"
+    "update": "Update",
+    "success_message": "Wallet information updated successfully!",
+    "error_message": "Error, please try again!"
   },
   "withdrawal": {
     "title": "Withdrawal",
@@ -192,7 +246,14 @@
     "confirm": "Confirm",
     "bank_account": "Bank account",
     "withdrawal_amount": "Withdrawal amount",
-    "withdrawal_password": "Withdrawal password"
+    "withdrawal_password": "Withdrawal password",
+    "pending": "Pending",
+    "success": "Success",
+    "deny": "Denied",
+    "min_amount": "Minimum withdrawal 20$. Please try again",
+    "success_message": "Create withdrawal request successfully!",
+    "error_message": "Error, please try again!",
+    "please_update_payment_account_before_withdrawing": "Please update the payment account before withdrawing!"
   },
   "menu": {
     "trust_level": "Trust level",

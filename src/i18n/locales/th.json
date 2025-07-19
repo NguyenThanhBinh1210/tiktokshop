@@ -9,7 +9,9 @@
     "no_account": "ไม่มีบัญชี?",
     "register": "สมัครสมาชิก",
     "continue_login": "เมื่อดำเนินการต่อ หมายความว่าคุณยอมรับข้อตกลงการใช้บริการสำหรับผู้ขายของ TikTok Shop, ข้อตกลงการใช้บริการด้านธุรกิจของ TikTok และยืนยันว่าคุณได้อ่านนโยบายความเป็นส่วนตัวของ TikTok สำหรับพันธมิตรแล้ว เพื่อทำความเข้าใจว่าเราจะเก็บรวบรวม ใช้ และแบ่งปันข้อมูลของคุณอย่างไร คุณสามารถใช้ข้อมูลบัญชีเข้าสู่ระบบเดียวกันนี้เพื่อเข้าถึงศูนย์ธุรกิจและตัวจัดการโฆษณา นอกจากนี้ คุณยังสามารถใช้รายได้จากร้านค้าของคุณเพื่อชำระค่าโฆษณาได้อีกด้วย",
-    "continue_login_2": "คุณยังยอมรับว่าสินค้าของคุณจะถูกเพิ่มอัตโนมัติเข้าไปในโครงการร่วมกันเปิด ด้วยอัตราคอมมิชชั่นตามหมวดหมู่สินค้า"
+    "continue_login_2": "คุณยังยอมรับว่าสินค้าของคุณจะถูกเพิ่มอัตโนมัติเข้าไปในโครงการร่วมกันเปิด ด้วยอัตราคอมมิชชั่นตามหมวดหมู่สินค้า",
+    "login_success": "เข้าสู่ระบบสำเร็จ!",
+    "login_failed": "เข้าสู่ระบบล้มเหลว!"
   },
   "register": {
     "phone_number": "เบอร์โทรศัพท์",
@@ -17,7 +19,16 @@
     "password": "รหัสผ่าน",
     "confirm_password": "ยืนยันรหัสผ่าน",
     "referral_code": "รหัสอ้างอิง",
-    "register_now": "สมัครสมาชิกทันที"
+    "register_now": "สมัครสมาชิกทันที",
+    "register_success": "สมัครสมาชิกสำเร็จ กรุณาเข้าสู่ระบบ!",
+    "password_not_match": "รหัสผ่านไม่ตรงกัน",
+    "username_must_be_at_least_4_characters": "ชื่อผู้ใช้ต้องมีอย่างน้อย 4 ตัวอักษร",
+    "please_enter_username": "กรุณากรอกชื่อผู้ใช้",
+    "invalid_phone_number": "หมายเลขโทรศัพท์ไม่ถูกต้อง (9-10 หลัก)",
+    "please_enter_phone_number": "กรุณากรอกหมายเลขโทรศัพท์",
+    "password_must_be_at_least_6_characters": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+    "please_enter_password": "กรุณากรอกรหัสผ่าน",
+    "register_failed": "การสมัครล้มเหลว!"
   },
   "about": {
     "intro": "เกี่ยวกับเรา",
@@ -48,7 +59,27 @@
     "start_receiving_orders": "เริ่มรับออเดอร์",
     "order_description_1": "1. คุณสามารถส่งออเดอร์ได้ทุกวัน โดยกดปุ่ม 'เริ่มส่งออเดอร์' เพื่อค้นหาออเดอร์ขายสินค้า",
     "order_description_2": "2. ทั้งหมดของออเดอร์ที่ส่งออเดอร์ไม่สามารถเปลี่ยนแปลงหรือยกเลิกได้ หรือละเว้น",
-    "order_description_3": "3. ทุกออเดอร์ต้องชำระเงินภายใน 10 นาที คุณต้องติดต่อฝ่ายบริการลูกค้าออนไลน์เพื่อขอข้อมูลบัตรธนาคาร"
+    "order_description_3": "3. ทุกออเดอร์ต้องชำระเงินภายใน 10 นาที คุณต้องติดต่อฝ่ายบริการลูกค้าออนไลน์เพื่อขอข้อมูลบัตรธนาคาร",
+    "still_have_1_order_not_paid": "คุณยังมี 1 ออเดอร์ที่ยังไม่ได้ชำระเงิน!",
+    "your_account_has_been_frozen": "บัญชีของคุณถูกปิดการใช้งาน",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "คุณไม่มีเงินเพียงพอในการเริ่มส่งออเดอร์",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "คุณได้มีการส่งออเดอร์เกินจำนวนที่กำหนดไว้ในวันนี้ กรุณากลับมาเร็วๆ นี้",
+    "order_completed": "ออเดอร์เสร็จสิ้น",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "คุณไม่มีเงินเพียงพอในการชำระเงิน",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "คุณไม่มีเงินเพียงพอในการชำระเงิน กรุณาติดต่อฝ่ายบริการลูกค้าออนไลน์เพื่อเพิ่มเงิน!",
+    "server_error_please_reload_the_page": "เซิร์ฟเวอร์มีข้อผิดพลาด กรุณาโหลดหน้าใหม่อีกครั้ง!",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "คุณไม่มีเงินเพียงพอในการชำระเงิน กรุณาติดต่อฝ่ายบริการลูกค้าออนไลน์เพื่อเพิ่มเงิน!",
+    "please_contact_customer_service_to_add_money": "กรุณาติดต่อฝ่ายบริการลูกค้าออนไลน์เพื่อเพิ่มเงิน!",
+    "order_code": "รหัสออเดอร์",
+    "updated_at": "อัปเดตเวลา",
+    "product_price": "ราคาสินค้า",
+    "quantity": "จำนวน",
+    "total_price": "ราคารวม",
+    "order_details": "รายละเอียดออเดอร์",
+    "order_status": "สถานะออเดอร์",
+    "countdown_payment": "นับลดชำระเงิน",
+    "payment": "ชำระเงิน",
+    "back": "กลับ"
   },
   "dealing_slip": {
     "deal": "ซื้อสินค้า",
@@ -57,7 +88,18 @@
     "completed": "เสร็จสิ้น",
     "frozen": "หน่วงหยุด",
     "profile": "บัญชี",
-    "no_order": "ไม่มีออเดอร์"
+    "no_order": "ไม่มีออเดอร์",
+    "updateSuccess": "อัปเดตสำเร็จ",
+    "notEnoughMoney": "ไม่มีเงินเพียงพอ",
+    "pleaseContactCustomerServiceToAddMoney": "กรุณาติดต่อฝ่ายบริการลูกค้าออนไลน์เพื่อเพิ่มเงิน!",
+    "quantity": "จำนวน",
+    "originalPrice": "ราคาต้นทุน",
+    "totalPrice": "ราคารวม",
+    "status": "สถานะ",
+    "payment": "ชำระเงิน",
+    "no_history": "ไม่มีประวัติ",
+    "commission": "คอมมิชชั่น",
+    "pending_payment": "กำลังดำเนินการ"
   },
   "faq": {
     "system_message": "ข้อความระบบ",
@@ -128,20 +170,23 @@
   },
   "security": {
     "title": "ตั้งค่ารหัสผ่าน",
-    "login_password": "รหัสผ่านการเข้าสู่ระบบ",
+    "login_password": "รหัสผ่านเข้าสู่ระบบ",
     "withdrawal_password": "รหัสผ่านถอนเงิน",
-    "password_confirmation_does_not_match": "รหัสผ่านยืนยันไม่ตรงกัน!",
+    "password_confirmation_does_not_match": "รหัสผ่านที่ยืนยันไม่ตรงกัน!",
     "password_changed_successfully": "เปลี่ยนรหัสผ่านสำเร็จ!",
     "old_password": "รหัสผ่านเก่า",
-    "new_login_password": "รหัสผ่านการเข้าสู่ระบบใหม่",
+    "new_login_password": "รหัสผ่านเข้าสู่ระบบใหม่",
     "new_withdrawal_password": "รหัสผ่านถอนเงินใหม่",
     "confirm_password": "ยืนยันรหัสผ่าน",
     "confirm": "ยืนยัน",
     "confirm_withdrawal_password": "ยืนยันรหัสผ่านถอนเงิน",
     "change_password": "เปลี่ยนรหัสผ่าน",
     "change_password_success": "เปลี่ยนรหัสผ่านสำเร็จ!",
-    "change_password_failed": "เปลี่ยนรหัสผ่านล้มเหลว!",
-    "change_password_failed_reason": "เหตุผล: รหัสผ่านเก่าไม่ถูกต้อง!"
+    "change_password_failed": "เปลี่ยนรหัสผ่านไม่สำเร็จ!",
+    "change_password_failed_reason": "เหตุผล: รหัสผ่านเก่าไม่ถูกต้อง!",
+    "please_enter_password": "กรุณากรอกรหัสผ่าน!",
+    "password_must_be_at_least_6_characters": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร!",
+    "error_changing_password": "เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน!"
   },
   "recharge": {
     "title": "ฝากเงิน",
@@ -150,7 +195,14 @@
     "amount": "จำนวนเงิน",
     "confirm": "ยืนยัน",
     "title_history": "ประวัติการฝาก",
-    "pending": "กำลังดำเนินการ"
+    "pending": "กำลังดำเนินการ",
+    "min_amount": "ฝากขั้นต่ำ 200$. กรุณาลองใหม่อีกครั้ง",
+    "success_message": "สร้างคำขอฝากเงินสำเร็จ!",
+    "error_message": "เกิดข้อผิดพลาด กรุณาลองใหม่!",
+    "select_payment_account": "กรุณาเลือกบัญชีการชำระเงิน!",
+    "no_history": "ไม่มีประวัติ",
+    "deny": "ถูกปฏิเสธ",
+    "success": "ฝากเงินสำเร็จ"
   },
   "service": {
     "title": "บริการ",
@@ -173,7 +225,9 @@
     "address": "ที่อยู่กระเป๋าเงิน",
     "note_1": "*หมายเหตุ: กรุณาเชื่อมต่อข้อมูลบัญชีธนาคารอย่างถูกต้องก่อนสร้างคำสั่งถอนเงิน",
     "note_2": "*เนื่องจากความล่าช้าของเครือข่าย ERC20 แนะนำให้ใช้เครือข่าย TRC20",
-    "update": "อัปเดต"
+    "update": "อัปเดต",
+    "success_message": "อัปเดตข้อมูลกระเป๋าเงินสำเร็จ!",
+    "error_message": "เกิดข้อผิดพลาด กรุณาลองใหม่!"
   },
   "withdrawal": {
     "title": "ถอนเงิน",
@@ -192,7 +246,14 @@
     "confirm": "ยืนยัน",
     "bank_account": "บัญชีธนาคาร",
     "withdrawal_amount": "จำนวนเงินถอน",
-    "withdrawal_password": "รหัสผ่านถอนเงิน"
+    "withdrawal_password": "รหัสผ่านถอนเงิน",
+    "pending": "กำลังดำเนินการ",
+    "success": "สำเร็จ",
+    "deny": "ถูกปฏิเสธ",
+    "min_amount": "ถอนขั้นต่ำ 20$. กรุณาลองใหม่อีกครั้ง",
+    "success_message": "สร้างคำสั่งถอนเงินสำเร็จ!",
+    "error_message": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง!",
+    "please_update_payment_account_before_withdrawing": "กรุณาอัปเดตบัญชีการชำระเงินก่อนถอนเงิน!"
   },
   "menu": {
     "trust_level": "คะแนนความเชื่อมั่น",

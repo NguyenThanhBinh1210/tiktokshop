@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { createPayment, getPayment } from '~/apis/payment.api'
 import { AppContext } from '~/contexts/app.context'
+import toast from 'react-hot-toast'
 const Wallet = () => {
   const navigate = useNavigate()
   const [status, setStatus] = useState<string>('bankinfo')
@@ -103,11 +104,11 @@ const BankInfo = () => {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['payment', profile?._id] })
         // mutationProfile.mutate()
-        alert('Cập nhật tài khoản thanh toán thành công!')
+        toast.success(t('wallet.success_message'))
         // setShowThongTin(false)
       },
       onError: () => {
-        alert('Cập nhật lỗi, hãy thử lại!')
+        toast.error(t('wallet.error_message'))
       }
     })
   }

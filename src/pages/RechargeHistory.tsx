@@ -22,13 +22,13 @@ const RechargeHistory = () => {
   const getStatusText = (status: string) => {
     switch (status?.toLowerCase()) {
       case 'pending':
-        return 'Đang chờ xử lý'
+        return t('recharge.pending')
       case 'done':
-        return 'Đã nạp thành công'
-      case 'failed':
-        return 'Đã bị từ chối'
+        return t('recharge.success_message')
+      case 'deny':
+        return t('recharge.deny')
       default:
-        return 'Đang chờ xử lý'
+        return t('recharge.pending')
     }
   }
   const getStatusColor = (status: string) => {
@@ -37,8 +37,8 @@ const RechargeHistory = () => {
         return 'bg-[#aaa]'
       case 'done':
         return 'bg-[#003857]'
-      case 'failed':
-        return 'bg-[#aaa]'
+      case 'deny':
+        return 'bg-red-500'
       default:
         return 'bg-[#aaa]'
     }
@@ -80,7 +80,7 @@ const RechargeHistory = () => {
         {rechargeHistory.filter((item: any) => item.infos === 'recharge money').length === 0 && (
           <div className='w-max mx-auto mt-10'>
             <img src={noOrder} alt='noOrder' className='w-[182px]' />
-            <p className='text-xl font-bold mt-4 text-center '>{t('withdrawal.no_history')}</p>
+            <p className='text-xl font-bold mt-4 text-center '>{t('recharge.no_history')}</p>
           </div>
         )}
       </div>

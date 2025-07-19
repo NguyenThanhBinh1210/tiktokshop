@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import moment from 'moment'
+
 export function generateUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     const r = (Math.random() * 16) | 0,
@@ -52,4 +54,31 @@ export const formatNumber = (number: number) => {
   const displayNumber = `$${formattedNumber}` // Add a single dollar sign
 
   return isNegative ? `-${displayNumber}` : displayNumber // Restore negative sign if needed
+}
+export function convertToVietnamDateTime(utcDateTime: any) {
+  return moment.utc(utcDateTime).local().format('HH:mm:ss DD-MM-YYYY ')
+}
+
+export const formatTime = (time: number) => {
+  if (time <= 0) return '00:00:00'
+
+  const hours = Math.floor((time / (1000 * 60 * 60)) % 24)
+  const minutes = Math.floor((time / (1000 * 60)) % 60)
+  const seconds = Math.floor((time / 1000) % 60)
+
+  return `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${
+    seconds < 10 ? '0' + seconds : seconds
+  }`
+}
+
+export function formatCurrency(amount: any) {
+  return (
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    })
+      .format(amount)
+      .replace(/\$/g, '')
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '$'
+  )
 }

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { registerAccount } from '~/apis/auth.api'
+import toast from 'react-hot-toast'
 interface IFormState {
   firstName?: string
   lastName?: string
@@ -48,29 +49,29 @@ const Register = () => {
       })
 
     if (formState.password !== formState.confirmPassword) {
-      newErrors.confirmPassword = 'Mật khẩu không khớp'
+      newErrors.confirmPassword = t('register.password_not_match')
     }
 
     // Username (ít nhất 4 ký tự)
     if (!formState.username.trim()) {
-      newErrors.username = 'Vui lòng nhập username'
+      newErrors.username = t('register.please_enter_username')
     } else if (formState.username.trim().length < 4) {
-      newErrors.username = 'Username phải có ít nhất 4 ký tự'
+      newErrors.username = t('register.username_must_be_at_least_4_characters')
     }
 
     // Số điện thoại (ví dụ: kiểm tra chiều dài 9-10 ký tự, toàn số)
     const phoneRegex = /^[0-9]{9,10}$/
     if (!formState.phone.trim()) {
-      newErrors.phone = 'Vui lòng nhập số điện thoại'
+      newErrors.phone = t('register.please_enter_phone_number')
     } else if (!phoneRegex.test(formState.phone)) {
-      newErrors.phone = 'Số điện thoại không hợp lệ (9-10 chữ số)'
+      newErrors.phone = t('register.invalid_phone_number')
     }
 
     // Mật khẩu (ít nhất 6 ký tự)
     if (!formState.password) {
-      newErrors.password = 'Vui lòng nhập mật khẩu'
+      newErrors.password = t('register.please_enter_password')
     } else if (formState.password.length < 6) {
-      newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự'
+      newErrors.password = t('register.password_must_be_at_least_6_characters')
     }
 
     setErrors(newErrors)
@@ -94,12 +95,12 @@ const Register = () => {
       mutationRegister.mutate(newData, {
         onSuccess: () => {
           // toast.success('Đăng ký thành công, hãy đăng nhập!')
-          alert('Đăng ký thành công, hãy đăng nhập!')
+          toast.success(t('register.register_success'))
           navigate('/login')
         },
-        onError: (error: any) => {
+        onError: () => {
           // toast.warn(error?.response.data.errMessage)
-          alert(error?.response.data.errMessage)
+          toast.error(t('register.register_failed'))
         }
       })
     }

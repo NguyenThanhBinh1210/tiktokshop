@@ -1,4 +1,5 @@
-import { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import nav from '~/assets/nav.c9e17765.svg'
 import user_header from '~/assets/user_header.svg'
@@ -19,9 +20,34 @@ import menu_icon4 from '~/assets/menu-icon4.20b532cb.svg'
 import zhengshu from '~/assets/zhengshu.bdc5976b.svg'
 import vip1 from '~/assets/vip1.png'
 import { useTranslation } from 'react-i18next'
+import { getAllCountLenh } from '~/apis/random.api'
+import { useQuery } from 'react-query'
+import { getWallet } from '~/apis/payment.api'
+import { formatCurrency } from '~/utils/utils'
+import { AppContext } from '~/contexts/app.context'
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { t } = useTranslation()
+  const [count, setCount] = useState<any>()
+  const { profile } = useContext(AppContext)
+  useQuery({
+    queryKey: ['getCount-menu'],
+    queryFn: () => getAllCountLenh(),
+    cacheTime: 1000,
+    onSuccess: (data) => {
+      setCount(data.data)
+    }
+  })
+  const [waletAmount, setWaletAmount] = useState(0)
+  useQuery({
+    queryKey: ['my-wallet', 'menu'],
+    queryFn: () => {
+      return getWallet()
+    },
+    onSuccess: (data) => {
+      setWaletAmount(data.data.getWallet.totalAmount.toFixed(2))
+    }
+  })
   return (
     <>
       <button onClick={() => setIsOpen(!isOpen)}>
@@ -61,7 +87,7 @@ const Menu = () => {
               </div>
               <div className='text-gray-500 space-y-2'>
                 <p className='text-lg font-medium text-start flex item-center gap-2'>
-                  vn6688
+                  {profile?.username}
                   <img src={vip1} alt='' className='size-6' />
                 </p>
                 <div className='text-lg font-medium flex items-center '>
@@ -72,11 +98,11 @@ const Menu = () => {
             </div>
             <div className='grid grid-cols-2 mt-3 mb-3'>
               <div className='border-r-2'>
-                <p className='text-[#003857] font-bold text-2xl'>$0.00</p>
+                <p className='text-[#003857] font-bold text-2xl'>{formatCurrency(waletAmount)}</p>
                 <p className='text-gray-500 text-lg '>{t('menu.account_balance')}</p>
               </div>
               <div className=''>
-                <p className='text-[#003857] font-bold text-2xl'>$0.00</p>
+                <p className='text-[#003857] font-bold text-2xl'>{formatCurrency(count?.commission)}</p>
                 <p className='text-gray-500 text-lg '>{t('menu.commission')}</p>
               </div>
             </div>

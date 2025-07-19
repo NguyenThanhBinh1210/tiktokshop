@@ -4,12 +4,24 @@ import { Link, useNavigate } from 'react-router-dom'
 import notice from '~/assets/menu-icon6.4845e69c.svg'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery } from 'react-query'
-import { createWallet, getPayment } from '~/apis/payment.api'
+import { createWallet, getPayment, getWallet } from '~/apis/payment.api'
 import { AppContext } from '~/contexts/app.context'
-import { generateRandomOrderCode } from '~/utils/utils'
+import { formatNumber, generateRandomOrderCode } from '~/utils/utils'
+import toast from 'react-hot-toast'
 const Recharge = () => {
   const navigate = useNavigate()
   const [amount, setAmount] = useState(0)
+  const [waletAmount, setWaletAmount] = useState(0)
+  useQuery({
+    queryKey: ['my-wallet', 'recharge'],
+    queryFn: () => {
+      return getWallet()
+    },
+    onSuccess: (data) => {
+      setWaletAmount(data.data.getWallet.totalAmount.toFixed(2))
+    }
+  })
+
   const { t } = useTranslation()
   const { profile } = useContext(AppContext)
   const amounts = [50, 100, 200, 1000, 3000, 5000, 10000, 30000, 50000]
@@ -37,7 +49,7 @@ const Recharge = () => {
   const handleRecharge = () => {
     if (Number(amount) < 200) {
       // toast.warn('nạp tối thiểu 200$. Vui lòng thử lại')
-      alert('nạp tối thiểu 200$. Vui lòng thử lại')
+      toast.error(t('recharge.min_amount'))
       return
     }
     if (payment !== null) {
@@ -49,18 +61,18 @@ const Recharge = () => {
       mutationRecharge.mutate(newData, {
         onSuccess: () => {
           // toast.success(t('wallet.success_message'))
-          alert('Tạo yêu cầu nạp thành công!')
+          toast.success(t('recharge.success_message'))
         },
         onError: (err: any) => {
           if (err?.response.status === 429) {
-            alert(err?.response.data.error)
+            toast.error(err?.response.data.error)
           } else {
-            alert('Lỗi, hãy thử lại!')
+            toast.error(t('recharge.error_message'))
           }
         }
       })
     } else {
-      alert('Vui lòng chọn tài khoản thanh toán!')
+      toast.error(t('recharge.select_payment_account'))
     }
   }
   return (
@@ -94,7 +106,7 @@ const Recharge = () => {
             }}
             className=' text-black  px-3 py-4'
           >
-            {t('recharge.balance')}: <span className='text-[#003857] font-bold ml-1'>$0.00</span>
+            {t('recharge.balance')}: <span className='text-[#003857] font-bold ml-1'>{formatNumber(waletAmount)}</span>
           </div>
         </div>
       </div>

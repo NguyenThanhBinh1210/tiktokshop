@@ -9,7 +9,9 @@
     "no_account": "Tidak punya akun?",
     "register": "Daftar",
     "continue_login": "Lanjutkan berarti Anda setuju dengan Persyaratan Layanan TikTok Shop, Persyaratan Layanan TikTok, dan mengakui bahwa Anda telah membaca Kebijakan Privasi TikTok untuk mitra untuk memahami cara kami mengumpulkan, menggunakan, dan membagikan data Anda. Anda dapat menggunakan informasi login yang sama untuk mengakses Pusat Bisnis dan Pengelola Iklan Bisnis TikTok. Selain itu, Anda akan dapat menggunakan pendapatan toko Anda untuk membayar metrik iklan.",
-    "continue_login_2": "Juga, produk Anda akan secara otomatis ditambahkan ke program kolaborasi terbuka, dengan tingkat komisi berbasis kategori produk."
+    "continue_login_2": "Juga, produk Anda akan secara otomatis ditambahkan ke program kolaborasi terbuka, dengan tingkat komisi berbasis kategori produk.",
+    "login_success": "Login berhasil!",
+    "login_failed": "Login gagal!"
   },
   "register": {
     "phone_number": "Nombor Telefon",
@@ -17,7 +19,16 @@
     "password": "Kata Laluan",
     "confirm_password": "Konfirmasi Kata Laluan",
     "referral_code": "Kod Rujukan",
-    "register_now": "Daftar Sekarang"
+    "register_now": "Daftar Sekarang",
+    "register_success": "Pendaftaran berhasil, silakan login!",
+    "password_not_match": "Kata sandi tidak cocok",
+    "username_must_be_at_least_4_characters": "Nama pengguna harus memiliki setidaknya 4 karakter",
+    "please_enter_username": "Silakan masukkan nama pengguna",
+    "invalid_phone_number": "Nombor telefon tidak sah (9-10 digit)",
+    "please_enter_phone_number": "Silakan masukkan nombor telefon",
+    "password_must_be_at_least_6_characters": "Kata sandi harus memiliki setidaknya 6 karakter",
+    "please_enter_password": "Silakan masukkan kata sandi",
+    "register_failed": "Pendaftaran gagal!"
   },
   "about": {
     "intro": "Tentang Kami",
@@ -48,7 +59,27 @@
     "start_receiving_orders": "Mulai Menerima Pesanan",
     "order_description_1": "1. Tentang pengiriman pesanan, klik mulai mengirim pesanan untuk mencari pesanan penjualan dan tunggu sistem memilih secara acak.",
     "order_description_2": "2. Semua pesanan acak tidak dapat diubah atau dibatalkan, atau diabaikan.",
-    "order_description_3": "3. Setiap pesanan harus dibayar dalam 10 menit, Anda perlu menghubungi layanan pelanggan online untuk mendapatkan informasi tentang rekening bank."
+    "order_description_3": "3. Setiap pesanan harus dibayar dalam 10 menit, Anda perlu menghubungi layanan pelanggan online untuk mendapatkan informasi tentang rekening bank.",
+    "still_have_1_order_not_paid": "Anda masih memiliki 1 pesanan yang belum dibayar!",
+    "your_account_has_been_frozen": "Akun Anda telah dibekukan.",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "Anda tidak memiliki uang yang cukup untuk memulai memesan.",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "Anda telah mencapai batas pesanan hari ini. Silakan kembali nanti",
+    "order_completed": "Pesanan selesai!",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "Anda tidak memiliki uang yang cukup untuk membayar pesanan ini",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "Anda tidak memiliki uang yang cukup untuk membayar pesanan ini, silakan hubungi layanan pelanggan untuk menambahkan uang!",
+    "server_error_please_reload_the_page": "Pelayan ralat, sila muat semula halaman!",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "Anda tidak memiliki uang yang cukup untuk menyelesaikan pesanan ini, silakan hubungi layanan pelanggan untuk menambahkan uang!",
+    "please_contact_customer_service_to_add_money": "Silakan hubungi layanan pelanggan untuk menambahkan uang!",
+    "order_code": "Kode Pesanan",
+    "updated_at": "Diperbarui pada",
+    "product_price": "Harga Produk",
+    "quantity": "Jumlah",
+    "total_price": "Total Harga",
+    "order_details": "Detail Pesanan",
+    "order_status": "Status Pesanan",
+    "countdown_payment": "Hitung mundur pembayaran",
+    "payment": "Bayar",
+    "back": "Kembali"
   },
   "dealing_slip": {
     "deal": "Beli",
@@ -57,7 +88,18 @@
     "completed": "Selesai",
     "frozen": "Dalam Pengembalian",
     "profile": "Profil",
-    "no_order": "Tiada Pesanan"
+    "no_order": "Tiada Pesanan",
+    "updateSuccess": "Kemas kini berjaya",
+    "notEnoughMoney": "Tiada wang",
+    "pleaseContactCustomerServiceToAddMoney": "Silakan hubungi layanan pelanggan untuk menambahkan wang",
+    "quantity": "Jumlah",
+    "originalPrice": "Harga asli",
+    "totalPrice": "Jumlah total",
+    "status": "Status",
+    "payment": "Bayar",
+    "no_history": "Tiada sejarah",
+    "commission": "Komisi",
+    "pending_payment": "Menunggu pembayaran"
   },
   "faq": {
     "system_message": "Pesan Sistem",
@@ -127,21 +169,24 @@
     "copyright": "© 2019 - 2025 TIKTOK-GIG Global Inc."
   },
   "security": {
-    "title": "Konfigurasi kata sandi",
-    "login_password": "Kata sandi login",
-    "withdrawal_password": "Kata sandi penarikan",
-    "password_confirmation_does_not_match": "Kata sandi konfirmasi tidak cocok!",
-    "password_changed_successfully": "Kata sandi berhasil diubah!",
-    "old_password": "Kata sandi lama",
-    "new_login_password": "Kata sandi login baru",
-    "new_withdrawal_password": "Kata sandi penarikan baru",
-    "confirm_password": "Konfirmasi kata sandi",
-    "confirm": "Konfirmasi",
-    "confirm_withdrawal_password": "Konfirmasi kata sandi penarikan",
-    "change_password": "Ubah kata sandi",
-    "change_password_success": "Kata sandi berhasil diubah!",
-    "change_password_failed": "Ubah kata sandi gagal!",
-    "change_password_failed_reason": "Alasan: Kata sandi lama tidak benar!"
+    "title": "Tetapan kata laluan",
+    "login_password": "Kata laluan log masuk",
+    "withdrawal_password": "Kata laluan pengeluaran",
+    "password_confirmation_does_not_match": "Pengesahan kata laluan tidak sepadan!",
+    "password_changed_successfully": "Kata laluan berjaya ditukar!",
+    "old_password": "Kata laluan lama",
+    "new_login_password": "Kata laluan log masuk baharu",
+    "new_withdrawal_password": "Kata laluan pengeluaran baharu",
+    "confirm_password": "Sahkan kata laluan",
+    "confirm": "Sahkan",
+    "confirm_withdrawal_password": "Sahkan kata laluan pengeluaran",
+    "change_password": "Tukar kata laluan",
+    "change_password_success": "Berjaya menukar kata laluan!",
+    "change_password_failed": "Gagal menukar kata laluan!",
+    "change_password_failed_reason": "Sebab: Kata laluan lama tidak betul!",
+    "please_enter_password": "Sila masukkan kata laluan!",
+    "password_must_be_at_least_6_characters": "Kata laluan mesti sekurang-kurangnya 6 aksara!",
+    "error_changing_password": "Ralat menukar kata laluan!"
   },
   "recharge": {
     "title": "Deposit",
@@ -150,7 +195,14 @@
     "amount": "Amount",
     "confirm": "Confirm",
     "title_history": "Deposit History",
-    "pending": "Pending"
+    "pending": "Pending",
+    "min_amount": "Deposit minimum 200$. Please try again",
+    "success_message": "Deposit request created successfully!",
+    "error_message": "Error, please try again!",
+    "select_payment_account": "Please select a payment account!",
+    "no_history": "No history",
+    "deny": "Denied",
+    "success": "Deposit successfully"
   },
   "service": {
     "title": "Service",
@@ -173,7 +225,9 @@
     "address": "Alamat Dompet",
     "note_1": "*Nota: Sila pautkan maklumat akaun bank dengan betul sebelum membuat pesanan pengeluaran",
     "note_2": "*Disebabkan kelewatan rangkaian ERC20, disyorkan untuk menggunakan rangkaian TRC20",
-    "update": "Kemas Kini"
+    "update": "Kemas Kini",
+    "success_message": "Maklumat dompet berjaya dikemas kini!",
+    "error_message": "Ralat, sila cuba lagi!"
   },
   "withdrawal": {
     "title": "Penarikan",
@@ -192,7 +246,14 @@
     "confirm": "Konfirmasi",
     "bank_account": "Nombor Akaun Bank",
     "withdrawal_amount": "Jumlah Penarikan",
-    "withdrawal_password": "Kata Sandi Penarikan"
+    "withdrawal_password": "Kata Sandi Penarikan",
+    "pending": "Pendekatan",
+    "success": "Berjaya",
+    "deny": "Ditolak",
+    "min_amount": "Penarikan minimum 20$. Sila cuba lagi",
+    "success_message": "Permintaan penarikan dibuat berjaya!",
+    "error_message": "Ralat, sila cuba lagi!",
+    "please_update_payment_account_before_withdrawing": "Sila kemas kini akaun pembayaran sebelum penarikan!"
   },
   "menu": {
     "trust_level": "Tingkat Kepercayaan",

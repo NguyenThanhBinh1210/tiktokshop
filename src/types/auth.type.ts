@@ -4,4 +4,6 @@ export interface Profile {
   email: string
   _id: string
   isDongBang?: boolean
+  numberLevel?: number
+  countDay?: number
 }

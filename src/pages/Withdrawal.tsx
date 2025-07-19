@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext, useState } from 'react'
+import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { createWithdrawal, getPayment, getWallet, getWithdrawalHistory } from '~/apis/payment.api'
 import notice from '~/assets/menu-icon12.68eba35f.svg'
@@ -66,6 +67,7 @@ const Withdrawal = () => {
 const WithdrawalHistory = () => {
   const { t } = useTranslation()
   const [withdrawalHistory, setWithdrawalHistory] = useState<any>([])
+  console.log(withdrawalHistory.filter((item: any) => !item.infos))
   useQuery({
     queryKey: ['withdrawal-history'],
     queryFn: () => getWithdrawalHistory(),
@@ -77,13 +79,13 @@ const WithdrawalHistory = () => {
   const getStatusText = (status: string) => {
     switch (status?.toLowerCase()) {
       case 'pending':
-        return 'Đang chờ xử lý'
+        return t('withdrawal.pending')
       case 'done':
-        return 'Đã nạp thành công'
+        return t('withdrawal.success')
       case 'failed':
-        return 'Đã bị từ chối'
+        return t('withdrawal.deny')
       default:
-        return 'Đang chờ xử lý'
+        return t('withdrawal.pending')
     }
   }
   const getStatusColor = (status: string) => {
@@ -101,7 +103,7 @@ const WithdrawalHistory = () => {
   return (
     <div className='p-4'>
       {withdrawalHistory
-        .filter((item: any) => item.infos === 'withdrawal money')
+        .filter((item: any) => !item.infos)
         .map((item: any) => (
           <div key={item._id} className='flex justify-between items-center py-3 border-b'>
             <p>{item.codeOder}</p>
@@ -113,7 +115,7 @@ const WithdrawalHistory = () => {
             </div>
           </div>
         ))}
-      {withdrawalHistory.filter((item: any) => item.infos === 'withdrawal money').length === 0 && (
+      {withdrawalHistory.filter((item: any) => !item.infos).length === 0 && (
         <div className='w-max mx-auto mt-10'>
           <img src={noOrder} alt='noOrder' className='w-[182px]' />
           <p className='text-xl font-bold mt-4 text-center '>{t('withdrawal.no_history')}</p>
@@ -126,9 +128,8 @@ const WithdrawalHistory = () => {
 const WithdrawalATM = () => {
   const [withdrawalMethod, setWithdrawalMethod] = useState('bank')
   const [waletAmount, setWaletAmount] = useState(0)
-  const { profile } = useContext(AppContext)
   useQuery({
-    queryKey: ['my-wallet', profile?._id],
+    queryKey: ['my-wallet', 'withdrawal'],
     queryFn: () => {
       return getWallet()
     },
@@ -187,11 +188,11 @@ const WithdrawalWallet = ({ waletAmount }: { waletAmount: number }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (amount === '' || address === '' || password === '') {
-      alert(t('withdrawal.please_enter_all_information'))
+      toast.error(t('withdrawal.please_enter_all_information'))
       return
     }
     // Gửi dữ liệu tới API ở đây
-    alert(t('withdrawal.withdrawal_request_created_successfully'))
+    toast.success(t('withdrawal.withdrawal_request_created_successfully'))
   }
   return (
     <form onSubmit={handleSubmit} className='mx-auto  bg-white rounded-lg  space-y-4'>
@@ -270,6 +271,7 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
   }
   const [showFreezeAlert, setShowFreezeAlert] = useState(false)
   console.log(showFreezeAlert)
+  const queryClient = useQueryClient()
   const mutationWithdrawal = useMutation((body: any) => {
     return createWithdrawal(body)
   })
@@ -282,7 +284,7 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
     }
 
     if (Number(formState?.totalAmount) < 20) {
-      alert('Rút tối thiểu 20$. Vui lòng thử lại')
+      toast.error(t('withdrawal.min_amount'))
       return
     }
     if (payment !== null) {
@@ -293,7 +295,8 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
       }
       mutationWithdrawal.mutate(newData, {
         onSuccess: () => {
-          alert('Tạo yêu cầu rút tiền thành công!')
+          toast.success(t('withdrawal.success_message'))
+          queryClient.invalidateQueries({ queryKey: ['my-wallet', 'withdrawal'] })
           // navigate('/cskh')
           // queryClient.invalidateQueries({ queryKey: ['hoa-don-chi-tiet-user'] })
           // queryClient.invalidateQueries({ queryKey: ['my-wallet', profile?._id] })
@@ -301,14 +304,14 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
         onError: (err: any) => {
           console.log(err)
           if (err?.response.status === 429 || err?.response.status === 400) {
-            alert(err?.response.data.error)
+            toast.error(err?.response.data.error)
           } else {
-            alert('Lỗi hệ thống, vui lòng thử lại sau!')
+            toast.error(t('withdrawal.error_message'))
           }
         }
       })
     } else {
-      alert('Vui lòng cập nhật tài khoản thanh toán trước khi rút tiền!')
+      toast.error(t('withdrawal.please_update_payment_account_before_withdrawing'))
     }
   }
   return (

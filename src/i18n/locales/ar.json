@@ -9,15 +9,26 @@
     "no_account": "ليس لديك حساب؟",
     "register": "تسجيل الدخول",
     "continue_login": "يعني الاستمرار أنك توافق على سياسة الخدمات التجارية لـ TikTok Shop، سياسة الخدمات التجارية لـ TikTok، وتعريف أنك قرأت سياسة الخصوصية للشركاء لمعرفة كيف نجمع ونستخدم ونشارك بياناتك. يمكنك استخدام نفس معلومات الدخول للوصول إلى مركز الأعمال ومدير الإعلانات التجارية، بالإضافة إلى أنك ستتمكن من استخدام أرباح متجرك للدفع للمقاييس التجارية.",
-    "continue_login_2": "يوافق أيضًا أن منتجاتك سيتم إضافتها تلقائيًا إلى برنامج التعاون المفتوح، مع معدل العمولة المحدد بناءً على فئة المنتج."
+    "continue_login_2": "يوافق أيضًا أن منتجاتك سيتم إضافتها تلقائيًا إلى برنامج التعاون المفتوح، مع معدل العمولة المحدد بناءً على فئة المنتج.",
+    "login_success": "تم تسجيل الدخول بنجاح!",
+    "login_failed": "فشل تسجيل الدخول!"
   },
   "register": {
     "phone_number": "رقم الهاتف",
     "username": "اسم المستخدم",
     "password": "كلمة المرور",
     "confirm_password": "تأكيد كلمة المرور",
-    "referral_code": "رمز الترجيح",
-    "register_now": "تسجيل الدخول الآن"
+    "referral_code": "رمز الإحالة",
+    "register_now": "سجل الآن",
+    "register_success": "تم التسجيل بنجاح، الرجاء تسجيل الدخول!",
+    "password_not_match": "كلمتا المرور غير متطابقتين",
+    "username_must_be_at_least_4_characters": "يجب أن يكون اسم المستخدم 4 أحرف على الأقل",
+    "please_enter_username": "يرجى إدخال اسم المستخدم",
+    "invalid_phone_number": "رقم الهاتف غير صالح (9-10 أرقام)",
+    "please_enter_phone_number": "يرجى إدخال رقم الهاتف",
+    "password_must_be_at_least_6_characters": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+    "please_enter_password": "يرجى إدخال كلمة المرور",
+    "register_failed": "فشل في التسجيل!"
   },
   "about": {
     "intro": "من نحن",
@@ -33,6 +44,59 @@
     "welcome_customer": "مرحبا بك في العميل",
     "tiktok_shop_description": "TikTok-Booking هي وكالة سفر عبر الإنترنت عالمية ومحرك بحث متعدد الوطنيات مع وجود وجود معناه الدولي. تم تأسيسها في عام 2012، مع مقرها الرئيسي في برنو، التشيك، لدى TikTok-Booking قد أنشأت فروع ومكاتب في مواقع متعددة في العالم، مما يسمح لها بالتعامل مع المسافرين عبر العالم.",
     "partner": "شريك"
+  },
+  "deal": {
+    "deal": "صفقة",
+    "introduction": "مقدمة",
+    "tiktok_shop_description": "TikTok-Booking هي وكالة سفر عبر الإنترنت ومحرك بحث عالمي، لها حضور دولي كبير. تأسست في عام 2012 ويقع مقرها الرئيسي في برنو، جمهورية التشيك، وقد أنشأت فروعًا ومكاتب في مواقع مختلفة حول العالم، مما يسمح لها بخدمة المسافرين في جميع أنحاء العالم.",
+    "commission": "عمولة اليوم",
+    "balance": "رصيد الحساب",
+    "commission_description": "سيتم إضافة دخل كل طلب إلى إجمالي الدخل.",
+    "balance_description": "سيقوم النظام تلقائيًا بتحديث دخل اليوم.",
+    "start_receiving_orders": "ابدأ في استلام الطلبات",
+    "order_description_1": "1. لإرسال الطلب، انقر على 'إرسال الطلب' للبحث عن طلب البيع وانتظر حتى يختار النظام عشوائيًا.",
+    "order_description_2": "2. لا يمكن تغيير أو إلغاء أو تجاهل أي طلب عشوائي.",
+    "order_description_3": "3. يجب دفع كل طلب خلال 10 دقائق، تحتاج إلى الاتصال بخدمة العملاء عبر الإنترنت للحصول على معلومات بطاقة الائتمان.",
+    "still_have_1_order_not_paid": "لديك طلب واحد لم يتم دفعه!",
+    "your_account_has_been_frozen": "تم تجميد حسابك.",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "ليس لديك ما يكفي من المال لبدء تقديم الطلب.",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "لقد وصلت إلى الحد الأقصى للطلبات اليوم. يرجى العودة لاحقًا.",
+    "order_completed": "تم إكمال الطلب!",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "ليس لديك ما يكفي من المال لدفع ثمن هذا الطلب.",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "ليس لديك ما يكفي من المال لدفع ثمن هذا الطلب، يرجى الاتصال بخدمة العملاء لإضافة رصيد!",
+    "server_error_please_reload_the_page": "خطأ في الخادم، يرجى إعادة تحميل الصفحة!",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "ليس لديك ما يكفي من المال لإكمال هذا الطلب، يرجى الاتصال بخدمة العملاء لإضافة رصيد!",
+    "please_contact_customer_service_to_add_money": "يرجى الاتصال بخدمة العملاء لإضافة رصيد!",
+    "order_code": "رمز الطلب",
+    "updated_at": "تم التحديث في",
+    "product_price": "سعر المنتج",
+    "quantity": "الكمية",
+    "total_price": "السعر الإجمالي",
+    "order_details": "تفاصيل الطلب",
+    "order_status": "حالة الطلب",
+    "countdown_payment": "العد التنازلي للدفع",
+    "payment": "دفع",
+    "back": "رجوع"
+  },
+  "dealing_slip": {
+    "deal": "صفقة",
+    "all": "الكل",
+    "pending": "قيد الانتظار",
+    "completed": "مكتمل",
+    "frozen": "مجمد",
+    "profile": "الملف الشخصي",
+    "no_order": "لا توجد طلبات",
+    "updateSuccess": "تم التحديث بنجاح",
+    "notEnoughMoney": "لا يوجد رصيد كافٍ",
+    "pleaseContactCustomerServiceToAddMoney": "يرجى الاتصال بخدمة العملاء لإضافة رصيد",
+    "quantity": "الكمية",
+    "originalPrice": "السعر الأصلي",
+    "totalPrice": "السعر الإجمالي",
+    "status": "الحالة",
+    "payment": "الدفع",
+    "no_history": "لا يوجد سجل",
+    "commission": "العمولة",
+    "pending_payment": "في انتظار الدفع"
   },
   "notification": {
     "system_message": "رسالة النظام"
@@ -105,21 +169,24 @@
     "copyright": "© 2019 - 2025 TIKTOK-GIG Global Inc."
   },
   "security": {
-    "title": "إعدادات كلمة المرور",
-    "login_password": "كلمة المرور للدخول",
-    "withdrawal_password": "كلمة المرور للسحب",
-    "password_confirmation_does_not_match": "كلمة المرور التأكيد لا تطابق!",
-    "password_changed_successfully": "تم تعيين كلمة المرور بنجاح!",
+    "title": "إعداد كلمة المرور",
+    "login_password": "كلمة مرور تسجيل الدخول",
+    "withdrawal_password": "كلمة مرور السحب",
+    "password_confirmation_does_not_match": "تأكيد كلمة المرور غير متطابق!",
+    "password_changed_successfully": "تم تغيير كلمة المرور بنجاح!",
     "old_password": "كلمة المرور القديمة",
-    "new_login_password": "كلمة المرور للدخول الجديدة",
-    "new_withdrawal_password": "كلمة المرور للسحب الجديدة",
+    "new_login_password": "كلمة مرور تسجيل الدخول الجديدة",
+    "new_withdrawal_password": "كلمة مرور السحب الجديدة",
     "confirm_password": "تأكيد كلمة المرور",
     "confirm": "تأكيد",
-    "confirm_withdrawal_password": "تأكيد كلمة المرور للسحب",
-    "change_password": "تعيين كلمة المرور",
+    "confirm_withdrawal_password": "تأكيد كلمة مرور السحب",
+    "change_password": "تغيير كلمة المرور",
     "change_password_success": "تم تغيير كلمة المرور بنجاح!",
-    "change_password_failed": "تعيين كلمة المرور فشل!",
-    "change_password_failed_reason": "السبب: كلمة المرور القديمة غير صالحة!"
+    "change_password_failed": "فشل في تغيير كلمة المرور!",
+    "change_password_failed_reason": "السبب: كلمة المرور القديمة غير صحيحة!",
+    "please_enter_password": "الرجاء إدخال كلمة المرور!",
+    "password_must_be_at_least_6_characters": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل!",
+    "error_changing_password": "حدث خطأ أثناء تغيير كلمة المرور!"
   },
   "recharge": {
     "title": "الإيداع",
@@ -128,7 +195,14 @@
     "amount": "المبلغ",
     "confirm": "تأكيد",
     "title_history": "التاريخ الإيداع",
-    "pending": "قيد المعالجة"
+    "pending": "قيد المعالجة",
+    "min_amount": "الإيداع الأدنى 200$. يرجى المحاولة مرة أخرى",
+    "success_message": "تم إنشاء طلب الإيداع بنجاح!",
+    "error_message": "خطأ، يرجى المحاولة مرة أخرى!",
+    "select_payment_account": "يرجى تحديد طريقة الدفع!",
+    "no_history": "لا يوجد تاريخ",
+    "deny": "محظور",
+    "success": "تم الإيداع بنجاح"
   },
   "service": {
     "title": "الخدمة",
@@ -151,7 +225,9 @@
     "address": "عنوان المحفظة",
     "note_1": "*يرجى ربط معلومات الحساب البنكي بشكل صحيح قبل إنشاء صفقة السحب",
     "note_2": "*بسبب تأخير شبكة ERC20، يوصى باستخدام شبكة TRC20",
-    "update": "تحديث"
+    "update": "تحديث",
+    "success_message": "تم تحديث معلومات المحفظة بنجاح!",
+    "error_message": "خطأ، يرجى المحاولة مرة أخرى!"
   },
   "withdrawal": {
     "title": "السحب",
@@ -170,7 +246,14 @@
     "confirm": "تأكيد",
     "bank_account": "الحساب البنكي",
     "withdrawal_amount": "المبلغ المسحوب",
-    "withdrawal_password": "كلمة المرور للسحب"
+    "withdrawal_password": "كلمة المرور للسحب",
+    "pending": "قيد المعالجة",
+    "success": "تم السحب بنجاح",
+    "deny": "محظور",
+    "min_amount": "السحب الأدنى 20$. يرجى المحاولة مرة أخرى",
+    "success_message": "تم إنشاء طلب السحب بنجاح!",
+    "error_message": "خطأ، يرجى المحاولة مرة أخرى!",
+    "please_update_payment_account_before_withdrawing": "يرجى تحديث طريقة الدفع قبل السحب!"
   },
   "menu": {
     "trust_level": "مستوى الثقة",

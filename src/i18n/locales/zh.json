@@ -9,7 +9,9 @@
     "no_account": "没有账户?",
     "register": "注册",
     "continue_login": "继续登录意味着您同意TikTok Shop服务条款、TikTok服务条款和隐私政策，并确认您已阅读TikTok合作伙伴隐私政策，以了解我们如何收集、使用和共享您的数据。您可以使用相同的登录信息访问商业中心和TikTok广告管理器。此外，您还可以使用您的商店收入支付广告指标。",
-    "continue_login_2": "您还同意您的商品将自动添加到开放合作计划中，并按产品类别收取佣金。"
+    "continue_login_2": "您还同意您的商品将自动添加到开放合作计划中，并按产品类别收取佣金。",
+    "login_success": "登录成功！",
+    "login_failed": "登录失败！"
   },
   "register": {
     "phone_number": "手机号码",
@@ -17,7 +19,16 @@
     "password": "密码",
     "confirm_password": "确认密码",
     "referral_code": "推荐码",
-    "register_now": "立即注册"
+    "register_now": "立即注册",
+    "register_success": "注册成功，请登录！",
+    "password_not_match": "密码不匹配",
+    "username_must_be_at_least_4_characters": "用户名必须至少有4个字符",
+    "please_enter_username": "请输入用户名",
+    "invalid_phone_number": "手机号码无效（9-10位数字）",
+    "please_enter_phone_number": "请输入手机号码",
+    "password_must_be_at_least_6_characters": "密码必须至少有6个字符",
+    "please_enter_password": "请输入密码",
+    "register_failed": "注册失败！"
   },
   "about": {
     "intro": "关于我们",
@@ -48,7 +59,27 @@
     "start_receiving_orders": "开始接收订单",
     "order_description_1": "1. 关于发送订单，点击开始发送订单以搜索销售订单，并等待系统随机选择。",
     "order_description_2": "2. 所有随机订单无法更改或取消，或忽略。",
-    "order_description_3": "3. 每笔订单需要在 10 分钟内支付，您需要联系在线客户服务以获取银行信息。"
+    "order_description_3": "3. 每笔订单需要在 10 分钟内支付，您需要联系在线客户服务以获取银行信息。",
+    "still_have_1_order_not_paid": "您仍然有 1 笔未付款的订单！",
+    "your_account_has_been_frozen": "您的账户已被冻结。",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "您没有足够的钱开始下单。",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "您已达到每日订单限制。请稍后再来。",
+    "order_completed": "订单已完成！",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "您没有足够的钱支付这笔订单。",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "您没有足够的钱支付这笔订单。请联系客户服务以添加资金！",
+    "server_error_please_reload_the_page": "服务器错误，请重新加载页面！",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "您没有足够的钱完成这笔订单。请联系客户服务以添加资金！",
+    "please_contact_customer_service_to_add_money": "请联系客户服务以添加资金！",
+    "order_code": "订单代码",
+    "updated_at": "更新时间",
+    "product_price": "商品价格",
+    "quantity": "数量",
+    "total_price": "总价",
+    "order_details": "订单详情",
+    "order_status": "订单状态",
+    "countdown_payment": "倒计时支付",
+    "payment": "支付",
+    "back": "返回"
   },
   "dealing_slip": {
     "deal": "抢单",
@@ -57,7 +88,18 @@
     "completed": "已完成",
     "frozen": "冻结",
     "profile": "账户",
-    "no_order": "没有订单"
+    "no_order": "没有订单",
+    "updateSuccess": "更新成功",
+    "notEnoughMoney": "没有足够的钱",
+    "pleaseContactCustomerServiceToAddMoney": "请联系客户服务以添加资金",
+    "quantity": "数量",
+    "originalPrice": "原价",
+    "totalPrice": "总价",
+    "status": "状态",
+    "payment": "支付",
+    "no_history": "没有历史",
+    "commission": "佣金",
+    "pending_payment": "待处理"
   },
   "faq": {
     "system_message": "系统消息",
@@ -127,21 +169,24 @@
     "copyright": "© 2019 - 2025 TIKTOK-GIG Global Inc."
   },
   "security": {
-    "title": "设置密码",
+    "title": "密码设置",
     "login_password": "登录密码",
-    "withdrawal_password": "提款密码",
-    "password_confirmation_does_not_match": "密码确认不匹配！",
-    "password_changed_successfully": "密码更改成功！",
+    "withdrawal_password": "提现密码",
+    "password_confirmation_does_not_match": "确认密码不匹配！",
+    "password_changed_successfully": "密码修改成功！",
     "old_password": "旧密码",
     "new_login_password": "新登录密码",
-    "new_withdrawal_password": "新提款密码",
+    "new_withdrawal_password": "新提现密码",
     "confirm_password": "确认密码",
     "confirm": "确认",
-    "confirm_withdrawal_password": "确认提款密码",
-    "change_password": "更改密码",
-    "change_password_success": "密码更改成功！",
-    "change_password_failed": "密码更改失败！",
-    "change_password_failed_reason": "原因：旧密码不正确！"
+    "confirm_withdrawal_password": "确认提现密码",
+    "change_password": "修改密码",
+    "change_password_success": "密码修改成功！",
+    "change_password_failed": "密码修改失败！",
+    "change_password_failed_reason": "原因：旧密码不正确！",
+    "please_enter_password": "请输入密码！",
+    "password_must_be_at_least_6_characters": "密码长度至少为6位！",
+    "error_changing_password": "修改密码时发生错误！"
   },
   "recharge": {
     "title": "充值",
@@ -150,7 +195,14 @@
     "amount": "金额",
     "confirm": "确认",
     "title_history": "充值历史",
-    "pending": "待处理"
+    "pending": "待处理",
+    "min_amount": "充值至少200$. 请重试",
+    "success_message": "创建充值请求成功！",
+    "error_message": "错误，请重试！",
+    "select_payment_account": "请选择支付账户！",
+    "no_history": "没有历史",
+    "deny": "已拒绝",
+    "success": "成功"
   },
   "service": {
     "title": "服务",
@@ -173,7 +225,9 @@
     "address": "地址",
     "note_1": "*注意：在创建提款订单之前，请准确链接银行账户信息",
     "note_2": "*由于ERC20网络的延迟，建议使用TRC20网络",
-    "update": "更新"
+    "update": "更新",
+    "success_message": "更新钱包信息成功！",
+    "error_message": "错误，请重试！"
   },
   "withdrawal": {
     "title": "提款",
@@ -192,7 +246,14 @@
     "confirm": "确认",
     "bank_account": "银行账号",
     "withdrawal_amount": "提款金额",
-    "withdrawal_password": "提款密码"
+    "withdrawal_password": "提款密码",
+    "pending": "待处理",
+    "success": "成功",
+    "deny": "已拒绝",
+    "min_amount": "提款至少20$. 请重试",
+    "success_message": "提款请求创建成功！",
+    "error_message": "错误，请重试！",
+    "please_update_payment_account_before_withdrawing": "请在提款前更新支付账户！"
   },
   "menu": {
     "trust_level": "信任等级",

@@ -9,7 +9,9 @@
     "no_account": "アカウントがない?",
     "register": "登録",
     "continue_login": "継続すると、TikTok Shopのサービス規約、TikTokのサービス規約、およびパートナーのTikTokのプライバシーポリシーを読み、収集、使用、および共有する方法を理解することを承諾します。同じログイン情報を使用して、ビジネスセンターとTikTok広告マネージャーにアクセスできます。さらに、店舗の収入を使用して広告指標を支払うことができます。",
-    "continue_login_2": "また、商品が自動的にオープンコラボレーションプログラムに追加され、商品カテゴリベースのコミッション率で追加されます。"
+    "continue_login_2": "また、商品が自動的にオープンコラボレーションプログラムに追加され、商品カテゴリベースのコミッション率で追加されます。",
+    "login_success": "ログイン成功！",
+    "login_failed": "ログイン失敗！"
   },
   "register": {
     "phone_number": "電話番号",
@@ -17,7 +19,16 @@
     "password": "パスワード",
     "confirm_password": "パスワードの確認",
     "referral_code": "紹介コード",
-    "register_now": "今すぐ登録"
+    "register_now": "今すぐ登録",
+    "register_success": "登録成功、ログインしてください!",
+    "password_not_match": "パスワードが一致しません",
+    "username_must_be_at_least_4_characters": "ユーザー名は4文字以上である必要があります",
+    "please_enter_username": "ユーザー名を入力してください",
+    "invalid_phone_number": "電話番号が無効です (9-10桁)",
+    "please_enter_phone_number": "電話番号を入力してください",
+    "password_must_be_at_least_6_characters": "パスワードは6文字以上である必要があります",
+    "please_enter_password": "パスワードを入力してください",
+    "register_failed": "登録失敗!"
   },
   "about": {
     "intro": "当社について",
@@ -48,7 +59,27 @@
     "start_receiving_orders": "注文を受け取る準備をする",
     "order_description_1": "1. 注文の送信について、注文の送信をクリックして販売注文を検索し、システムがランダムに選択するまで待ちます。",
     "order_description_2": "2. すべてのランダム注文は変更できないか、キャンセルできないか、無視できません。",
-    "order_description_3": "3. 各注文は10分以内に支払う必要があり、銀行口座情報を見つけるためにオンラインカスタマーサポートに連絡する必要があります。"
+    "order_description_3": "3. 各注文は10分以内に支払う必要があり、銀行口座情報を見つけるためにオンラインカスタマーサポートに連絡する必要があります。",
+    "still_have_1_order_not_paid": "まだ1つの注文が支払われていません!",
+    "your_account_has_been_frozen": "アカウントが凍結されました。",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "お金が足りません。注文を開始します。",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "今日の注文の制限に達しました。後で戻ってください。",
+    "order_completed": "注文が完了しました!",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "お金が足りません。この注文を支払うことができません。",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "お金が足りません。この注文を支払うことができません。オンラインカスタマーサポートに連絡してください。",
+    "server_error_please_reload_the_page": "サーバーエラーが発生しました。ページを再読み込みしてください。",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "お金が足りません。この注文を完了することができません。オンラインカスタマーサポートに連絡してください。",
+    "please_contact_customer_service_to_add_money": "オンラインカスタマーサポートに連絡してください。",
+    "order_code": "注文コード",
+    "updated_at": "更新時間",
+    "product_price": "商品価格",
+    "quantity": "数量",
+    "total_price": "合計金額",
+    "order_details": "注文詳細",
+    "order_status": "注文ステータス",
+    "countdown_payment": "支払いカウントダウン",
+    "payment": "支払い",
+    "back": "戻る"
   },
   "dealing_slip": {
     "deal": "購入",
@@ -57,7 +88,18 @@
     "completed": "已完成",
     "frozen": "冻结",
     "profile": "プロフィール",
-    "no_order": "注文がありません"
+    "no_order": "注文がありません",
+    "updateSuccess": "更新成功",
+    "notEnoughMoney": "お金が足りません",
+    "pleaseContactCustomerServiceToAddMoney": "顧客サービスに連絡してください。",
+    "quantity": "数量",
+    "originalPrice": "原価",
+    "totalPrice": "合計金額",
+    "status": "ステータス",
+    "payment": "支払い",
+    "no_history": "履歴がありません",
+    "commission": "報酬",
+    "pending_payment": "支払い待ち"
   },
   "faq": {
     "system_message": "システムメッセージ",
@@ -129,19 +171,22 @@
   "security": {
     "title": "パスワード設定",
     "login_password": "ログインパスワード",
-    "withdrawal_password": "引き出しパスワード",
-    "password_confirmation_does_not_match": "パスワードの確認が一致しません!",
-    "password_changed_successfully": "パスワードが変更されました!",
-    "old_password": "古いパスワード",
+    "withdrawal_password": "出金パスワード",
+    "password_confirmation_does_not_match": "確認用パスワードが一致しません！",
+    "password_changed_successfully": "パスワードの変更に成功しました！",
+    "old_password": "現在のパスワード",
     "new_login_password": "新しいログインパスワード",
-    "new_withdrawal_password": "新しい引き出しパスワード",
-    "confirm_password": "パスワードの確認",
+    "new_withdrawal_password": "新しい出金パスワード",
+    "confirm_password": "パスワード確認",
     "confirm": "確認",
-    "confirm_withdrawal_password": "引き出しパスワードの確認",
-    "change_password": "パスワードの変更",
-    "change_password_success": "パスワードが変更されました!",
-    "change_password_failed": "パスワードの変更に失敗しました!",
-    "change_password_failed_reason": "理由: 古いパスワードが間違っています!"
+    "confirm_withdrawal_password": "出金パスワード確認",
+    "change_password": "パスワードを変更する",
+    "change_password_success": "パスワードが正常に変更されました！",
+    "change_password_failed": "パスワードの変更に失敗しました！",
+    "change_password_failed_reason": "理由：現在のパスワードが正しくありません！",
+    "please_enter_password": "パスワードを入力してください！",
+    "password_must_be_at_least_6_characters": "パスワードは6文字以上である必要があります！",
+    "error_changing_password": "パスワードの変更中にエラーが発生しました！"
   },
   "recharge": {
     "title": "入金",
@@ -150,7 +195,14 @@
     "amount": "金額",
     "confirm": "確認",
     "title_history": "入金履歴",
-    "pending": "処理中"
+    "pending": "処理中",
+    "min_amount": "入金最小200$. 再試行してください",
+    "success_message": "入金要求が作成されました!",
+    "error_message": "エラー, 再試行してください!",
+    "select_payment_account": "支払い方法を選択してください! ",
+    "no_history": "履歴がありません",
+    "deny": "拒否されました",
+    "success": "入金成功"
   },
   "service": {
     "title": "サービス",
@@ -173,7 +225,9 @@
     "address": "ウォレットアドレス",
     "note_1": "*注意: 引き出し注文を作成する前に、銀行情報を正確にリンクしてください。",
     "note_2": "*ERC20の遅延により、TRC20の使用をお勧めします。",
-    "update": "更新"
+    "update": "更新",
+    "success_message": "ウォレット情報が正常に更新されました!",
+    "error_message": "エラー, 再試行してください!"
   },
   "withdrawal": {
     "title": "出金",
@@ -192,7 +246,14 @@
     "confirm": "確認",
     "bank_account": "銀行口座",
     "withdrawal_amount": "出金額",
-    "withdrawal_password": "出金パスワード"
+    "withdrawal_password": "出金パスワード",
+    "pending": "処理中",
+    "success": "出金成功",
+    "deny": "拒否されました",
+    "min_amount": "出金最小20$. 再試行してください",
+    "success_message": "出金要求が作成されました!",
+    "error_message": "エラー, 再試行してください!",
+    "please_update_payment_account_before_withdrawing": "出金前に支払い方法を更新してください!"
   },
   "menu": {
     "trust_level": "信頼レベル",

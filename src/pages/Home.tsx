@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import index_icon from '~/assets/index_icon2_1.png'
 import image1 from '~/assets/9.jpg'
 import image2 from '~/assets/10.jpg'
@@ -12,8 +12,11 @@ import image9 from '~/assets/77.png'
 import image10 from '~/assets/78.png'
 import image11 from '~/assets/bannerhomess.jpg'
 import { useTranslation } from 'react-i18next'
+import { AppContext } from '~/contexts/app.context'
+
 const Home = () => {
   const { t } = useTranslation()
+  const { profile } = useContext(AppContext)
   // const [messages] = useState([
   //   'bb***258 Quỹ 52870 Rút tiền thành công',
   //   'aa***123 Quỹ 12500 Nạp tiền thành công',
@@ -22,11 +25,12 @@ const Home = () => {
   //   'ee***111 Quỹ 85000 Rút tiền thành công',
   //   'ff***222 Quỹ 45000 Rút tiền thành công'
   // ])
+
   const [images] = useState([image1, image2, image3, image4, image5, image6, image7, image8, image9, image10])
   // const loopedMessages = [...messages, ...messages]
   return (
     <div className='pt-14 px-4 text-sm pb-24'>
-      <div className='bg-black text-white font-bold p-3 py-2 rounded-md'>{t('home.welcome_customer')}: vn6688</div>
+      <div className='bg-black text-white font-bold p-3 py-2 rounded-md'>{t('home.welcome_customer')}: {profile?.username}</div>
       <div className='bg-black text-white  p-3 py-2 rounded-md mt-5 '>
         <p className='text-center text-lg font-bold'>TIKTOK SHOP</p>
         <p className='text-center mt-2'>

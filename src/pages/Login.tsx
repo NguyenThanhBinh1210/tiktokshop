@@ -10,6 +10,7 @@ import { languages } from '~/components/LangueChange'
 import { AppContext } from '~/contexts/app.context'
 import { getOrCreateDeviceId } from '~/utils/utils'
 import io from 'socket.io-client'
+import toast from 'react-hot-toast'
 
 
 
@@ -58,7 +59,7 @@ const Login = () => {
         }
         setIsAuthenticated(true)
         // toast.success(t('login.login_success'))
-        alert('Đăng nhập thành công!')
+        toast.success(t('login.login_success'))
         setProfile(dataUser.data.user)
         setTimeout(() => {
           window.location.reload()
@@ -66,7 +67,7 @@ const Login = () => {
         navigate('/')
       },
       onError: (error: any) => {
-        alert(error?.response.data.errMessage || 'Đăng nhập thất bại!')
+        toast.error(error?.response.data.errMessage || t('login.login_failed'))
       }
     })
   }

@@ -9,7 +9,9 @@
     "no_account": "Không có tài khoản?",
     "register": "Đăng ký",
     "continue_login": "Tiếp tục nghĩa là bạn đồng ý với Điều khoản dịch vụ thương gia dành cho TikTok Shop, Điều khoản dịch vụ thương mại TikTok, đồng thời công nhận bạn đã đọc Chính sách quyền riêng tư của TIkTok dành cho đối tác để tìm hiểu cách chúng tôi thu thập, sử dụng và chia sẻ dữ liệu của bạn. Bạn có thể sử dụng cùng thông tin đăng nhập này để truy cập Trung tâm doanh nghiệp và Trinh quản tý quảng cáo, Bên cạnh đó, bạn sẽ có thể sử dụng thu nhập của cửa hàng mình để thanh toán chỉ tiêu quảng cáo.",
-    "continue_login_2": "Bạn cũng đồng ý rằng các sản phẩm của bạn sẽ được tự động thêm vào Cộng tác mở trong chương trình liên kết, với tỷ lệ hoa hồng xác định theo hạng mục sản phẩm"
+    "continue_login_2": "Bạn cũng đồng ý rằng các sản phẩm của bạn sẽ được tự động thêm vào Cộng tác mở trong chương trình liên kết, với tỷ lệ hoa hồng xác định theo hạng mục sản phẩm",
+    "login_success": "Đăng nhập thành công!",
+    "login_failed": "Đăng nhập thất bại!"
   },
   "register": {
     "phone_number": "Số điện thoại",
@@ -17,7 +19,16 @@
     "password": "Mật khẩu",
     "confirm_password": "Xác nhận mật khẩu",
     "referral_code": "Mã giới thiệu",
-    "register_now": "Đăng ký ngay"
+    "register_now": "Đăng ký ngay",
+    "register_success": "Đăng ký thành công, hãy đăng nhập!",
+    "password_not_match": "Mật khẩu không khớp",
+    "username_must_be_at_least_4_characters": "Tên đăng nhập phải có ít nhất 4 ký tự",
+    "please_enter_username": "Vui lòng nhập tên đăng nhập",
+    "invalid_phone_number": "Số điện thoại không hợp lệ (9-10 chữ số)",
+    "please_enter_phone_number": "Vui lòng nhập số điện thoại",
+    "password_must_be_at_least_6_characters": "Mật khẩu phải có ít nhất 6 ký tự",
+    "please_enter_password": "Vui lòng nhập mật khẩu",
+    "register_failed": "Đăng ký thất bại!"
   },
   "about": {
     "intro": "Về chúng tôi",
@@ -48,7 +59,27 @@
     "start_receiving_orders": "Bắt đầu nhận đơn",
     "order_description_1": "1. Về việc gửi đơn hàng , nhấn bắt đầu gửi đơn để tìm kiếm những đơn hàng Sale,và chờ hệ thống lựa chọn ngẫu nhiên.",
     "order_description_2": "2. Tất cả những đơn hàng ngẫu nhiên không thể thay đổi hoặc hủy bỏ, hoặc bỏ qua.",
-    "order_description_3": "3. Mỗi đơn hàng cần được thanh toán trong vòng 10 phút, bạn cần liên hệ chăm sóc khách hàng trực tuyến để lấy thông tin thẻ ngân hàng."
+    "order_description_3": "3. Mỗi đơn hàng cần được thanh toán trong vòng 10 phút, bạn cần liên hệ chăm sóc khách hàng trực tuyến để lấy thông tin thẻ ngân hàng.",
+    "still_have_1_order_not_paid": "Bạn vẫn còn 1 đơn hàng chưa thanh toán!",
+    "your_account_has_been_frozen": "Tài khoản của bạn đã bị đóng băng.",
+    "you_do_not_have_enough_money_to_start_placing_an_order": "Bạn không đủ tiền bắt đầu đặt đơn.",
+    "you_have_reached_the_order_limit_for_the_day_please_come_back_later": "Bạn đã đạt đến giới hạn đơn hàng trong ngày. Vui lòng quay lại sau",
+    "order_completed": "Đã hoàn thành đơn!",
+    "you_do_not_have_enough_money_to_pay_for_this_order": "Bạn không đủ tiền để thanh toán đơn này",
+    "you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money": "Bạn không đủ tiền để thanh toán đơn này liên hệ chăm sóc khách hàng để nạp thêm tiền!",
+    "server_error_please_reload_the_page": "Sever lỗi, hãy load lại trang!",
+    "you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money": "Bạn không đủ tiền để hoàn thành đơn này thiếu",
+    "please_contact_customer_service_to_add_money": "Hãy liên hệ chăm sóc khách hàng để nạp thêm tiền!",
+    "order_code": "Mã Đặt Hàng",
+    "updated_at": "Cập Nhật Lúc",
+    "product_price": "Giá hàng",
+    "quantity": "Số Lượng",
+    "total_price": "Tổng Tiền",
+    "order_details": "Chi tiết đơn hàng",
+    "order_status": "Trạng thái đơn hàng",
+    "countdown_payment": "Đếm ngược thanh toán",
+    "payment": "Thanh toán",
+    "back": "Trở lại"
   },
   "dealing_slip": {
     "deal": "Săn đơn",
@@ -57,7 +88,18 @@
     "completed": "Hoàn thành",
     "frozen": "Đóng băng",
     "profile": "Hồ sơ",
-    "no_order": "Không có đơn nào"
+    "no_order": "Không có đơn nào",
+    "updateSuccess": "Cập nhật thành công",
+    "notEnoughMoney": "Không đủ tiền",
+    "pleaseContactCustomerServiceToAddMoney": "Hãy liên hệ dịch vụ khách hàng để nạp thêm tiền",
+    "quantity": "Số lượng",
+    "originalPrice": "Giá gốc",
+    "totalPrice": "Tổng tiền",
+    "status": "Trạng thái",
+    "payment": "Thanh toán",
+    "no_history": "Không có lịch sử",
+    "commission": "Hoa hồng",
+    "pending_payment": "Đang chờ xử lý"
   },
   "faq": {
     "system_message": "Tin nhắn hệ thống",
@@ -141,7 +183,10 @@
     "change_password": "Đổi mật khẩu",
     "change_password_success": "Đổi mật khẩu thành công!",
     "change_password_failed": "Đổi mật khẩu thất bại!",
-    "change_password_failed_reason": "Lý do: Mật khẩu cũ không đúng!"
+    "change_password_failed_reason": "Lý do: Mật khẩu cũ không đúng!",
+    "please_enter_password": "Vui lòng nhập mật khẩu!",
+    "password_must_be_at_least_6_characters": "Mật khẩu phải có ít nhất 6 ký tự!",
+    "error_changing_password": "Lỗi không thể thay đổi mật khẩu!"
   },
   "recharge": {
     "title": "Nạp tiền",
@@ -150,7 +195,14 @@
     "amount": "Số tiền",
     "confirm": "Xác nhận",
     "title_history": "Lịch sử nạp tiền",
-    "pending": "Đang chờ xử lý"
+    "pending": "Đang chờ xử lý",
+    "min_amount": "Nạp tối thiểu 200$. Vui lòng thử lại",
+    "success_message": "Tạo yêu cầu nạp thành công!",
+    "error_message": "Lỗi, hãy thử lại!",
+    "select_payment_account": "Vui lòng chọn tài khoản thanh toán!",
+    "no_history": "Không có lịch sử",
+    "deny": "Đã bị từ chối",
+    "success": "Đã nạp thành công"
   },
   "service": {
     "title": "Dịch vụ",
@@ -173,7 +225,9 @@
     "address": "Địa chỉ ví",
     "note_1": "*Lưu ý liên kết chính xác thông tin tài khoản ngân hàng trước khi tạo lệnh rút tiền",
     "note_2": "*Do sự chậm trễ của mạng ERC20, khuyến nghị sử dụng mạng TRC20",
-    "update": "Cập nhật"
+    "update": "Cập nhật",
+    "success_message": "Cập nhật tài khoản thanh toán thành công!",
+    "error_message": "Lỗi, hãy thử lại!"
   },
   "withdrawal": {
     "title": "Rút tiền",
@@ -192,7 +246,14 @@
     "confirm": "Xác nhận",
     "bank_account": "Tài khoản ngân hàng",
     "withdrawal_amount": "Số tiền rút",
-    "withdrawal_password": "Mật khẩu rút tiền"
+    "withdrawal_password": "Mật khẩu rút tiền",
+    "pending": "Đang chờ xử lý",
+    "success": "Đã rút tiền thành công",
+    "deny": "Đã bị từ chối",
+    "min_amount": "Rút tối thiểu 20$. Vui lòng thử lại",
+    "success_message": "Tạo yêu cầu rút tiền thành công!",
+    "error_message": "Lỗi, hãy thử lại!",
+    "please_update_payment_account_before_withdrawing": "Vui lòng cập nhật tài khoản thanh toán trước khi rút tiền!"
   },
   "menu": {
     "trust_level": "Cấp tin cậy",
