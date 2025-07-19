@@ -29,14 +29,14 @@ const useRouteElements = () => {
     const { isAuthenticated } = useContext(AppContext)
     return isAuthenticated ? <Outlet /> : <Navigate to='login' />
   }
-  // function RejectedRoute() {
-  //   const { isAuthenticated } = useContext(AppContext)
-  //   return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
-  // }
+  function RejectedRoute() {
+    const { isAuthenticated } = useContext(AppContext)
+    return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
+  }
   const routeElements = useRoutes([
     {
       path: '',
-      element: <ProtecedRoute />,
+      element: <RejectedRoute />,
       children: [
         {
           path: '/login',
@@ -87,85 +87,61 @@ const useRouteElements = () => {
         },
         {
           path: '/notification',
-          element: (
-            <Notification />
-          )
+          element: <Notification />
         },
         {
           path: '/zhengshu',
-          element: (
-            <Zhengshu />
-          )
+          element: <Zhengshu />
         },
         {
           path: '/about',
-          element: (
-            <About />
-          )
+          element: <About />
         },
         {
           path: '/faq',
-          element: (
-            <FAQ />
-          )
+          element: <FAQ />
         },
         {
           path: '/team',
-          element: (
-            <Team />
-          )
+          element: <Team />
         },
         {
           path: '/service',
-          element: (
-            <Service />
-          )
+          element: <Service />
         },
         {
           path: '/tnc',
-          element: (
-            <Tnc />
-          )
+          element: <Tnc />
         },
         {
           path: '/security',
-          element: (
-            <Security />
-          )
+          element: <Security />
         },
-        {
-          path: '/lang',
-          element: (
-            <Lang />
-          )
-        },
+
         {
           path: '/wallet',
-          element: (
-            <Wallet />
-          )
+          element: <Wallet />
         },
         {
           path: '/withdrawal',
-          element: (
-            <Withdrawal />
-          )
+          element: <Withdrawal />
         },
         {
           path: '/recharge',
-          element: (
-            <Recharge />
-          )
+          element: <Recharge />
         },
         {
           path: '/recharge-history',
-          element: (
-            <RechargeHistory />
-          )
+          element: <RechargeHistory />
         }
       ]
     },
-
+    {
+      path: '/lang',
+      element: (
+        <Lang />
+      )
+    },
     {
       path: '*',
       element: <NotFound />

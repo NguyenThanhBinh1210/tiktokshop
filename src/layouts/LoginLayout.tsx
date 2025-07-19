@@ -8,7 +8,6 @@ const LoginLayout = ({ children }: LayoutPropsInterface) => {
   const location = useLocation()
   const isRegister = location.pathname === '/register'
   const currentLang = languages.find((l) => l.code === i18n.language) || languages[0]
-  console.log(currentLang)
   const { t } = useTranslation()
   return (
     <div className='bg-black max-w-xl mx-auto min-h-screen flex flex-col relative'>

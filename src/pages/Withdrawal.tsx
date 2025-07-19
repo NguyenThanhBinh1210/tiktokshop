@@ -1,12 +1,18 @@
-import { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useMutation, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { createWithdrawal, getPayment, getWallet, getWithdrawalHistory } from '~/apis/payment.api'
 import notice from '~/assets/menu-icon12.68eba35f.svg'
 import noOrder from '~/assets/noOrder.png'
+import { AppContext } from '~/contexts/app.context'
+import { formatNumber, generateRandomOrderCode } from '~/utils/utils'
 const Withdrawal = () => {
   const navigate = useNavigate()
   const [status, setStatus] = useState('atm')
   const { t } = useTranslation()
+
   return (
     <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -59,29 +65,88 @@ const Withdrawal = () => {
 
 const WithdrawalHistory = () => {
   const { t } = useTranslation()
+  const [withdrawalHistory, setWithdrawalHistory] = useState<any>([])
+  useQuery({
+    queryKey: ['withdrawal-history'],
+    queryFn: () => getWithdrawalHistory(),
+    onSuccess: (response) => {
+      setWithdrawalHistory(response.data.data)
+    }
+  })
+
+  const getStatusText = (status: string) => {
+    switch (status?.toLowerCase()) {
+      case 'pending':
+        return 'Đang chờ xử lý'
+      case 'done':
+        return 'Đã nạp thành công'
+      case 'failed':
+        return 'Đã bị từ chối'
+      default:
+        return 'Đang chờ xử lý'
+    }
+  }
+  const getStatusColor = (status: string) => {
+    switch (status?.toLowerCase()) {
+      case 'pending':
+        return 'bg-[#aaa]'
+      case 'done':
+        return 'bg-[#003857]'
+      case 'failed':
+        return 'bg-[#aaa]'
+      default:
+        return 'bg-[#aaa]'
+    }
+  }
   return (
-    <div>
-      <div className='w-max mx-auto mt-10'>
-        <img src={noOrder} alt='noOrder' className='w-[182px]' />
-        <p className='text-xl font-bold mt-4 text-center '>{t('withdrawal.no_history')}</p>
-      </div>
+    <div className='p-4'>
+      {withdrawalHistory
+        .filter((item: any) => item.infos === 'withdrawal money')
+        .map((item: any) => (
+          <div key={item._id} className='flex justify-between items-center py-3 border-b'>
+            <p>{item.codeOder}</p>
+            <div className='flex items-center gap-8'>
+              <p className={`text-white rounded-full px-2 text-xs py-0.5 ${getStatusColor(item.status)}`}>
+                {getStatusText(item.status)}
+              </p>
+              <p className='text-[#003857] font-bold'> {formatNumber(item.totalAmount)}</p>
+            </div>
+          </div>
+        ))}
+      {withdrawalHistory.filter((item: any) => item.infos === 'withdrawal money').length === 0 && (
+        <div className='w-max mx-auto mt-10'>
+          <img src={noOrder} alt='noOrder' className='w-[182px]' />
+          <p className='text-xl font-bold mt-4 text-center '>{t('withdrawal.no_history')}</p>
+        </div>
+      )}
     </div>
   )
 }
 
 const WithdrawalATM = () => {
   const [withdrawalMethod, setWithdrawalMethod] = useState('bank')
-  const [waletAmount] = useState(23123123)
+  const [waletAmount, setWaletAmount] = useState(0)
+  const { profile } = useContext(AppContext)
+  useQuery({
+    queryKey: ['my-wallet', profile?._id],
+    queryFn: () => {
+      return getWallet()
+    },
+    onSuccess: (data) => {
+      setWaletAmount(data.data.getWallet.totalAmount.toFixed(2))
+    }
+  })
   const { t } = useTranslation()
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount)
-  }
+  // const formatCurrency = (amount: number) => {
+  //   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount)
+  // }
+
   return (
     <div className='mx-auto  bg-white rounded-lg  space-y-4'>
       <p className='text-sm '>{t('withdrawal.system_will_process_request_after_linking_bank')}</p>
       <div className='p-3 py-2.5 rounded-lg bg-white border text-[#a16600] font-bold leading-5'>
         <p>{t('withdrawal.account_balance')}</p>
-        <p>{formatCurrency(waletAmount)}</p>
+        <p>{formatNumber(waletAmount)}</p>
       </div>
       <div>
         <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_method')}</label>
@@ -181,20 +246,73 @@ const WithdrawalWallet = ({ waletAmount }: { waletAmount: number }) => {
   )
 }
 const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
-  const [amount, setAmount] = useState('')
-  const [password, setPassword] = useState('')
   const { t } = useTranslation()
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const { profile } = useContext(AppContext)
+  const initialFromState = {
+    totalAmount: '',
+    password: ''
+  }
+  const [formState, setFormState] = useState(initialFromState)
+  const [payment, setPayment] = useState<any>(null)
+  useQuery({
+    queryKey: ['payment', 'withdrawal'],
+    queryFn: () => {
+      return getPayment({ userId: profile?._id })
+    },
+    onSuccess: (data) => {
+      setPayment(data.data)
+    },
+    cacheTime: 30000
+  })
+  const handleChange = (name: any) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState((prev) => ({ ...prev, [name]: event.target.value }))
+  }
+  const [showFreezeAlert, setShowFreezeAlert] = useState(false)
+  console.log(showFreezeAlert)
+  const mutationWithdrawal = useMutation((body: any) => {
+    return createWithdrawal(body)
+  })
+  const handleWithdrawal = (e: any) => {
     e.preventDefault()
-    if (amount === '' || password === '') {
-      alert(t('withdrawal.please_enter_all_information'))
+    // Kiểm tra tài khoản đóng băng trước khi thực hiện rút tiền
+    if (profile?.isDongBang) {
+      setShowFreezeAlert(true)
       return
     }
-    // Gửi dữ liệu tới API ở đây
-    alert(t('withdrawal.withdrawal_request_created_successfully'))
+
+    if (Number(formState?.totalAmount) < 20) {
+      alert('Rút tối thiểu 20$. Vui lòng thử lại')
+      return
+    }
+    if (payment !== null) {
+      const newData = {
+        totalAmount: Number(formState?.totalAmount),
+        password: formState?.password,
+        codeOder: generateRandomOrderCode(6)
+      }
+      mutationWithdrawal.mutate(newData, {
+        onSuccess: () => {
+          alert('Tạo yêu cầu rút tiền thành công!')
+          // navigate('/cskh')
+          // queryClient.invalidateQueries({ queryKey: ['hoa-don-chi-tiet-user'] })
+          // queryClient.invalidateQueries({ queryKey: ['my-wallet', profile?._id] })
+        },
+        onError: (err: any) => {
+          console.log(err)
+          if (err?.response.status === 429 || err?.response.status === 400) {
+            alert(err?.response.data.error)
+          } else {
+            alert('Lỗi hệ thống, vui lòng thử lại sau!')
+          }
+        }
+      })
+    } else {
+      alert('Vui lòng cập nhật tài khoản thanh toán trước khi rút tiền!')
+    }
   }
   return (
-    <form onSubmit={handleSubmit} className='mx-auto  bg-white rounded-lg  space-y-4'>
+    <form onSubmit={handleWithdrawal} className='mx-auto  bg-white rounded-lg  space-y-4'>
       <p>
         <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.bank_account')}</label>
       </p>
@@ -203,13 +321,13 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
         <div className='relative'>
           <input
             type='text'
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            value={formState.totalAmount}
+            onChange={handleChange('totalAmount')}
             placeholder={t('withdrawal.withdrawal_amount')}
             className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
           />
           <button
-            onClick={() => setAmount(String(waletAmount))}
+            onClick={() => setFormState({ ...formState, totalAmount: String(waletAmount) })}
             type='button'
             className='text-sm text-primary absolute right-4 top-1/2 -translate-y-1/2 uppercase font-bold'
           >
@@ -221,16 +339,16 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
       <div>
         <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_password')}</label>
         <input
-          type='text'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type='password'
+          value={formState.password}
+          onChange={handleChange('password')}
           placeholder={t('withdrawal.withdrawal_password')}
           className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
       </div>
       <button
         type='submit'
-        disabled={!amount || !password}
+        disabled={!formState.totalAmount || !formState.password}
         className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
       >
         {t('withdrawal.confirm')}

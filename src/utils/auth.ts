@@ -10,6 +10,7 @@ export const setRefreshTokenToLS = (refresh_token: string) => {
 export const clearLS = () => {
   localStorage.removeItem('access_token')
   localStorage.removeItem('profile')
+  localStorage.removeItem('deviceId')
 }
 
 export const getAccessTokenFromLS = () => localStorage.getItem('access_token') || ''
@@ -30,3 +31,5 @@ export const setProfileFromLS = (profile: Profile) => {
 export const setDarkModeFromLS = (dark: boolean) => {
   localStorage.setItem('darkmode', JSON.stringify(dark))
 }
+
+export const getOrCreateDeviceId = () => localStorage.getItem('deviceId') || ''

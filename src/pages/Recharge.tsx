@@ -1,12 +1,68 @@
-import { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import notice from '~/assets/menu-icon6.4845e69c.svg'
 import { useTranslation } from 'react-i18next'
+import { useMutation, useQuery } from 'react-query'
+import { createWallet, getPayment } from '~/apis/payment.api'
+import { AppContext } from '~/contexts/app.context'
+import { generateRandomOrderCode } from '~/utils/utils'
 const Recharge = () => {
   const navigate = useNavigate()
   const [amount, setAmount] = useState(0)
   const { t } = useTranslation()
+  const { profile } = useContext(AppContext)
   const amounts = [50, 100, 200, 1000, 3000, 5000, 10000, 30000, 50000]
+  const [payment, setPayment] = useState<any>(null)
+  useQuery({
+    queryKey: ['payment', 'recharge'],
+    queryFn: () => {
+      return getPayment({ userId: profile?._id })
+    },
+    onSuccess: (data) => {
+      setPayment(data.data)
+    },
+    cacheTime: 30000
+  })
+  const [code, setCode] = useState<any>()
+
+  useEffect(() => {
+    const code = generateRandomOrderCode(6)
+    setCode(code)
+  }, [])
+
+  const mutationRecharge = useMutation((body: any) => {
+    return createWallet(body)
+  })
+  const handleRecharge = () => {
+    if (Number(amount) < 200) {
+      // toast.warn('nạp tối thiểu 200$. Vui lòng thử lại')
+      alert('nạp tối thiểu 200$. Vui lòng thử lại')
+      return
+    }
+    if (payment !== null) {
+      const newData = {
+        bankName: payment.bankName,
+        totalAmount: Number(amount),
+        codeOder: code
+      }
+      mutationRecharge.mutate(newData, {
+        onSuccess: () => {
+          // toast.success(t('wallet.success_message'))
+          alert('Tạo yêu cầu nạp thành công!')
+        },
+        onError: (err: any) => {
+          if (err?.response.status === 429) {
+            alert(err?.response.data.error)
+          } else {
+            alert('Lỗi, hãy thử lại!')
+          }
+        }
+      })
+    } else {
+      alert('Vui lòng chọn tài khoản thanh toán!')
+    }
+  }
   return (
     <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -72,6 +128,7 @@ const Recharge = () => {
         </div>
         <button
           type='submit'
+          onClick={handleRecharge}
           disabled={!amount}
           className='disabled:bg-[#bebebe]  py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
         >

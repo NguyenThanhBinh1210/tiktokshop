@@ -27,19 +27,11 @@ const Service = () => {
       </div>
       <div className='flex flex-col items-center justify-center gap-4 px-5'>
         <img src={menu_icon7} alt='menu_icon7' className='size-24' />
-        <p className='text-2xl font-bold uppercase'>
-          {t('service.title')}
-        </p>
-        <p className='text- '>
-          {t('service.description')}
-        </p>
+        <p className='text-2xl font-bold uppercase'>{t('service.title')}</p>
+        <p className='text- '>{t('service.description')}</p>
         <img src={gust_logo} alt='gust_logo' className='w-52' />
-        <p className='text-xl uppercase font-bold text-center px-3'>
-          {t('service.description_contact')}
-        </p>
-        <p>
-          {t('service.description_time')}
-        </p>
+        <p className='text-xl uppercase font-bold text-center px-3'>{t('service.description_contact')}</p>
+        <p>{t('service.description_time')}</p>
         <button className='bg-primary text-white px-4 py-3 mt-20 rounded-full font-bold w-full '>
           {t('service.description_contact_service')}
         </button>

@@ -1,14 +1,80 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Eye, EyeOff } from 'lucide-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { useMutation } from 'react-query'
+import { Link, useNavigate } from 'react-router-dom'
+import { loginAccount } from '~/apis/auth.api'
 import banner from '~/assets/downloadbg.svg'
 import { languages } from '~/components/LangueChange'
+import { AppContext } from '~/contexts/app.context'
+import { getOrCreateDeviceId } from '~/utils/utils'
+import io from 'socket.io-client'
+
+
+
 const Login = () => {
+  const serverUrl = 'http://51.79.185.1:4006'
   const { t, i18n } = useTranslation()
+  const { setIsAuthenticated, setProfile } = useContext(AppContext)
+
   const [showPassword, setShowPassword] = useState(false)
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
   const currentLang = languages.find((l) => l.code === i18n.language) || languages[0]
+  const initialFromState = {
+    username: '',
+    password: ''
+  }
+  const [formState, setFormState] = useState(initialFromState)
+
+  // const [showWarning, setShowWarning] = useState(true)
+
+  // const handleDismissWarning = () => {
+  //   setShowWarning(false)
+  // }
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState((prev) => ({ ...prev, [name]: event.target.value }))
+  }
+
+  const navigate = useNavigate()
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const deviceId = getOrCreateDeviceId()
+
+    // Chuyển username sang lowercase trước khi gửi
+    const data = {
+      ...formState,
+      username: formState.username.toLocaleLowerCase(),
+      deviceId: deviceId
+    }
+
+    const socket = io(serverUrl)
+
+    mutationLogin.mutate(data, {
+      onSuccess: (dataUser: any) => {
+        if (dataUser.data.reset === true) {
+          socket.emit('resetByUser', dataUser.data.user)
+        }
+        setIsAuthenticated(true)
+        // toast.success(t('login.login_success'))
+        alert('Đăng nhập thành công!')
+        setProfile(dataUser.data.user)
+        setTimeout(() => {
+          window.location.reload()
+        }, 500)
+        navigate('/')
+      },
+      onError: (error: any) => {
+        alert(error?.response.data.errMessage || 'Đăng nhập thất bại!')
+      }
+    })
+  }
+
+  const mutationLogin = useMutation((body: any) => {
+    return loginAccount(body)
+  })
+
   return (
     <div
       style={{ backgroundImage: `url(${banner})` }}
@@ -23,7 +89,7 @@ const Login = () => {
           {t('login.if_you_are_retail_brand_or_business')}
         </p>
       </div>
-      <div className=' py-8 rounded-lg w-full max-w-[400px] mx-auto'>
+      <form onSubmit={handleSubmit} className=' py-8 rounded-lg w-full max-w-[400px] mx-auto'>
         <div className='mb-7 relative'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -42,6 +108,8 @@ const Login = () => {
             type='text'
             placeholder='16888888888'
             className='pl-10 pr-4 py-3 w-full rounded-full bg-white focus:outline-none '
+            value={formState.username}
+            onChange={handleChange('username')}
           />
         </div>
         <div className='mb-7 relative'>
@@ -62,6 +130,8 @@ const Login = () => {
             type={showPassword ? 'text' : 'password'}
             placeholder={t('login.password')}
             className='pl-10 pr-10 py-3 w-full rounded-full bg-white focus:outline-none '
+            value={formState.password}
+            onChange={handleChange('password')}
           />
           <button
             type='button'
@@ -79,7 +149,7 @@ const Login = () => {
           </label>
         </div>
 
-        <button className='w-full bg-primary hover:bg-primary/80 text-white py-3 uppercase rounded-full text-lg font-semibold transition'>
+        <button type='submit' className='w-full bg-primary hover:bg-primary/80 text-white py-3 uppercase rounded-full text-lg font-semibold transition'>
           {t('login.login')}
         </button>
 
@@ -97,7 +167,7 @@ const Login = () => {
           {t('login.continue_login_2')}
 
         </div>
-      </div>
+      </form>
     </div>
   )
 }

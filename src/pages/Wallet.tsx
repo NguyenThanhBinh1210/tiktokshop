@@ -1,7 +1,11 @@
-import { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import notice from '~/assets/menu-icon13.f9f15e6f.svg'
 import { useTranslation } from 'react-i18next'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { createPayment, getPayment } from '~/apis/payment.api'
+import { AppContext } from '~/contexts/app.context'
 const Wallet = () => {
   const navigate = useNavigate()
   const [status, setStatus] = useState<string>('bankinfo')
@@ -69,16 +73,47 @@ const BankInfo = () => {
   const [bankName, setBankName] = useState('')
   const [bankAccount, setBankAccount] = useState('')
   const [bankNumber, setBankNumber] = useState('')
+  const [isHaveBankInfo, setIsHaveBankInfo] = useState(false)
   const { t } = useTranslation()
+  const { profile } = useContext(AppContext)
+  const queryClient = useQueryClient()
+  // const [payment, setPayment] = useState<any>(null)
+  useQuery({
+    queryKey: ['payment', profile?._id],
+    queryFn: () => {
+      return getPayment({ userId: profile?._id })
+    },
+    onSuccess: (data) => {
+      setBankName(data.data.nameUserBank)
+      setBankAccount(data.data.bankName)
+      setBankNumber(data.data.accountNumber)
+      setIsHaveBankInfo(data.data.nameUserBank && data.data.bankName && data.data.accountNumber)
+    }
+  })
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (bankName === '' || bankAccount === '' || bankNumber === '') {
-      alert(t('wallet.please_enter_all_information'))
-      return
+    const newData = {
+      bankName: bankAccount,
+      accountNumber: bankNumber,
+      name: bankName,
+      userId: profile?._id
     }
-    // Gửi dữ liệu tới API ở đây
-    alert(t('wallet.bank_information_has_been_updated'))
+    mutationPayment.mutate(newData, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['payment', profile?._id] })
+        // mutationProfile.mutate()
+        alert('Cập nhật tài khoản thanh toán thành công!')
+        // setShowThongTin(false)
+      },
+      onError: () => {
+        alert('Cập nhật lỗi, hãy thử lại!')
+      }
+    })
   }
+  const mutationPayment = useMutation((body: any) => {
+    return createPayment(body)
+  })
   return (
     <form onSubmit={handleSubmit} className=' mx-auto mt-5 bg-white rounded-lg  space-y-4'>
       <div>
@@ -88,7 +123,8 @@ const BankInfo = () => {
           value={bankName}
           onChange={(e) => setBankName(e.target.value)}
           placeholder={t('wallet.name')}
-          className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+          className='disabled:bg-[#f3f3f3] w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+          disabled={!!bankName}
         />
       </div>
 
@@ -99,7 +135,8 @@ const BankInfo = () => {
           value={bankAccount}
           onChange={(e) => setBankAccount(e.target.value)}
           placeholder={t('wallet.bank_name')}
-          className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+          className='disabled:bg-[#f3f3f3] w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+          disabled={!!bankAccount}
         />
       </div>
 
@@ -110,17 +147,19 @@ const BankInfo = () => {
           value={bankNumber}
           onChange={(e) => setBankNumber(e.target.value)}
           placeholder={t('wallet.bank_account')}
-          className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+          className='disabled:bg-[#f3f3f3] w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+          disabled={!!bankNumber}
         />
       </div>
-
-      <button
-        type='submit'
-        disabled={!bankName || !bankAccount || !bankNumber}
-        className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
-      >
-        {t('wallet.confirm')}
-      </button>
+      {!isHaveBankInfo && (
+        <button
+          type='submit'
+          disabled={!bankName || !bankAccount || !bankNumber}
+          className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
+        >
+          {t('wallet.confirm')}
+        </button>
+      )}
     </form>
   )
 }
