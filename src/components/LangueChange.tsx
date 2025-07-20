@@ -16,57 +16,70 @@ export const languages = [
   {
     code: 'es',
     label: 'Español',
+    country: 'España',
     icon: image34
   },
   {
     code: 'pt',
     label: 'Portugal',
+    country: 'Portugal',
     icon: imagept
   },
   {
     code: 'vi',
     label: 'Tiếng Việt',
+    country: 'Việt Nam',
     icon: image67
   },
   {
     code: 'th',
     label: 'ภาษาไทย',
+    country: 'ประเทศไทย',
     icon: image66
   },
-
   {
     code: 'ar',
     label: 'اللغة العربية',
+    country: 'السعودية',
     icon: image964
   },
   {
     code: 'it',
     label: 'Italiano',
+    country: 'Italia',
     icon: image39
   },
   {
     code: 'ja',
     label: '日本語',
+    country: '日本',
     icon: image81
   },
   {
     code: 'ko',
     label: '한국어',
+    country: '대한민국',
     icon: image82
   },
-
-  { code: 'en', label: 'English', icon: image43 },
+  {
+    code: 'en',
+    label: 'English',
+    country: 'USA',
+    icon: image43
+  },
   {
     code: 'zh',
     label: '中文',
+    country: '中国',
     icon: image86
   },
   {
     code: 'ms',
     label: 'Bahasa Melayu',
+    country: 'Malaysia',
     icon: image60
   }
-]
+];
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation()
   const [curent, setCurent] = useState(i18n.language)

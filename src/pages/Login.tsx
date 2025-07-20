@@ -6,7 +6,7 @@ import { useMutation } from 'react-query'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginAccount } from '~/apis/auth.api'
 import banner from '~/assets/downloadbg.svg'
-import { languages } from '~/components/LangueChange'
+// import { languages } from '~/components/LangueChange'
 import { AppContext } from '~/contexts/app.context'
 import { getOrCreateDeviceId } from '~/utils/utils'
 import io from 'socket.io-client'
@@ -15,13 +15,13 @@ import toast from 'react-hot-toast'
 
 
 const Login = () => {
-  const serverUrl = 'http://51.79.185.1:4006'
-  const { t, i18n } = useTranslation()
+  const serverUrl = 'https://socket.ordersdropship.com'
+  const { t } = useTranslation()
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
 
   const [showPassword, setShowPassword] = useState(false)
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
-  const currentLang = languages.find((l) => l.code === i18n.language) || languages[0]
+  // const currentLang = languages.find((l) => l.code === i18n.language) || languages[0]
   const initialFromState = {
     username: '',
     password: ''
@@ -83,7 +83,7 @@ const Login = () => {
     >
       <div className='pt-20'>
         <p className='text-white text-3xl max-w-[400px] mx-auto font-semibold '>
-          {t('login.grow_your_business_with')} <span className='text-primary'>TikTok {currentLang.label} </span>{' '}
+          {t('login.grow_your_business_with')} <span className='text-primary'>TikTok Shop </span>{' '}
           {t('login.now_day')}!
         </p>
         <p className='text-white text-sm max-w-[400px] mx-auto mt-2'>

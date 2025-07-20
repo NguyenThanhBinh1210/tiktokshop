@@ -14,7 +14,7 @@ import { createRandom, getAllCountLenh, getOrderDay, updateLenh } from '~/apis/r
 import { convertToVietnamDateTime, formatCurrency, formatNumber, formatTime } from '~/utils/utils'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
-const serverUrl = 'http://51.79.185.1:4001'
+const serverUrl = 'https://socket.ordersdropship.com'
 const Deal = () => {
   const [showCommission, setShowCommission] = useState(false)
   const [showBalance, setShowBalance] = useState(false)

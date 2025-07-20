@@ -40,7 +40,7 @@ const LoginLayout = ({ children }: LayoutPropsInterface) => {
         <img src={lang} alt='lang' className='size-8' />
       </button> */}
       <p className='absolute top-0 right-0 p-2 w-max h-max flex items-center justify-center text-white'>
-        {t('seller')} {currentLang.label} <Link to='/lang' className='ml-2 text-primary flex items-center gap-2'>{t('change_country')} <img src={lang} alt='lang' className='size-8' /></Link>
+        {t('seller')} {currentLang.country} <Link to='/lang' className='ml-2 text-primary flex items-center gap-2'>{t('change_country')} <img src={lang} alt='lang' className='size-8' /></Link>
       </p>
     </div>
   )
