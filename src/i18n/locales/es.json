@@ -90,7 +90,7 @@
     "profile": "Perfil",
     "no_order": "Ningún pedido",
     "updateSuccess": "Actualización exitosa",
-    "notEnoughMoney": "No tienes suficiente dinero",
+    "notEnoughMoney": "Cantidad faltante",
     "pleaseContactCustomerServiceToAddMoney": "Contacta al servicio de atención al cliente para agregar dinero",
     "quantity": "Cantidad",
     "originalPrice": "Precio original",

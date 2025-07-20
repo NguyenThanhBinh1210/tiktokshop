@@ -264,6 +264,7 @@
     "order_slip": "รายการออเดอร์",
     "transaction": "การทำธุรกรรม",
     "atm": "ATM",
+    "notEnoughMoney": "คุณยังคงขาด",
     "wallet_information": "ข้อมูลกระเป๋าเงิน",
     "change_language": "เปลี่ยนภาษา",
     "customer_service": "บริการลูกค้า",

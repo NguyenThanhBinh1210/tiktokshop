@@ -53,8 +53,6 @@ const DealingSlip = () => {
   }
   const mutationUpdate = useMutation((body: any) => updateLenh(body))
   const queryClient = useQueryClient()
-  const [error, setError] = useState('')
-  console.log(error)
   const [totalAmount, setTotalAmount] = useState<number>(0)
   useQuery({
     queryKey: ['get-all-money'],
@@ -73,9 +71,12 @@ const DealingSlip = () => {
           queryClient.invalidateQueries(['get-all-money'])
         },
         onError: () => {
-          setError(
-            `${t('order.notEnoughMoney')} ${formatCurrency(sum - totalAmount)} ${t('dealing_slip.pleaseContactCustomerServiceToAddMoney')}`
+          toast.error(
+            `${t('dealing_slip.notEnoughMoney')} ${formatCurrency(sum - totalAmount)}, ${t('dealing_slip.pleaseContactCustomerServiceToAddMoney')}`
           )
+          setTimeout(() => {
+            navigate('/service/chat')
+          }, 2000)
         }
       }
     )

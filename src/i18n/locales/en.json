@@ -90,7 +90,7 @@
     "profile": "Profile",
     "no_order": "No order",
     "updateSuccess": "Update success",
-    "notEnoughMoney": "Not enough money",
+    "notEnoughMoney": "Amount missing",
     "pleaseContactCustomerServiceToAddMoney": "Please contact customer service to add money",
     "quantity": "Quantity",
     "originalPrice": "Original price",

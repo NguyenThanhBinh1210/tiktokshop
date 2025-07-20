@@ -107,8 +107,7 @@ const Deal = () => {
       mutationRandom.mutate()
     }
   }
-  const [error, setError] = useState('')
-  console.log(error)
+
   const navigate = useNavigate()
   const mutationUpdate = useMutation((body: any) => updateLenh(body))
 
@@ -129,15 +128,22 @@ const Deal = () => {
           queryClient.invalidateQueries({ queryKey: ['get-all-money'] })
         },
         onError: (err: any) => {
-          if (err.response.data.message === t('deal.you_do_not_have_enough_money_to_pay_for_this_order')) {
+          console.log(err.response.data.message)
+          if (err.response.data.message === 'Bạn không đủ tiền thanh toán đơn này') {
             if (dataRamdom && dataRamdom.Sum !== undefined) {
-              setError(
+              toast.error(
                 `${t('deal.you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money')} ${formatCurrency(
                   sum - totalAmount
                 )}. ${t('deal.please_contact_customer_service_to_add_money')}`
               )
+              setTimeout(() => {
+                navigate('/service/chat')
+              }, 2000)
             } else {
-              setError(t('deal.you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money'))
+              toast.error(t('deal.you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money'))
+              setTimeout(() => {
+                navigate('/service/chat')
+              }, 2000)
             }
           } else {
             setTimeout(() => {

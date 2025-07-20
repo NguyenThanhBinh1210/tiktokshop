@@ -23,6 +23,7 @@ import Withdrawal from '~/pages/Withdrawal'
 import Wallet from '~/pages/Wallet'
 import Recharge from '~/pages/Recharge'
 import RechargeHistory from '~/pages/RechargeHistory'
+import Chat from '~/pages/Chat'
 
 const useRouteElements = () => {
   function ProtecedRoute() {
@@ -108,6 +109,10 @@ const useRouteElements = () => {
         {
           path: '/service',
           element: <Service />
+        },
+        {
+          path: '/service/chat',
+          element: <Chat />
         },
         {
           path: '/tnc',

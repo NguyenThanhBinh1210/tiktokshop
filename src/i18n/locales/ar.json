@@ -87,7 +87,7 @@
     "profile": "الملف الشخصي",
     "no_order": "لا توجد طلبات",
     "updateSuccess": "تم التحديث بنجاح",
-    "notEnoughMoney": "لا يوجد رصيد كافٍ",
+    "notEnoughMoney": "المبلغ الناقص",
     "pleaseContactCustomerServiceToAddMoney": "يرجى الاتصال بخدمة العملاء لإضافة رصيد",
     "quantity": "الكمية",
     "originalPrice": "السعر الأصلي",

@@ -90,7 +90,7 @@
     "profile": "プロフィール",
     "no_order": "注文がありません",
     "updateSuccess": "更新成功",
-    "notEnoughMoney": "お金が足りません",
+    "notEnoughMoney": "残高が不足しています",
     "pleaseContactCustomerServiceToAddMoney": "顧客サービスに連絡してください。",
     "quantity": "数量",
     "originalPrice": "原価",
