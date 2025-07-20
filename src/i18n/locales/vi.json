@@ -199,7 +199,7 @@
     "min_amount": "Nạp tối thiểu 200$. Vui lòng thử lại",
     "success_message": "Tạo yêu cầu nạp thành công!",
     "error_message": "Lỗi, hãy thử lại!",
-    "select_payment_account": "Vui lòng chọn tài khoản thanh toán!",
+    "select_payment_account": "Vui lòng cập nhập thông tin ngân hàng!",
     "no_history": "Không có lịch sử",
     "deny": "Đã bị từ chối",
     "success": "Đã nạp thành công"

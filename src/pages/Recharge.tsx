@@ -73,6 +73,8 @@ const Recharge = () => {
       })
     } else {
       toast.error(t('recharge.select_payment_account'))
+      navigate('/wallet')
+      return
     }
   }
   return (
