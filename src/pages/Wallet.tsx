@@ -75,6 +75,8 @@ const BankInfo = () => {
   const [bankAccount, setBankAccount] = useState('')
   const [bankNumber, setBankNumber] = useState('')
   const [isHaveBankInfo, setIsHaveBankInfo] = useState(false)
+  const [isDataFromDB, setIsDataFromDB] = useState(false)
+
   const { t } = useTranslation()
   const { profile } = useContext(AppContext)
   const queryClient = useQueryClient()
@@ -89,6 +91,7 @@ const BankInfo = () => {
       setBankAccount(data.data.bankName)
       setBankNumber(data.data.accountNumber)
       setIsHaveBankInfo(data.data.nameUserBank && data.data.bankName && data.data.accountNumber)
+      setIsDataFromDB( data.data.nameUserBank && data.data.bankName && data.data.accountNumber ? true : false)
     }
   })
 
@@ -125,7 +128,7 @@ const BankInfo = () => {
           onChange={(e) => setBankName(e.target.value)}
           placeholder={t('wallet.name')}
           className='disabled:bg-[#f3f3f3] w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
-          disabled={!!bankName}
+          disabled={!!isDataFromDB}
         />
       </div>
 
@@ -137,7 +140,7 @@ const BankInfo = () => {
           onChange={(e) => setBankAccount(e.target.value)}
           placeholder={t('wallet.bank_name')}
           className='disabled:bg-[#f3f3f3] w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
-          disabled={!!bankAccount}
+          disabled={!!isDataFromDB}
         />
       </div>
 
@@ -149,7 +152,7 @@ const BankInfo = () => {
           onChange={(e) => setBankNumber(e.target.value)}
           placeholder={t('wallet.bank_account')}
           className='disabled:bg-[#f3f3f3] w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
-          disabled={!!bankNumber}
+          disabled={!!isDataFromDB}
         />
       </div>
       {!isHaveBankInfo && (

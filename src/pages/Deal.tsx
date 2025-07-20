@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { io } from 'socket.io-client'
 import { AppContext } from '~/contexts/app.context'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { getWallet } from '~/apis/payment.api'
+import { getNumberOrder, getWallet } from '~/apis/payment.api'
 import { createRandom, getAllCountLenh, getOrderDay, updateLenh } from '~/apis/random.api'
 import { convertToVietnamDateTime, formatCurrency, formatNumber, formatTime } from '~/utils/utils'
 import { useNavigate } from 'react-router-dom'
@@ -20,6 +20,7 @@ const Deal = () => {
   const [showBalance, setShowBalance] = useState(false)
   const [dataRamdom, setDataRandom] = useState<any>(null)
   const [sum, setSum] = useState<number>(0)
+  const [numberOrder, setNumberOrder] = useState<any>(null)
   const [open, setOpen] = useState<boolean>(false)
   const [countDay, setCountDay] = useState<any>()
   useQuery({
@@ -27,6 +28,7 @@ const Deal = () => {
     queryFn: () => getOrderDay(),
     cacheTime: 1000,
     onSuccess: (data) => {
+      console.log( "s",data.data);
       setCountDay(data.data.numberOder)
     }
   })
@@ -42,7 +44,17 @@ const Deal = () => {
     queryFn: () => getAllCountLenh(),
     cacheTime: 1000,
     onSuccess: (data) => {
+      console.log("count", data.data);
       setCount(data.data)
+      
+    }
+  })
+  useQuery({
+    queryKey: ['get-number-order'],
+    queryFn: () => getNumberOrder(),
+    cacheTime: 1000,
+    onSuccess: (data) => {
+      setNumberOrder(data.data.number)
     }
   })
   const [waletAmount, setWaletAmount] = useState(0)
@@ -90,7 +102,7 @@ const Deal = () => {
     }
   })
   const totalAmount = totalAmounts || 0
-  const numberOder = profile?.numberLevel ? profile.numberLevel : 0
+  const numberOder = numberOrder || 0
   const sumOrder = !countDay ? 0 : countDay > numberOder ? numberOder : countDay
 
   const handleCreateOrder = () => {
