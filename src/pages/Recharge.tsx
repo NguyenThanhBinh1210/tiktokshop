@@ -47,11 +47,11 @@ const Recharge = () => {
     return createWallet(body)
   })
   const handleRecharge = () => {
-    if (Number(amount) < 200) {
-      // toast.warn('nạp tối thiểu 200$. Vui lòng thử lại')
-      toast.error(t('recharge.min_amount'))
-      return
-    }
+    // if (Number(amount) < 200) {
+    //   // toast.warn('nạp tối thiểu 200$. Vui lòng thử lại')
+    //   toast.error(t('recharge.min_amount'))
+    //   return
+    // }
     if (payment !== null) {
       const newData = {
         bankName: payment.bankName,
