@@ -13,7 +13,7 @@ class Http {
     this.accessToken = getAccessTokenFromLS()
     this.deviceId = getOrCreateDeviceId()
     this.instance = axios.create({
-      baseURL: 'http://localhost:4001/api/',
+      baseURL: 'https://api.ordersdropship.com/api/',
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json'
