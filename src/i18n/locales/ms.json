@@ -11,7 +11,8 @@
     "continue_login": "Lanjutkan berarti Anda setuju dengan Persyaratan Layanan TikTok Shop, Persyaratan Layanan TikTok, dan mengakui bahwa Anda telah membaca Kebijakan Privasi TikTok untuk mitra untuk memahami cara kami mengumpulkan, menggunakan, dan membagikan data Anda. Anda dapat menggunakan informasi login yang sama untuk mengakses Pusat Bisnis dan Pengelola Iklan Bisnis TikTok. Selain itu, Anda akan dapat menggunakan pendapatan toko Anda untuk membayar metrik iklan.",
     "continue_login_2": "Juga, produk Anda akan secara otomatis ditambahkan ke program kolaborasi terbuka, dengan tingkat komisi berbasis kategori produk.",
     "login_success": "Login berhasil!",
-    "login_failed": "Login gagal!"
+    "login_failed": "Login gagal!",
+    "wrong_username_or_password": "Anda telah memasukkan nama pengguna atau kata sandi yang salah!"
   },
   "register": {
     "phone_number": "Nombor Telefon",
@@ -24,11 +25,14 @@
     "password_not_match": "Kata sandi tidak cocok",
     "username_must_be_at_least_4_characters": "Nama pengguna harus memiliki setidaknya 4 karakter",
     "please_enter_username": "Silakan masukkan nama pengguna",
-    "invalid_phone_number": "Nombor telefon tidak sah (9-10 digit)",
+    "invalid_phone_number": "Nombor telefon tidak sah (10-11 digit)",
     "please_enter_phone_number": "Silakan masukkan nombor telefon",
     "password_must_be_at_least_6_characters": "Kata sandi harus memiliki setidaknya 6 karakter",
     "please_enter_password": "Silakan masukkan kata sandi",
-    "register_failed": "Pendaftaran gagal!"
+    "register_failed": "Pendaftaran gagal!",
+    "please_enter_referral_code": "Silakan masukkan kode referensi",
+    "referral_code_not_found": "Tidak ditemukan kode referensi atau kode referensi telah diblokir.",
+    "username_or_phone_number_already_used": "Nama pengguna atau nombor telefon sudah digunakan."
   },
   "about": {
     "intro": "Tentang Kami",
@@ -99,7 +103,18 @@
     "payment": "Bayar",
     "no_history": "Tiada sejarah",
     "commission": "Komisi",
-    "pending_payment": "Menunggu pembayaran"
+    "pending_payment": "Menunggu pembayaran",
+    "toastErrro1": "Anda telah menerima pesanan Sale dengan komisi tinggi ❗️",
+    "toastErrro2": "Silakan hubungi layanan pelanggan untuk menambahkan uang",
+    "receive": "Menerima",
+    "contactNow": "Hubungi sekarang"
+  },
+  "logout": {
+    "success": "Log Keluar Berhasil!",
+    "confirm": "Anda benar-benar ingin keluar?",
+    "confirm_message": "Aksi ini akan mengakhiri sesi saat ini.",
+    "back": "Kembali",
+    "logout": "Keluar"
   },
   "faq": {
     "system_message": "Pesan Sistem",

@@ -11,7 +11,8 @@
     "continue_login": "Continua significa che accetti i Termini di servizio di TikTok Shop, i Termini di servizio di TikTok e riconosci che hai letto la Politica di privacy di TikTok per i partner per capire come raccogliamo, utilizziamo e condividiamo i tuoi dati. Puoi usare le stesse informazioni di accesso per accedere al Centro di business e al Gestore degli annunci commerciali di TikTok. Inoltre, potrai usare i guadagni della tua negozio per pagare le metriche di pubblicità.",
     "continue_login_2": "Accetti anche che i tuoi prodotti saranno automaticamente aggiunti al programma di collaborazione aperta, con un tipo di commissione per categoria di prodotto.",
     "login_success": "Accesso riuscito!",
-    "login_failed": "Accesso fallito!"
+    "login_failed": "Accesso fallito!",
+    "wrong_username_or_password": "Il nome utente o la password sono errati."
   },
   "register": {
     "phone_number": "Numero di telefono",
@@ -24,11 +25,14 @@
     "password_not_match": "Le password non corrispondono",
     "username_must_be_at_least_4_characters": "Il nome utente deve contenere almeno 4 caratteri",
     "please_enter_username": "Inserisci il nome utente",
-    "invalid_phone_number": "Numero di telefono non valido (9-10 cifre)",
+    "invalid_phone_number": "Numero di telefono non valido (10-11 cifre)",
     "please_enter_phone_number": "Inserisci il numero di telefono",
     "password_must_be_at_least_6_characters": "La password deve contenere almeno 6 caratteri",
     "please_enter_password": "Inserisci la password",
-    "register_failed": "Registrazione fallita!"
+    "register_failed": "Registrazione fallita!",
+    "please_enter_referral_code": "Inserisci il codice di riferimento",
+    "referral_code_not_found": "Il codice di riferimento non è stato trovato o è bloccato.",
+    "username_or_phone_number_already_used": "Il nome utente o il numero di telefono è già stato utilizzato."
   },
   "about": {
     "intro": "Chi siamo",
@@ -99,7 +103,18 @@
     "payment": "Pagamento",
     "no_history": "Nessuna cronologia",
     "commission": "Commissione",
-    "pending_payment": "In attesa di pagamento"
+    "pending_payment": "In attesa di pagamento",
+    "toastErrro1": "Congratulazioni! Hai ricevuto un ordine Sale con una commissione alta ❗️",
+    "toastErrro2": "Per favore, contattare il servizio clienti per aggiungere fondi",
+    "receive": "Ricevi",
+    "contactNow": "Contattami ora"
+  },
+  "logout": {
+    "success": "Disconnesso con successo!",
+    "confirm": "Sei sicuro di voler disconnetterti?",
+    "confirm_message": "Questa azione interromperà la sessione corrente.",
+    "back": "Indietro",
+    "logout": "Disconnetti"
   },
   "faq": {
     "system_message": "Messaggio del sistema",

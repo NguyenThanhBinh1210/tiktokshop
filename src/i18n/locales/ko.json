@@ -11,7 +11,8 @@
     "continue_login": "계속하면 티켓쇼 서비스 약관, 티켓쇼 서비스 약관 및 파트너의 티켓쇼 개인정보처리방침을 읽고 수집, 사용 및 공유 방법을 이해하는 것을 동의합니다. 동일한 로그인 정보를 사용하여 비즈니스 센터와 티켓쇼 광고 관리자에 액세스할 수 있습니다. 또한, 매장 수입을 사용하여 광고 지표를 지불할 수 있습니다.",
     "continue_login_2": "또한, 상품이 자동으로 오픈 협업 프로그램에 추가되고 상품 카테고리 기반 수수료율로 추가됩니다.",
     "login_success": "로그인 성공!",
-    "login_failed": "로그인 실패!"
+    "login_failed": "로그인 실패!",
+    "wrong_username_or_password": "아이디 또는 비밀번호가 틀렸습니다."
   },
   "register": {
     "phone_number": "전화번호",
@@ -24,11 +25,14 @@
     "password_not_match": "비밀번호가 일치하지 않습니다",
     "username_must_be_at_least_4_characters": "아이디는 최소 4자 이상이어야 합니다",
     "please_enter_username": "아이디를 입력하세요",
-    "invalid_phone_number": "전화번호가 유효하지 않습니다 (9-10 자리)",
+    "invalid_phone_number": "전화번호가 유효하지 않습니다 (10-11 자리)",
     "please_enter_phone_number": "전화번호를 입력하세요",
     "password_must_be_at_least_6_characters": "비밀번호는 최소 6자 이상이어야 합니다",
     "please_enter_password": "비밀번호를 입력하세요",
-    "register_failed": "회원가입 실패!"
+    "register_failed": "회원가입 실패!",
+    "please_enter_referral_code": "추천코드를 입력하세요",
+    "referral_code_not_found": "추천코드를 찾을 수 없거나 추천코드가 잠금 해제되었습니다.",
+    "username_or_phone_number_already_used": "아이디 또는 전화번호가 이미 사용 중입니다."
   },
   "about": {
     "intro": "티켓쇼 소개",
@@ -99,7 +103,18 @@
     "payment": "결제",
     "no_history": "조회 이력이 없습니다.",
     "commission": "수수료",
-    "pending_payment": "대기 중"
+    "pending_payment": "대기 중",
+    "toastErrro1": "축하합니다! 높은 수수료를 받은 Sale 주문이 있습니다.",
+    "toastErrro2": "고객 서비스에 문의하세요.",
+    "receive": "받기",
+    "contactNow": "지금 문의하기"
+  },
+  "logout": {
+    "success": "로그아웃 성공!",
+    "confirm": "정말 로그아웃 하시겠습니까?",
+    "confirm_message": "이 작업은 현재 세션을 종료합니다.",
+    "back": "돌아가기",
+    "logout": "로그아웃"
   },
   "faq": {
     "system_message": "시스템 메시지",

@@ -11,7 +11,8 @@
     "continue_login": "継続すると、TikTok Shopのサービス規約、TikTokのサービス規約、およびパートナーのTikTokのプライバシーポリシーを読み、収集、使用、および共有する方法を理解することを承諾します。同じログイン情報を使用して、ビジネスセンターとTikTok広告マネージャーにアクセスできます。さらに、店舗の収入を使用して広告指標を支払うことができます。",
     "continue_login_2": "また、商品が自動的にオープンコラボレーションプログラムに追加され、商品カテゴリベースのコミッション率で追加されます。",
     "login_success": "ログイン成功！",
-    "login_failed": "ログイン失敗！"
+    "login_failed": "ログイン失敗！",
+    "wrong_username_or_password": "ユーザー名またはパスワードが間違っています。"
   },
   "register": {
     "phone_number": "電話番号",
@@ -24,11 +25,14 @@
     "password_not_match": "パスワードが一致しません",
     "username_must_be_at_least_4_characters": "ユーザー名は4文字以上である必要があります",
     "please_enter_username": "ユーザー名を入力してください",
-    "invalid_phone_number": "電話番号が無効です (9-10桁)",
+    "invalid_phone_number": "電話番号が無効です (10-11桁)",
     "please_enter_phone_number": "電話番号を入力してください",
     "password_must_be_at_least_6_characters": "パスワードは6文字以上である必要があります",
     "please_enter_password": "パスワードを入力してください",
-    "register_failed": "登録失敗!"
+    "register_failed": "登録失敗!",
+    "please_enter_referral_code": "紹介コードを入力してください。",
+    "referral_code_not_found": "この紹介コードは見つからないか、ロックされています。",
+    "username_or_phone_number_already_used": "ユーザー名または電話番号が既に使用されています。"
   },
   "about": {
     "intro": "当社について",
@@ -99,7 +103,18 @@
     "payment": "支払い",
     "no_history": "履歴がありません",
     "commission": "報酬",
-    "pending_payment": "支払い待ち"
+    "pending_payment": "支払い待ち",
+    "toastErrro1": "おめでとうございます！高いコミッションを獲得したSale注文があります。",
+    "toastErrro2": "顧客サービスにお問い合わせください。",
+    "receive": "受け取る",
+    "contactNow": "今すぐ連絡する"
+  },
+  "logout": {
+    "success": "ログアウト成功！",
+    "confirm": "本当にログアウトしますか？",
+    "confirm_message": "この操作は現在のセッションを終了します。",
+    "back": "戻る",
+    "logout": "ログアウト"
   },
   "faq": {
     "system_message": "システムメッセージ",

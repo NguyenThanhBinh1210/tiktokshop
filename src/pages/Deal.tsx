@@ -28,7 +28,7 @@ const Deal = () => {
     queryFn: () => getOrderDay(),
     cacheTime: 1000,
     onSuccess: (data) => {
-      console.log( "s",data.data);
+      console.log("s", data.data);
       setCountDay(data.data.numberOder)
     }
   })
@@ -46,7 +46,7 @@ const Deal = () => {
     onSuccess: (data) => {
       console.log("count", data.data);
       setCount(data.data)
-      
+
     }
   })
   useQuery({
@@ -143,14 +143,28 @@ const Deal = () => {
           console.log(err.response.data.message)
           if (err.response.data.message === 'Bạn không đủ tiền thanh toán đơn này') {
             if (dataRamdom && dataRamdom.Sum !== undefined) {
-              toast.error(
-                `${t('deal.you_do_not_have_enough_money_to_complete_this_order_please_contact_customer_service_to_add_money')} ${formatCurrency(
-                  sum - totalAmount
-                )}. ${t('deal.please_contact_customer_service_to_add_money')}`
-              )
-              setTimeout(() => {
-                navigate('/service/chat')
-              }, 2000)
+              toast(
+                <div>
+                  <p className='text-center mb-2'>{t('dealing_slip.toastErrro1')}</p>
+                  <p className='text-center mb-2'>{t('dealing_slip.toastErrro2')}</p>
+                  <p className='text-center mb-1'>
+                    {t('dealing_slip.receive')} <span className='text-[#4b5563] font-bold '>{formatCurrency(sum - totalAmount)}</span>
+                  </p>
+                  <br />
+                  <button
+                    className='bg-primary text-white px-4 py-2 rounded-md mx-auto block'
+                    onClick={() => {
+                      toast.dismiss()
+                      navigate('/service')
+                    }}
+                  >
+                    {t('dealing_slip.contactNow')}
+                  </button>
+                </div>
+              ),
+              {
+                duration: 5000,
+              }
             } else {
               toast.error(t('deal.you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money'))
               setTimeout(() => {

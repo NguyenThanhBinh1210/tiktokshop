@@ -32,10 +32,12 @@ const Service = () => {
         <img src={gust_logo} alt='gust_logo' className='w-52' />
         <p className='text-xl uppercase font-bold text-center px-3'>{t('service.description_contact')}</p>
         <p>{t('service.description_time')}</p>
-        <Link to='/service/chat' className='block bg-primary text-white px-4 py-3 mt-20 rounded-full font-bold w-full '>
-          <button className='w-full'>
-            {t('service.description_contact_service')}
-          </button>
+        <Link
+          target='_blank'
+          to='https://chatlink.ichatlink.net/widget/standalone.html?eid=d0c7adde475fc4703ba8e4437602f119&language=en'
+          className='block bg-primary text-white px-4 py-3 mt-20 rounded-full font-bold w-full '
+        >
+          <button className='w-full'>{t('service.description_contact_service')}</button>
         </Link>
       </div>
     </div>

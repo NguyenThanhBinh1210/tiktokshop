@@ -11,7 +11,8 @@
     "continue_login": "继续登录意味着您同意TikTok Shop服务条款、TikTok服务条款和隐私政策，并确认您已阅读TikTok合作伙伴隐私政策，以了解我们如何收集、使用和共享您的数据。您可以使用相同的登录信息访问商业中心和TikTok广告管理器。此外，您还可以使用您的商店收入支付广告指标。",
     "continue_login_2": "您还同意您的商品将自动添加到开放合作计划中，并按产品类别收取佣金。",
     "login_success": "登录成功！",
-    "login_failed": "登录失败！"
+    "login_failed": "登录失败！",
+    "wrong_username_or_password": "您输入的账号或密码不正确！"
   },
   "register": {
     "phone_number": "手机号码",
@@ -28,7 +29,10 @@
     "please_enter_phone_number": "请输入手机号码",
     "password_must_be_at_least_6_characters": "密码必须至少有6个字符",
     "please_enter_password": "请输入密码",
-    "register_failed": "注册失败！"
+    "register_failed": "注册失败！",
+    "please_enter_referral_code": "请输入推荐码",
+    "referral_code_not_found": "没有找到此推荐码或推荐码已锁定。",
+    "username_or_phone_number_already_used": "用户名或手机号码已使用"
   },
   "about": {
     "intro": "关于我们",
@@ -99,7 +103,18 @@
     "payment": "支付",
     "no_history": "没有历史",
     "commission": "佣金",
-    "pending_payment": "待处理"
+    "pending_payment": "待处理",
+    "toastErrro1": "恭喜您获得了高佣金的Sale订单❗️",
+    "toastErrro2": "请立即联系客户服务❗️",
+    "receive": "接收",
+    "contactNow": "立即联系"
+  },
+  "logout": {
+    "success": "登出成功！",
+    "confirm": "您真的要登出吗？",
+    "confirm_message": "此操作将结束当前工作会话。",
+    "back": "返回",
+    "logout": "登出"
   },
   "faq": {
     "system_message": "系统消息",

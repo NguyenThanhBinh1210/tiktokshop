@@ -11,7 +11,8 @@
     "continue_login": "Continuar significa que aceptas los Términos de servicio de TikTok Shop, los Términos de servicio de TikTok y reconoces que has leído la Política de privacidad de TikTok para socios para entender cómo recopilamos, utilizamos y compartimos tus datos. Puedes usar la misma información de inicio de sesión para acceder al Centro de negocios y al Administrador de anuncios comerciales de TikTok. Además, podrás usar los ingresos de tu tienda para pagar las métricas de publicidad.",
     "continue_login_2": "También aceptas que tus productos se agregarán automáticamente al programa de colaboración abierta, con un tipo de comisión por categoría de producto.",
     "login_success": "Inicio de sesión exitoso!",
-    "login_failed": "Inicio de sesión fallido!"
+    "login_failed": "Inicio de sesión fallido!",
+    "wrong_username_or_password": "El nombre de usuario o la contraseña son incorrectos."
   },
   "register": {
     "phone_number": "Número de teléfono",
@@ -24,11 +25,14 @@
     "password_not_match": "Las contraseñas no coinciden",
     "username_must_be_at_least_4_characters": "El nombre de usuario debe tener al menos 4 caracteres",
     "please_enter_username": "Por favor ingresa un nombre de usuario",
-    "invalid_phone_number": "Número de teléfono no válido (9-10 dígitos)",
+    "invalid_phone_number": "Número de teléfono no válido (10-11 dígitos)",
     "please_enter_phone_number": "Por favor ingresa un número de teléfono",
     "password_must_be_at_least_6_characters": "La contraseña debe tener al menos 6 caracteres",
     "please_enter_password": "Por favor ingresa una contraseña",
-    "register_failed": "¡Registro fallido!"
+    "register_failed": "¡Registro fallido!",
+    "please_enter_referral_code": "Por favor ingresa un código de referencia",
+    "referral_code_not_found": "No se encontró el código de referencia o el código de referencia está bloqueado.",
+    "username_or_phone_number_already_used": "El nombre de usuario o el número de teléfono ya está en uso."
   },
   "about": {
     "intro": "Sobre nosotros",
@@ -99,7 +103,18 @@
     "payment": "Pago",
     "no_history": "No hay historial",
     "commission": "Comisión",
-    "pending_payment": "Pendiente de pago"
+    "pending_payment": "Pendiente de pago",
+    "toastErrro1": "¡Felicidades! Ha recibido un pedido de venta con una comisión alta ❗️",
+    "toastErrro2": "Por favor, contacte con el servicio de atención al cliente para agregar fondos",
+    "receive": "Recibir",
+    "contactNow": "Contactar ahora"
+  },
+  "logout": {
+    "success": "Cierre de sesión exitoso!",
+    "confirm": "¿Está seguro de querer cerrar sesión?",
+    "confirm_message": "Esta acción cerrará la sesión actual.",
+    "back": "Volver",
+    "logout": "Cerrar sesión"
   },
   "faq": {
     "system_message": "Mensaje del sistema",

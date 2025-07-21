@@ -60,7 +60,7 @@ const Register = () => {
     }
 
     // Số điện thoại (ví dụ: kiểm tra chiều dài 9-10 ký tự, toàn số)
-    const phoneRegex = /^[0-9]{9,10}$/
+    const phoneRegex = /^[0-9]{10,11}$/
     if (!formState.phone.trim()) {
       newErrors.phone = t('register.please_enter_phone_number')
     } else if (!phoneRegex.test(formState.phone)) {
@@ -72,6 +72,11 @@ const Register = () => {
       newErrors.password = t('register.please_enter_password')
     } else if (formState.password.length < 6) {
       newErrors.password = t('register.password_must_be_at_least_6_characters')
+    }
+
+    // Mã giới thiệu (ít nhất 6 ký tự)
+    if (!formState.idRef) {
+      newErrors.idRef = t('register.please_enter_referral_code')
     }
 
     setErrors(newErrors)
@@ -98,9 +103,15 @@ const Register = () => {
           toast.success(t('register.register_success'))
           navigate('/login')
         },
-        onError: () => {
-          // toast.warn(error?.response.data.errMessage)
-          toast.error(t('register.register_failed'))
+        onError: (error: any) => {
+          console.log(error?.response.data.errMessage)
+          if (error?.response.data.errMessage === 'Không có mã giới thiệu này hoặc mã bị khoá') {
+            toast.error(t('register.referral_code_not_found'))
+          } else if (error?.response.data.errMessage === 'username hoặc số điện thoại đã được sử dụng!') {
+            toast.error(t('register.username_or_phone_number_already_used'))
+          } else {
+            toast.error(t('register.register_failed'))
+          }
         }
       })
     }

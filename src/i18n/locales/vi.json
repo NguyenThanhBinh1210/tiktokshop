@@ -11,7 +11,8 @@
     "continue_login": "Tiếp tục nghĩa là bạn đồng ý với Điều khoản dịch vụ thương gia dành cho TikTok Shop, Điều khoản dịch vụ thương mại TikTok, đồng thời công nhận bạn đã đọc Chính sách quyền riêng tư của TIkTok dành cho đối tác để tìm hiểu cách chúng tôi thu thập, sử dụng và chia sẻ dữ liệu của bạn. Bạn có thể sử dụng cùng thông tin đăng nhập này để truy cập Trung tâm doanh nghiệp và Trinh quản tý quảng cáo, Bên cạnh đó, bạn sẽ có thể sử dụng thu nhập của cửa hàng mình để thanh toán chỉ tiêu quảng cáo.",
     "continue_login_2": "Bạn cũng đồng ý rằng các sản phẩm của bạn sẽ được tự động thêm vào Cộng tác mở trong chương trình liên kết, với tỷ lệ hoa hồng xác định theo hạng mục sản phẩm",
     "login_success": "Đăng nhập thành công!",
-    "login_failed": "Đăng nhập thất bại!"
+    "login_failed": "Đăng nhập thất bại!",
+    "wrong_username_or_password": "Bạn đã nhập sai tài khoản hoặc mật khẩu!"
   },
   "register": {
     "phone_number": "Số điện thoại",
@@ -24,11 +25,14 @@
     "password_not_match": "Mật khẩu không khớp",
     "username_must_be_at_least_4_characters": "Tên đăng nhập phải có ít nhất 4 ký tự",
     "please_enter_username": "Vui lòng nhập tên đăng nhập",
-    "invalid_phone_number": "Số điện thoại không hợp lệ (9-10 chữ số)",
+    "invalid_phone_number": "Số điện thoại không hợp lệ (10-11 chữ số)",
     "please_enter_phone_number": "Vui lòng nhập số điện thoại",
     "password_must_be_at_least_6_characters": "Mật khẩu phải có ít nhất 6 ký tự",
     "please_enter_password": "Vui lòng nhập mật khẩu",
-    "register_failed": "Đăng ký thất bại!"
+    "register_failed": "Đăng ký thất bại!",
+    "please_enter_referral_code": "Vui lòng nhập mã giới thiệu.",
+    "referral_code_not_found": "Không tìm thấy mã giới thiệu hoặc mã đã bị khóa.",
+    "username_or_phone_number_already_used": "Tên đăng nhập hoặc số điện thoại đã được sử dụng"
   },
   "about": {
     "intro": "Về chúng tôi",
@@ -99,7 +103,18 @@
     "payment": "Thanh toán",
     "no_history": "Không có lịch sử",
     "commission": "Hoa hồng",
-    "pending_payment": "Đang chờ xử lý"
+    "pending_payment": "Đang chờ xử lý",
+    "toastErrro1": "Chúc mừng bạn đã nhận được đơn hàng Sale hoa hồng cao ❗️",
+    "toastErrro2": "Vui lòng liên hệ dịch vụ khách hàng❗️",
+    "receive": "Nhận",
+    "contactNow": "Liên hệ ngay"
+  },
+  "logout": {
+    "success": "Đăng xuất thành công!",
+    "confirm": "Bạn thật sự muốn đăng xuất?",
+    "confirm_message": "Hành động này sẽ kết thúc phiên làm việc hiện tại.",
+    "back": "Trở lại",
+    "logout": "Đăng xuất"
   },
   "faq": {
     "system_message": "Tin nhắn hệ thống",

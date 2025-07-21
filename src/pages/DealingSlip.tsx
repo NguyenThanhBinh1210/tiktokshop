@@ -71,12 +71,36 @@ const DealingSlip = () => {
           queryClient.invalidateQueries(['get-all-money'])
         },
         onError: () => {
-          toast.error(
-            `${t('dealing_slip.notEnoughMoney')} ${formatCurrency(sum - totalAmount)}, ${t('dealing_slip.pleaseContactCustomerServiceToAddMoney')}`
-          )
-          setTimeout(() => {
-            navigate('/service/chat')
-          }, 2000)
+          toast(
+            <div>
+              <p className='text-center mb-2'>{t('dealing_slip.toastErrro1')}</p>
+              <p className='text-center mb-2'>{t('dealing_slip.toastErrro2')}</p>
+              <p className='text-center mb-1'>
+                {t('dealing_slip.receive')} <span className='text-[#4b5563] font-bold '>{formatCurrency(sum - totalAmount)}</span>
+              </p>
+              <br />
+              <button
+                className='bg-primary text-white px-4 py-2 rounded-md mx-auto block'
+                onClick={() => {
+                  toast.dismiss()
+                  navigate('/service')
+                }}
+              >
+                {t('dealing_slip.contactNow')}
+              </button>
+            </div>
+          ),
+          {
+            duration: 5000,
+          }
+          // toast.error(
+          //   `${t('dealing_slip.notEnoughMoney')} ${formatCurrency(sum - totalAmount)}, ${t(
+          //     'dealing_slip.pleaseContactCustomerServiceToAddMoney'
+          //   )}`
+          // )
+          // setTimeout(() => {
+          //   navigate('/service/chat')
+          // }, 2000)
         }
       }
     )
@@ -114,8 +138,7 @@ const DealingSlip = () => {
               onClick={() => {
                 setStatus('all')
                 queryClient.invalidateQueries(['getDealingSlip'])
-              }
-              }
+              }}
             >
               {t('dealing_slip.all')}
             </button>
@@ -127,8 +150,7 @@ const DealingSlip = () => {
               onClick={() => {
                 setStatus('pending')
                 queryClient.invalidateQueries(['getDealingSlip'])
-              }
-              }
+              }}
             >
               {t('dealing_slip.pending')}
             </button>
@@ -140,8 +162,7 @@ const DealingSlip = () => {
               onClick={() => {
                 setStatus('done')
                 queryClient.invalidateQueries(['getDealingSlip'])
-              }
-              }
+              }}
             >
               {t('dealing_slip.completed')}
             </button>
@@ -153,8 +174,7 @@ const DealingSlip = () => {
               onClick={() => {
                 setStatus('deny')
                 queryClient.invalidateQueries(['getDealingSlip'])
-              }
-              }
+              }}
             >
               {t('dealing_slip.frozen')}
             </button>
@@ -162,48 +182,52 @@ const DealingSlip = () => {
         </div>
       </div>
       <div className='text-primary text-end text-sm py-2 px-3 border-t font-bold mb-4'>
-        {listLenh.filter((item: any) => status === 'all' || item.complete === status).length} {t('dealing_slip.profile')}
+        {listLenh.filter((item: any) => status === 'all' || item.complete === status).length}{' '}
+        {t('dealing_slip.profile')}
       </div>
       <div className='p-4'>
-        {listLenh.filter((item: any) => status === 'all' || item.complete === status).map((item: any) => (
-          <div key={item._id} className='grid grid-cols-3 py-3 border-b gap-4'>
-            <img src={item.image} alt={item.name} className=' rounded-lg flex-shrink-0' />
-            <div className='col-span-2'>
-              <p className='text-sm font-medium'>{item.name}</p>
-              <div>{convertToVietnamDateTime(item.updatedAt)}</div>
-              <div className='mt-2 space-y-1 text-sm text-gray-600 w-full'>
-                <p>
-                  {t('dealing_slip.originalPrice')}: <span className='font-bold'>{formatCurrency(item.money)}</span>
-                </p>
-                <p>
-                  {t('dealing_slip.quantity')}: <span className='font-bold'>{item.quantity}</span>
-                </p>
-                <p>
-                  {t('dealing_slip.totalPrice')}: <span className='font-bold'>{formatCurrency(item.Sum)}</span>
-                </p>
-                <p>
-                  {t('dealing_slip.commission')}: <span className='font-bold text-orange-600'>{formatCurrency(item.commission)}</span>
-                </p>
-                <p className='flex items-center gap-2'>
-                  <div>
-                    {t('dealing_slip.status')}:{' '}
-                    <span className={`text-white rounded-full px-2 text-xs py-0.5 ${getStatusColor(item.complete)}`}>
-                      {getStatusText(item.complete)}
-                    </span>
-                  </div>
-                  {item.complete === 'pending' && (
-                    <button
-                      className='bg-green-500 hover:bg-green-600 transition-all duration-300 text-sm text-white px-4 py-1 rounded-lg ml-auto'
-                      onClick={() => handleUpdate({ sum: item.Sum })}
-                    >
-                      {t('dealing_slip.payment')}
-                    </button>
-                  )}
-                </p>
+        {listLenh
+          .filter((item: any) => status === 'all' || item.complete === status)
+          .map((item: any) => (
+            <div key={item._id} className='grid grid-cols-3 py-3 border-b gap-4'>
+              <img src={item.image} alt={item.name} className=' rounded-lg flex-shrink-0' />
+              <div className='col-span-2'>
+                <p className='text-sm font-medium'>{item.name}</p>
+                <div>{convertToVietnamDateTime(item.updatedAt)}</div>
+                <div className='mt-2 space-y-1 text-sm text-gray-600 w-full'>
+                  <p>
+                    {t('dealing_slip.originalPrice')}: <span className='font-bold'>{formatCurrency(item.money)}</span>
+                  </p>
+                  <p>
+                    {t('dealing_slip.quantity')}: <span className='font-bold'>{item.quantity}</span>
+                  </p>
+                  <p>
+                    {t('dealing_slip.totalPrice')}: <span className='font-bold'>{formatCurrency(item.Sum)}</span>
+                  </p>
+                  <p>
+                    {t('dealing_slip.commission')}:{' '}
+                    <span className='font-bold text-orange-600'>{formatCurrency(item.commission)}</span>
+                  </p>
+                  <p className='flex items-center flex-wrap justify-between gap-2'>
+                    <div>
+                      {t('dealing_slip.status')}:{' '}
+                      <span className={`text-white rounded-full px-2 text-xs py-0.5 ${getStatusColor(item.complete)}`}>
+                        {getStatusText(item.complete)}
+                      </span>
+                    </div>
+                    {item.complete === 'pending' && (
+                      <button
+                        className='bg-green-500 hover:bg-green-600 transition-all duration-300 text-sm text-white px-4 py-1 rounded-lg '
+                        onClick={() => handleUpdate({ sum: item.Sum })}
+                      >
+                        {t('dealing_slip.payment')}
+                      </button>
+                    )}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
         {listLenh.filter((item: any) => status === 'all' || item.complete === status).length === 0 && (
           <div className='w-max mx-auto mt-10'>
             <img src={noOrder} alt='noOrder' className='w-[182px]' />

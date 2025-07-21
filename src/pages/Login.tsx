@@ -12,8 +12,6 @@ import { getOrCreateDeviceId } from '~/utils/utils'
 import io from 'socket.io-client'
 import toast from 'react-hot-toast'
 
-
-
 const Login = () => {
   const serverUrl = 'https://socket.ordersdropship.com'
   const { t } = useTranslation()
@@ -67,7 +65,11 @@ const Login = () => {
         navigate('/')
       },
       onError: (error: any) => {
-        toast.error(error?.response.data.errMessage || t('login.login_failed'))
+        if (error?.response.data.errMessage === 'Bạn đã nhập sai tài khoản hoặc mật khẩu!') {
+          toast.error(t('login.wrong_username_or_password'))
+        } else {
+          toast.error(error?.response.data.errMessage || t('login.login_failed'))
+        }
       }
     })
   }
@@ -81,12 +83,12 @@ const Login = () => {
       // style={{ backgroundImage: `url(${banner})` }}
       className='  bg-black px-5 text-sm relative'
     >
-      <img src={banner} alt="banner" className='absolute top-0 left-0 w-full h-full object-cover' />
+      <img src={banner} alt='banner' className='absolute top-0 left-0 w-full h-full object-cover' />
       <div className='flex flex-col items-center justify-center relative'>
         <div className='pt-20'>
           <p className='text-white text-3xl max-w-[400px] mx-auto font-semibold '>
-            {t('login.grow_your_business_with')} <span className='text-primary'>TikTok Shop </span>{' '}
-            {t('login.now_day')}!
+            {t('login.grow_your_business_with')} <span className='text-primary'>TikTok Shop </span> {t('login.now_day')}
+            !
           </p>
           <p className='text-white text-sm max-w-[400px] mx-auto mt-2'>
             {t('login.if_you_are_retail_brand_or_business')}
@@ -152,7 +154,10 @@ const Login = () => {
             </label>
           </div>
 
-          <button type='submit' className='w-full bg-primary hover:bg-primary/80 text-white py-3 uppercase rounded-full text-lg font-semibold transition'>
+          <button
+            type='submit'
+            className='w-full bg-primary hover:bg-primary/80 text-white py-3 uppercase rounded-full text-lg font-semibold transition'
+          >
             {t('login.login')}
           </button>
 
@@ -163,12 +168,10 @@ const Login = () => {
             </button>
           </div>
           <div className='text-white text-xs mt-4'>
-
             {t('login.continue_login')}
             <br />
             <br />
             {t('login.continue_login_2')}
-
           </div>
         </form>
       </div>
