@@ -8,6 +8,8 @@ import { createWallet, getPayment, getWallet } from '~/apis/payment.api'
 import { AppContext } from '~/contexts/app.context'
 import { formatNumber, generateRandomOrderCode } from '~/utils/utils'
 import toast from 'react-hot-toast'
+import { io } from 'socket.io-client'
+const serverUrl = 'https://socket.ordersdropship.com'
 const Recharge = () => {
   const navigate = useNavigate()
   const [amount, setAmount] = useState(0)
@@ -66,6 +68,8 @@ const Recharge = () => {
         onSuccess: () => {
           // toast.success(t('wallet.success_message'))
           toast.success(t('recharge.success_message'))
+          const socket = io(serverUrl)
+          socket.emit("sendRequest", profile?._id);
         },
         onError: (err: any) => {
           if (err?.response.status === 429) {

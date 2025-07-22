@@ -4,11 +4,13 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { io } from 'socket.io-client'
 import { createWithdrawal, getPayment, getWallet, getWithdrawalHistory } from '~/apis/payment.api'
 import notice from '~/assets/menu-icon12.68eba35f.svg'
 import noOrder from '~/assets/noOrder.png'
 import { AppContext } from '~/contexts/app.context'
 import { formatNumber, generateRandomOrderCode } from '~/utils/utils'
+const serverUrl = 'https://socket.ordersdropship.com'
 const Withdrawal = () => {
   const navigate = useNavigate()
   const [status, setStatus] = useState('atm')
@@ -311,6 +313,8 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
           queryClient.invalidateQueries(['my-wallet', 'deal'])
           queryClient.invalidateQueries({ queryKey: ['getCount-menu'] })
           queryClient.invalidateQueries({ queryKey: ['my-wallet', 'menu'] })
+          const socket = io(serverUrl)
+          socket.emit('sendRequest', profile?._id)
         },
         onError: (err: any) => {
           console.log(err)
@@ -385,7 +389,9 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
           className='max-w-xs mx-auto w-full bg-white rounded-lg p-4'
         >
           <p className='text-center text-black font-bold text-lg mb-2'>Bạn chưa liên kết ngân hàng</p>
-          <p className='text-sm text-gray-500 mb-4 text-center'>Vui lòng cập nhật tài khoản ngân hàng trước khi rút tiền!</p>
+          <p className='text-sm text-gray-500 mb-4 text-center'>
+            Vui lòng cập nhật tài khoản ngân hàng trước khi rút tiền!
+          </p>
           <div className='flex items-center justify-center gap-4'>
             <button
               onClick={() => setIsOpen(false)}

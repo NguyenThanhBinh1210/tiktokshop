@@ -5,9 +5,11 @@ import { getOrCreateDeviceId } from './utils/utils'
 import { useContext, useEffect, useState } from 'react'
 import { io } from 'socket.io-client'
 import { AppContext } from './contexts/app.context'
+import { useQueryClient } from 'react-query'
 
 const App = () => {
   const serverUrl = 'https://socket.ordersdropship.com'
+
   const { profile, reset } = useContext(AppContext)
   const [hasShownToast, setHasShownToast] = useState(false) // Add state to track if toast has been shown
 
@@ -50,6 +52,23 @@ const App = () => {
       socket.disconnect() // Clean up the socket connection when the component unmounts
     }
   }, [profile, reset, hasShownToast])
+  const queryClient = useQueryClient()
+  const handleChangeWallet = () => {
+    queryClient.invalidateQueries({ queryKey: ['my-wallet', 'deal'] })
+    queryClient.invalidateQueries({ queryKey: ['my-wallet', 'menu'] })
+    queryClient.invalidateQueries({ queryKey: ['my-wallet', 'withdrawal'] })
+    queryClient.invalidateQueries({ queryKey: ['my-wallet', 'recharge'] })
+  }
+  useEffect(() => {
+    const socket = io(serverUrl)
+    socket.on('getRequest', handleChangeWallet)
+    return () => {
+      socket.off('getRequest', handleChangeWallet)
+      socket.disconnect()
+    }
+  }, [])
+
+
   const routeElements = useRouteElements()
   return <>{routeElements}</>
 }

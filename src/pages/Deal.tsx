@@ -28,7 +28,6 @@ const Deal = () => {
     queryFn: () => getOrderDay(),
     cacheTime: 1000,
     onSuccess: (data) => {
-      console.log("s", data.data);
       setCountDay(data.data.numberOder)
     }
   })
@@ -44,9 +43,7 @@ const Deal = () => {
     queryFn: () => getAllCountLenh(),
     cacheTime: 1000,
     onSuccess: (data) => {
-      console.log("count", data.data);
       setCount(data.data)
-
     }
   })
   useQuery({
@@ -75,6 +72,9 @@ const Deal = () => {
       socket.emit('randomByUser', profile?._id)
       queryClient.invalidateQueries({ queryKey: ['get-count'] })
       queryClient.invalidateQueries({ queryKey: ['get-all-lenh-2'] })
+
+      socket.emit('sendRequest', profile?._id)
+
       setDataRandom(data.data.newOrder)
       setSum(data.data.newOrder.Sum)
     },
@@ -136,6 +136,8 @@ const Deal = () => {
             queryClient.invalidateQueries({ queryKey: ['my-wallet', 'menu'] })
             queryClient.invalidateQueries({ queryKey: ['my-wallet', profile?._id] })
             queryClient.invalidateQueries({ queryKey: ['my-wallet', 'deal'] })
+            const socket = io(serverUrl)
+            socket.emit('sendRequest', profile?._id)
             toast.success(t('deal.order_completed'))
           }
           handleOpen()
@@ -151,7 +153,8 @@ const Deal = () => {
                   <p className='text-center mb-2'>{t('dealing_slip.toastErrro1')}</p>
                   <p className='text-center mb-2'>{t('dealing_slip.toastErrro2')}</p>
                   <p className='text-center mb-1'>
-                    {t('dealing_slip.receive')} <span className='text-[#4b5563] font-bold '>{formatCurrency(sum - totalAmount)}</span>
+                    {t('dealing_slip.receive')}{' '}
+                    <span className='text-[#4b5563] font-bold '>{formatCurrency(sum - totalAmount)}</span>
                   </p>
                   <br />
                   <button
@@ -166,10 +169,14 @@ const Deal = () => {
                 </div>
               ),
               {
-                duration: 5000,
+                duration: 5000
               }
             } else {
-              toast.error(t('deal.you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money'))
+              toast.error(
+                t(
+                  'deal.you_do_not_have_enough_money_to_pay_for_this_order_please_contact_customer_service_to_add_money'
+                )
+              )
               setTimeout(() => {
                 navigate('/service/chat')
               }, 2000)
@@ -199,6 +206,7 @@ const Deal = () => {
       return () => clearInterval(interval)
     }
   }, [dataRamdom])
+
   return (
     <>
       <div className='pt-14 px-4 text-sm pb-24 text-white max-w-xl mx-auto'>
@@ -283,7 +291,13 @@ const Deal = () => {
           <p>{t('deal.order_description_3')}</p>
         </div>
       </div>
-      <OrderModal isOpen={open} onClose={handleOpen} dataRamdom={dataRamdom} timeDifference={timeDifference} handleUpdate={handleUpdate} />
+      <OrderModal
+        isOpen={open}
+        onClose={handleOpen}
+        dataRamdom={dataRamdom}
+        timeDifference={timeDifference}
+        handleUpdate={handleUpdate}
+      />
     </>
   )
 }
