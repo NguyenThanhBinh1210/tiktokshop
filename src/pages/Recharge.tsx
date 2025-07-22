@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import notice from '~/assets/menu-icon6.4845e69c.svg'
 import { useTranslation } from 'react-i18next'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { createWallet, getPayment, getWallet } from '~/apis/payment.api'
 import { AppContext } from '~/contexts/app.context'
 import { formatNumber, generateRandomOrderCode } from '~/utils/utils'
@@ -26,6 +26,7 @@ const Recharge = () => {
   const { profile } = useContext(AppContext)
   const amounts = [50, 100, 200, 1000, 3000, 5000, 10000, 30000, 50000]
   const [payment, setPayment] = useState<any>(null)
+  const queryClient = useQueryClient()
   useQuery({
     queryKey: ['payment', 'recharge'],
     queryFn: () => {
@@ -33,6 +34,9 @@ const Recharge = () => {
     },
     onSuccess: (data) => {
       setPayment(data.data)
+      queryClient.invalidateQueries(['my-wallet', 'deal'])
+      queryClient.invalidateQueries({ queryKey: ['getCount-menu'] })
+      queryClient.invalidateQueries({ queryKey: ['my-wallet', 'menu'] })
     },
     cacheTime: 30000
   })

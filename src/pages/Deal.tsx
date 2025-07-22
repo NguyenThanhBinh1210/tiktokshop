@@ -132,7 +132,10 @@ const Deal = () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-money'] })
             queryClient.invalidateQueries({ queryKey: ['get-count'] })
             queryClient.invalidateQueries({ queryKey: ['get-all-lenh-2'] })
+            queryClient.invalidateQueries({ queryKey: ['getCount-menu'] })
+            queryClient.invalidateQueries({ queryKey: ['my-wallet', 'menu'] })
             queryClient.invalidateQueries({ queryKey: ['my-wallet', profile?._id] })
+            queryClient.invalidateQueries({ queryKey: ['my-wallet', 'deal'] })
             toast.success(t('deal.order_completed'))
           }
           handleOpen()
@@ -216,7 +219,7 @@ const Deal = () => {
               <img src={commission} alt='commission' className='size-10' />
               <div>
                 <p className=' font-bold'>{t('deal.commission')}</p>
-                <p>{formatCurrency(count?.commission)}</p>
+                <p>{formatCurrency(count?.commission || 0)}</p>
               </div>
             </div>
             <button onClick={() => setShowCommission(!showCommission)} className='flex  gap-2 cursor-pointer'>
@@ -228,7 +231,7 @@ const Deal = () => {
               <img src={balance} alt='balance' className='size-10' />
               <div>
                 <p className=' font-bold'>{t('deal.balance')}</p>
-                <p>{formatCurrency(waletAmount)}</p>
+                <p>{formatCurrency(waletAmount || 0)}</p>
               </div>
             </div>
             <button onClick={() => setShowBalance(!showBalance)} className='flex  gap-2 cursor-pointer'>

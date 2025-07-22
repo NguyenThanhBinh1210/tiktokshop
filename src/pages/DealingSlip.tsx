@@ -69,6 +69,9 @@ const DealingSlip = () => {
           toast.success(`${t('dealing_slip.updateSuccess')}`)
           queryClient.invalidateQueries(['getDealingSlip'])
           queryClient.invalidateQueries(['get-all-money'])
+          queryClient.invalidateQueries(['my-wallet', 'deal'])
+          queryClient.invalidateQueries({ queryKey: ['getCount-menu'] })
+          queryClient.invalidateQueries({ queryKey: ['my-wallet', 'menu'] })
         },
         onError: () => {
           toast(

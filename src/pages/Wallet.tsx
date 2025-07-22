@@ -106,6 +106,7 @@ const BankInfo = () => {
     mutationPayment.mutate(newData, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['payment', profile?._id] })
+        queryClient.invalidateQueries({ queryKey: ['my-wallet', 'deal'] })
         // mutationProfile.mutate()
         toast.success(t('wallet.success_message'))
         // setShowThongTin(false)

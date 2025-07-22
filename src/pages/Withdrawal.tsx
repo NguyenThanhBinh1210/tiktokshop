@@ -308,6 +308,9 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
         onSuccess: () => {
           toast.success(t('withdrawal.success_message'))
           queryClient.invalidateQueries({ queryKey: ['my-wallet', 'withdrawal'] })
+          queryClient.invalidateQueries(['my-wallet', 'deal'])
+          queryClient.invalidateQueries({ queryKey: ['getCount-menu'] })
+          queryClient.invalidateQueries({ queryKey: ['my-wallet', 'menu'] })
         },
         onError: (err: any) => {
           console.log(err)
