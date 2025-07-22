@@ -98,11 +98,11 @@ const Menu = () => {
             </div>
             <div className='grid grid-cols-2 mt-3 mb-3'>
               <div className='border-r-2'>
-                <p className='text-[#003857] font-bold text-2xl'>{formatCurrency(waletAmount)}</p>
+                <p className='text-[#003857] font-bold text-2xl'>{formatCurrency(waletAmount || 0)}</p>
                 <p className='text-gray-500 text-lg '>{t('menu.account_balance')}</p>
               </div>
               <div className=''>
-                <p className='text-[#003857] font-bold text-2xl'>{formatCurrency(count?.commission)}</p>
+                <p className='text-[#003857] font-bold text-2xl'>{formatCurrency(count?.commission || 0)}</p>
                 <p className='text-gray-500 text-lg '>{t('menu.commission')}</p>
               </div>
             </div>
