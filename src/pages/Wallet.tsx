@@ -14,7 +14,7 @@ const Wallet = () => {
   return (
     <div className='max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
-        <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate('/')}>
+        <button className=' text-white px-4 py-3.5 rounded-full ' onClick={() => navigate(-1)}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -91,7 +91,7 @@ const BankInfo = () => {
       setBankAccount(data.data.bankName)
       setBankNumber(data.data.accountNumber)
       setIsHaveBankInfo(data.data.nameUserBank && data.data.bankName && data.data.accountNumber)
-      setIsDataFromDB( data.data.nameUserBank && data.data.bankName && data.data.accountNumber ? true : false)
+      setIsDataFromDB(data.data.nameUserBank && data.data.bankName && data.data.accountNumber ? true : false)
     }
   })
 

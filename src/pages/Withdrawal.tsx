@@ -256,12 +256,18 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
   }
   const [formState, setFormState] = useState(initialFromState)
   const [payment, setPayment] = useState<any>(null)
+  const [isOpen, setIsOpen] = useState(false)
+
+  console.log(payment)
   useQuery({
     queryKey: ['payment', 'withdrawal'],
     queryFn: () => {
       return getPayment({ userId: profile?._id })
     },
     onSuccess: (data) => {
+      if (data.data === null) {
+        setIsOpen(true)
+      }
       setPayment(data.data)
     },
     cacheTime: 30000
@@ -278,6 +284,11 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
   const handleWithdrawal = (e: any) => {
     e.preventDefault()
     // Kiểm tra tài khoản đóng băng trước khi thực hiện rút tiền
+
+    if (payment === null) {
+      setIsOpen(true)
+      return
+    }
     if (profile?.isDongBang) {
       setShowFreezeAlert(true)
       return
@@ -297,9 +308,6 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
         onSuccess: () => {
           toast.success(t('withdrawal.success_message'))
           queryClient.invalidateQueries({ queryKey: ['my-wallet', 'withdrawal'] })
-          // navigate('/cskh')
-          // queryClient.invalidateQueries({ queryKey: ['hoa-don-chi-tiet-user'] })
-          // queryClient.invalidateQueries({ queryKey: ['my-wallet', profile?._id] })
         },
         onError: (err: any) => {
           console.log(err)
@@ -314,49 +322,84 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
       toast.error(t('withdrawal.please_update_payment_account_before_withdrawing'))
     }
   }
+  const navigate = useNavigate()
   return (
-    <form onSubmit={handleWithdrawal} className='mx-auto  bg-white rounded-lg  space-y-4'>
-      <p>
-        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.bank_account')}</label>
-      </p>
-      <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_amount')}</label>
-        <div className='relative'>
+    <>
+      <form onSubmit={handleWithdrawal} className='mx-auto  bg-white rounded-lg  space-y-4'>
+        <p>
+          <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.bank_account')}</label>
+        </p>
+        <div>
+          <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_amount')}</label>
+          <div className='relative'>
+            <input
+              type='text'
+              value={formState.totalAmount}
+              onChange={handleChange('totalAmount')}
+              placeholder={t('withdrawal.withdrawal_amount')}
+              className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+            />
+            <button
+              onClick={() => setFormState({ ...formState, totalAmount: String(waletAmount) })}
+              type='button'
+              className='text-sm text-primary absolute right-4 top-1/2 -translate-y-1/2 uppercase font-bold'
+            >
+              {t('withdrawal.all')}
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_password')}</label>
           <input
-            type='text'
-            value={formState.totalAmount}
-            onChange={handleChange('totalAmount')}
-            placeholder={t('withdrawal.withdrawal_amount')}
+            type='password'
+            value={formState.password}
+            onChange={handleChange('password')}
+            placeholder={t('withdrawal.withdrawal_password')}
             className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
           />
-          <button
-            onClick={() => setFormState({ ...formState, totalAmount: String(waletAmount) })}
-            type='button'
-            className='text-sm text-primary absolute right-4 top-1/2 -translate-y-1/2 uppercase font-bold'
-          >
-            {t('withdrawal.all')}
-          </button>
+        </div>
+        <button
+          type='submit'
+          disabled={!formState.totalAmount || !formState.password}
+          className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
+        >
+          {t('withdrawal.confirm')}
+        </button>
+      </form>
+      <div
+        className={`w-full max-w-xl h-screen -top-4 left-1/2 -translate-x-1/2 bg-black/50 fixed z-50 flex items-center mt-0  justify-center transition-all duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+        onClick={(e) => {
+          e.stopPropagation()
+          setIsOpen(false)
+        }}
+      >
+        <div
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+          className='max-w-xs mx-auto w-full bg-white rounded-lg p-4'
+        >
+          <p className='text-center text-black font-bold text-lg mb-2'>Bạn chưa liên kết ngân hàng</p>
+          <p className='text-sm text-gray-500 mb-4 text-center'>Vui lòng cập nhật tài khoản ngân hàng trước khi rút tiền!</p>
+          <div className='flex items-center justify-center gap-4'>
+            <button
+              onClick={() => setIsOpen(false)}
+              className=' text-black px-4 py-2 rounded-lg hover:bg-gray-200 transition-all duration-300'
+            >
+              Đóng
+            </button>
+            <button
+              onClick={() => navigate('/wallet')}
+              className='bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition-all duration-300'
+            >
+              Cập nhật
+            </button>
+          </div>
         </div>
       </div>
-
-      <div>
-        <label className='block font-semibold mb-1 text-[#003857]'>{t('withdrawal.withdrawal_password')}</label>
-        <input
-          type='password'
-          value={formState.password}
-          onChange={handleChange('password')}
-          placeholder={t('withdrawal.withdrawal_password')}
-          className='w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
-        />
-      </div>
-      <button
-        type='submit'
-        disabled={!formState.totalAmount || !formState.password}
-        className='disabled:bg-[#bebebe] py-3 w-full bg-primary  text-white font-semibold  rounded-full hover:bg-primary/80 transition'
-      >
-        {t('withdrawal.confirm')}
-      </button>
-    </form>
+    </>
   )
 }
 
