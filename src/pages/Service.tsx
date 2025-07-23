@@ -30,20 +30,20 @@ const Service = () => {
         params.append('email', profile.email)
       }
       
-      // Thêm số điện thoại nếu có
-      if (profile.phone) {
-        params.append('phone', profile.phone)
-      }
+      // // Thêm số điện thoại nếu có
+      // if (profile.phone) {
+      //   params.append('phone', profile.phone)
+      // }
       
-      // Thêm user ID nếu có
-      if (profile.id) {
-        params.append('user_id', profile.id)
-      }
+      // // Thêm user ID nếu có
+      // if (profile.id) {
+      //   params.append('user_id', profile.id)
+      // }
 
-      // Thêm các thông tin custom khác
-      if (profile.level) {
-        params.append('user_level', profile.level)
-      }
+      // // Thêm các thông tin custom khác
+      // if (profile.level) {
+      //   params.append('user_level', profile.level)
+      // }
     }
 
     return `${baseUrl}?${params.toString()}`
