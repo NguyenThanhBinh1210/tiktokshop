@@ -1,0 +1,85 @@
+/* Online/Offline Status Indicators */
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge.online {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.status-badge.offline {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+/* Dot indicator */
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.status-dot.online {
+  background-color: #4CAF50;
+}
+
+.status-dot.offline {
+  background-color: #9E9E9E;
+}
+
+/* User list with online status */
+.users-list .user-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.users-list .user-item:last-child {
+  border-bottom: none;
+}
+
+.users-list .user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-list .user-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.users-list .user-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Online count badge */
+.online-count-badge {
+  background-color: #4CAF50;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.online-count-badge .dot {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+  margin-right: 4px;
+} 

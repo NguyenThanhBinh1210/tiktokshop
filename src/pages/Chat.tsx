@@ -8,6 +8,7 @@ import { createMessage, getCFMess, getMessages, uploadImageCloudinary } from '~/
 import { AppContext } from '~/contexts/app.context'
 import { generateRandomOrderCode } from '~/utils/utils'
 import sender from '~/assets/chat.jpg'
+import { StatusDot } from '~/components/UserStatusBadge'
 
 const SenderIcon = () => (
   <svg
@@ -24,7 +25,7 @@ const SenderIcon = () => (
 const Chat = () => {
   const serverUrl = 'https://socket.ordersdropship.com'
   const [valueInput, setValueInput] = useState<string>('') // Input của người dùng
-  const { profile, isAuthenticated } = useContext(AppContext)
+  const { profile, isAuthenticated, checkUserOnlineStatus, onlineCount } = useContext(AppContext)
   const [contentMessage, setContentMessage] = useState<any>([])
   const [contentMessageNew, setContentMessageNew] = useState<any>([]) // Danh sách tin nhắn
   const [selectedImage, setSelectedImage] = useState<string | null>(null) // State cho ảnh được phóng to
@@ -32,6 +33,9 @@ const Chat = () => {
   const queryClient = useQueryClient()
   const messagesContainerRef = useRef<HTMLDivElement | null>(null)
   const socketRef = useRef<any>(null)
+
+  // Check if admin is online
+  const isAdminOnline = checkUserOnlineStatus('admin@admin.com')
 
   const limit = 10 // Số lượng tin nhắn lấy mỗi lần
   const [skip, setSkip] = useState(0) // Bắt đầu từ tin nhắn mới nhất
@@ -115,15 +119,6 @@ const Chat = () => {
     }
   }
 
-  // const mutationChangeAvatar = useMutation((formData: FormData) => uploadImage(formData), {
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries(['message', profile?._id])
-  //     socketRef.current.emit('sendMessUser')
-  //   },
-  //   onError: () => {
-  //     toast.error('Up ảnh thất bại!')
-  //   }
-  // })
   const mutationChangeAvatarCloudinary = useMutation(
     (body: { sender: any; receiver: string; image: string }) => uploadImageCloudinary(body),
     {
@@ -136,91 +131,6 @@ const Chat = () => {
       }
     }
   )
-
-  // const handleAvatar = async (e: any) => {
-  //   const file = e.target.files[0];
-  //   const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
-  //   if (!validTypes.includes(file.type)) {
-  //     toast.error('Chỉ chấp nhận file JPEG, PNG, hoặc WebP.');
-  //     return;
-  //   }
-  //   if (file.size > 5 * 1024 * 1024) { // 5MB
-  //     toast.error('Dung lượng file quá lớn, vui lòng chọn file nhỏ hơn 5MB.');
-  //     return;
-  //   }
-
-  //   // Đổi tên file để đảm bảo tên ngắn gọn
-  //   const renamedFile = new File([file], "mess." + file.type.split('/')[1], {
-  //     type: file.type,
-  //     lastModified: file.lastModified
-  //   });
-  //   setIsUploading(true);
-
-  //   new Compressor(renamedFile, {
-  //     quality: 0.7,
-  //     maxWidth: 1920,
-  //     success: async (compressedFile: any) => {
-  //       const formData = new FormData();
-  //       formData.append('url', compressedFile);
-  //       formData.append('sender', profile?._id);
-  //       formData.append('receiver', 'admin@admin.com');
-
-  //       try {
-  //         // Thử upload qua server trước
-  //         await mutationChangeAvatar.mutateAsync(formData);
-  //         toast.success('Upload ảnh thành công!');
-  //       } catch (error) {
-  //         // Nếu upload server thất bại, thử upload qua Cloudinary
-  //         try {
-  //           const cloudinaryFormData = new FormData();
-  //           cloudinaryFormData.append('file', compressedFile);
-  //           cloudinaryFormData.append('upload_preset', 'glory365');
-  //           cloudinaryFormData.append('folder', 'api-glory365');
-
-  //           const response = await fetch(
-  //             `https://api.cloudinary.com/v1_1/dbsy0kyh5/image/upload`,
-  //             {
-  //               method: 'POST',
-  //               body: cloudinaryFormData
-  //             }
-  //           );
-
-  //           const data = await response.json();
-
-  //           if (!response.ok) {
-  //             throw new Error(data.message || 'Upload failed');
-  //           }
-
-  //           // Tạo message với URL ảnh từ Cloudinary
-
-  //           //truyền dạng body
-  //           const body = {
-  //             sender: profile?._id,
-  //             receiver: 'admin@admin.com',
-  //             image: data.secure_url
-  //           };
-
-  //           await mutationChangeAvatarCloudinary.mutateAsync(body);
-  //           const socket = io(serverUrl);
-  //           await queryClient.invalidateQueries(['message', profile?._id]);
-  //           socket.emit('sendMessImageUser');
-  //           socket.emit('sendMessUser');
-  //           toast.success('Upload ảnh thành công!');
-  //         } catch (cloudinaryError) {
-  //           toast.error('Upload ảnh thất bại!');
-  //           console.error(cloudinaryError);
-  //         }
-  //       } finally {
-  //         setIsUploading(false);
-  //         e.target.value = '';
-  //       }
-  //     },
-  //     error: () => {
-  //       toast.error('Nén ảnh thất bại!');
-  //       setIsUploading(false);
-  //     }
-  //   });
-  // };
 
   const handleTestCloudinaryUpload = async (e: any) => {
     const file = e.target.files[0]
@@ -307,7 +217,7 @@ const Chat = () => {
     if (image.startsWith('https://res.cloudinary.com')) {
       return image
     }
-    return `https://api.ordersdropship.com/${image}`
+    return ` https://api.ordersdropship.com/${image}`
   }
 
   return (
@@ -315,7 +225,6 @@ const Chat = () => {
       <div className='px-4 py-1.5 text-white fixed top-0 left-0 right-0 z-10 bg-black max-w-xl mx-auto '>
         <div className='flex justify-between items-center mb-2'>
           <div className='flex items-center gap-x-4 pt-1'>
-            {/* <img src={logo} alt='logo' className='w-[80px] inline-block h-[30px] mx-auto rounded-md' /> */}
             <button
               onClick={() => navigate(-1)}
               className='p-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300'
@@ -336,6 +245,9 @@ const Chat = () => {
               <div className='inline-block translate-y-0.5 font-[700]'>{profile?.name}</div>
             </div>
           </div>
+          <div className="flex items-center">
+            <div className="text-xs mr-2">Online users: {onlineCount}</div>
+          </div>
         </div>
       </div>
       <div
@@ -343,6 +255,16 @@ const Chat = () => {
         ref={messagesContainerRef}
         className='w-auto h-screen bg-[#000000e6] p-3 overflow-y-scroll scrollbar-hidden flex flex-col-reverse pb-16 pt-20'
       >
+        {/* Admin status indicator */}
+        <div className="fixed top-14 left-0 right-0 z-10 bg-gray-800 py-1 px-4 flex items-center justify-between max-w-xl mx-auto">
+          <div className="flex items-center">
+            <StatusDot isOnline={isAdminOnline} />
+            <span className="text-white text-xs">
+              Support {isAdminOnline ? 'is online' : 'is offline'}
+            </span>
+          </div>
+        </div>
+
         {contentMessage.map((item: any) => (
           <div
             key={item._id}
@@ -438,16 +360,6 @@ const Chat = () => {
             />
           </svg>
         </label>
-        {/* <label htmlFor='test-cloudinary' className='w-14 flex items-center justify-center cursor-pointer'>
-          <input 
-            id='test-cloudinary' 
-            type='file' 
-            accept='image/*' 
-            className='hidden' 
-            onChange={handleTestCloudinaryUpload}
-          />
-          <span className="text-sm text-gray-500">Test Cloudinary</span>
-        </label> */}
         <input
           value={valueInput}
           onChange={(e) => setValueInput(e.target.value)}

@@ -2,9 +2,53 @@ import { Link, useNavigate } from 'react-router-dom'
 import menu_icon7 from '~/assets/menu-icon7.15b1b83f.svg'
 import gust_logo from '~/assets/gust_logo.png'
 import { useTranslation } from 'react-i18next'
+import { useContext, useMemo } from 'react'
+import { AppContext } from '~/contexts/app.context'
+
 const Service = () => {
+  const { profile } = useContext(AppContext)
   const navigate = useNavigate()
   const { t } = useTranslation()
+
+  // Tạo URL chat với thông tin user
+  const chatUrl = useMemo(() => {
+    const baseUrl = 'https://chatlink.ichatlink.net/widget/standalone.html'
+    const params = new URLSearchParams({
+      eid: 'd0c7adde475fc4703ba8e4437602f119',
+      language: 'en'
+    })
+
+    // Thêm thông tin user nếu có profile
+    if (profile) {
+      // Thêm tên user
+      if (profile.name) {
+        params.append('name', profile.name)
+      }
+      
+      // Thêm email user
+      if (profile.email) {
+        params.append('email', profile.email)
+      }
+      
+      // Thêm số điện thoại nếu có
+      if (profile.phone) {
+        params.append('phone', profile.phone)
+      }
+      
+      // Thêm user ID nếu có
+      if (profile.id) {
+        params.append('user_id', profile.id)
+      }
+
+      // Thêm các thông tin custom khác
+      if (profile.level) {
+        params.append('user_level', profile.level)
+      }
+    }
+
+    return `${baseUrl}?${params.toString()}`
+  }, [profile])
+
   return (
     <div className='bg-black text-white min-h-screen max-w-xl mx-auto'>
       <div className='flex items-center justify-between bg-black relative '>
@@ -34,7 +78,7 @@ const Service = () => {
         <p>{t('service.description_time')}</p>
         <Link
           target='_blank'
-          to='https://chatlink.ichatlink.net/widget/standalone.html?eid=d0c7adde475fc4703ba8e4437602f119&language=en'
+          to={chatUrl}
           className='block bg-primary text-white px-4 py-3 mt-20 rounded-full font-bold w-full '
         >
           <button className='w-full'>{t('service.description_contact_service')}</button>

@@ -6,12 +6,29 @@ import { useContext, useEffect, useState } from 'react'
 import { io } from 'socket.io-client'
 import { AppContext } from './contexts/app.context'
 import { useQueryClient } from 'react-query'
+import { initializeSocket, handleUserLogin } from './utils/onlineTracking'
 
 const App = () => {
   const serverUrl = 'https://socket.ordersdropship.com'
 
   const { profile, reset } = useContext(AppContext)
   const [hasShownToast, setHasShownToast] = useState(false) // Add state to track if toast has been shown
+
+  // Initialize online tracking system
+  useEffect(() => {
+    if (profile) {
+      // Initialize socket for online tracking
+      initializeSocket(serverUrl)
+      
+      // Register user as online
+      handleUserLogin({
+        user: {
+          _id: profile._id
+        },
+        token: localStorage.getItem('access_token') || ''
+      })
+    }
+  }, [profile])
 
   useEffect(() => {
     const socket = io(serverUrl)

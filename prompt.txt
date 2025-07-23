@@ -1,0 +1,670 @@
+==================================================
+HƯỚNG DẪN TÍCH HỢP CHỨC NĂNG ONLINE/OFFLINE USER CHO FRONTEND
+==================================================
+
+I. TỔNG QUAN
+==================================================
+
+Chức năng online/offline tracking cho phép:
+1. Hiển thị trạng thái online/offline của người dùng
+2. Sắp xếp danh sách người dùng với người dùng online hiển thị trước
+3. Cập nhật trạng thái real-time thông qua Socket.IO
+4. Thống kê số lượng người dùng đang online
+
+II. CÀI ĐẶT THƯ VIỆN
+==================================================
+
+Cần cài đặt các thư viện sau:
+
+```bash
+npm install socket.io-client axios
+# hoặc
+yarn add socket.io-client axios
+```
+
+III. KẾT NỐI SOCKET.IO
+==================================================
+
+1. Thiết lập kết nối socket:
+
+```javascript
+import { io } from 'socket.io-client';
+
+// Khởi tạo kết nối socket
+const socket = io('http://your-server-url:4002', {
+  withCredentials: true,
+  transports: ['websocket', 'polling'],
+  autoConnect: true
+});
+
+// Xử lý sự kiện kết nối
+socket.on('connect', () => {
+  console.log('Socket connected with id:', socket.id);
+  
+  // Đăng ký user online sau khi đăng nhập thành công
+  if (localStorage.getItem('userId')) {
+    socket.emit('user-login', { 
+      id: localStorage.getItem('userId') 
+    });
+  }
+});
+
+// Xử lý sự kiện mất kết nối
+socket.on('disconnect', () => {
+  console.log('Socket disconnected');
+});
+
+// Xử lý lỗi
+socket.on('error', (error) => {
+  console.error('Socket error:', error);
+});
+```
+
+2. Thiết lập heartbeat để duy trì trạng thái online:
+
+```javascript
+// Thiết lập heartbeat mỗi 30 giây
+let heartbeatInterval;
+
+function startHeartbeat() {
+  // Clear any existing interval
+  if (heartbeatInterval) clearInterval(heartbeatInterval);
+  
+  // Start new heartbeat interval
+  heartbeatInterval = setInterval(() => {
+    if (socket.connected) {
+      socket.emit('user-activity');
+    }
+  }, 30000); // 30 seconds
+}
+
+function stopHeartbeat() {
+  if (heartbeatInterval) {
+    clearInterval(heartbeatInterval);
+    heartbeatInterval = null;
+  }
+}
+
+// Bắt đầu heartbeat khi kết nối
+socket.on('connect', startHeartbeat);
+
+// Dừng heartbeat khi mất kết nối
+socket.on('disconnect', stopHeartbeat);
+```
+
+3. Xử lý đăng nhập và đăng xuất:
+
+```javascript
+// Sau khi đăng nhập thành công
+function handleLogin(userData) {
+  // Lưu thông tin user
+  localStorage.setItem('userId', userData.user._id);
+  localStorage.setItem('token', userData.token);
+  
+  // Đăng ký user online
+  socket.emit('user-login', { id: userData.user._id });
+  
+  // Bắt đầu heartbeat
+  startHeartbeat();
+}
+
+// Khi đăng xuất
+function handleLogout() {
+  // Thông báo server user đăng xuất
+  socket.emit('user-logout');
+  
+  // Dừng heartbeat
+  stopHeartbeat();
+  
+  // Xóa thông tin user
+  localStorage.removeItem('userId');
+  localStorage.removeItem('token');
+}
+
+// Thêm vào sự kiện beforeunload để đảm bảo thông báo khi user đóng tab
+window.addEventListener('beforeunload', () => {
+  socket.emit('user-logout');
+});
+```
+
+4. Lắng nghe các sự kiện online/offline:
+
+```javascript
+// Lắng nghe khi có user online
+socket.on('user-came-online', (data) => {
+  console.log('User came online:', data.user);
+  console.log('Total online users:', data.onlineCount);
+  
+  // Cập nhật UI hoặc store
+  updateUserOnlineStatus(data.user.id, true);
+});
+
+// Lắng nghe khi có user offline
+socket.on('user-went-offline', (data) => {
+  console.log('User went offline:', data.user);
+  console.log('Total online users:', data.onlineCount);
+  
+  // Cập nhật UI hoặc store
+  updateUserOnlineStatus(data.user.id, false);
+});
+
+// Nhận danh sách users online
+socket.on('online-users-list', (data) => {
+  console.log('Online users list:', data.users);
+  console.log('Total online count:', data.count);
+  
+  // Cập nhật UI hoặc store
+  updateOnlineUsersList(data.users);
+});
+
+// Bị admin force logout
+socket.on('forced-logout', (data) => {
+  alert(data.message || 'Bạn đã bị đăng xuất bởi admin');
+  handleLogout();
+  // Chuyển hướng về trang đăng nhập
+  window.location.href = '/login';
+});
+```
+
+IV. SỬ DỤNG REST API
+==================================================
+
+1. Lấy danh sách người dùng (đã sắp xếp online lên trên):
+
+```javascript
+import axios from 'axios';
+
+async function getUsers(page = 1, limit = 10, search = '') {
+  try {
+    const token = localStorage.getItem('token');
+    
+    const response = await axios.get(`/api/v1/users/get-all-user`, {
+      params: { page, limit, search },
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    // response.data.users đã được sắp xếp với online users lên trên
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error;
+  }
+}
+```
+
+2. Kiểm tra trạng thái online của một user cụ thể:
+
+```javascript
+async function checkUserOnlineStatus(userId) {
+  try {
+    const token = localStorage.getItem('token');
+    
+    const response = await axios.get(`/api/v1/users/${userId}/online-status`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    return response.data.data;
+  } catch (error) {
+    console.error('Error checking user online status:', error);
+    throw error;
+  }
+}
+```
+
+3. Kiểm tra trạng thái online của nhiều users cùng lúc:
+
+```javascript
+async function checkBulkOnlineStatus(userIds) {
+  try {
+    const token = localStorage.getItem('token');
+    
+    const response = await axios.post(`/api/v1/users/bulk-online-status`, {
+      userIds
+    }, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    return response.data.data;
+  } catch (error) {
+    console.error('Error checking bulk online status:', error);
+    throw error;
+  }
+}
+```
+
+4. Lấy số lượng người dùng đang online:
+
+```javascript
+async function getOnlineUsersCount() {
+  try {
+    const token = localStorage.getItem('token');
+    
+    const response = await axios.get(`/api/v1/users/online/count`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    return response.data.data.count;
+  } catch (error) {
+    console.error('Error getting online users count:', error);
+    throw error;
+  }
+}
+```
+
+V. HIỂN THỊ TRẠNG THÁI ONLINE/OFFLINE TRONG UI
+==================================================
+
+1. Hiển thị badge trạng thái:
+
+```jsx
+function UserStatusBadge({ isOnline }) {
+  return (
+    <span className={`status-badge ${isOnline ? 'online' : 'offline'}`}>
+      {isOnline ? 'Trực tuyến' : 'Ngoại tuyến'}
+    </span>
+  );
+}
+
+// Sử dụng
+<UserStatusBadge isOnline={user.isOnline} />
+```
+
+2. Hiển thị danh sách người dùng với trạng thái:
+
+```jsx
+function UsersList({ users }) {
+  return (
+    <div className="users-list">
+      {users.map(user => (
+        <div key={user._id} className="user-item">
+          <div className="user-info">
+            <h3>{user.name}</h3>
+            <p>{user.username}</p>
+          </div>
+          <UserStatusBadge isOnline={user.isOnline} />
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+3. CSS cho trạng thái online/offline:
+
+```css
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge.online {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.status-badge.offline {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+/* Dot indicator */
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.status-dot.online {
+  background-color: #4CAF50;
+}
+
+.status-dot.offline {
+  background-color: #9E9E9E;
+}
+```
+
+VI. QUẢN LÝ TRẠNG THÁI TRONG STORE (VÍ DỤ VỚI REDUX)
+==================================================
+
+1. Actions:
+
+```javascript
+// actions.js
+export const SET_ONLINE_USERS = 'SET_ONLINE_USERS';
+export const UPDATE_USER_ONLINE_STATUS = 'UPDATE_USER_ONLINE_STATUS';
+export const SET_ONLINE_COUNT = 'SET_ONLINE_COUNT';
+
+export const setOnlineUsers = (users) => ({
+  type: SET_ONLINE_USERS,
+  payload: users
+});
+
+export const updateUserOnlineStatus = (userId, isOnline) => ({
+  type: UPDATE_USER_ONLINE_STATUS,
+  payload: { userId, isOnline }
+});
+
+export const setOnlineCount = (count) => ({
+  type: SET_ONLINE_COUNT,
+  payload: count
+});
+```
+
+2. Reducer:
+
+```javascript
+// reducer.js
+import { SET_ONLINE_USERS, UPDATE_USER_ONLINE_STATUS, SET_ONLINE_COUNT } from './actions';
+
+const initialState = {
+  onlineUsers: [],
+  onlineCount: 0,
+  usersOnlineStatus: {} // Map userId to online status
+};
+
+export default function onlineTrackingReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_ONLINE_USERS:
+      return {
+        ...state,
+        onlineUsers: action.payload
+      };
+      
+    case UPDATE_USER_ONLINE_STATUS:
+      return {
+        ...state,
+        usersOnlineStatus: {
+          ...state.usersOnlineStatus,
+          [action.payload.userId]: action.payload.isOnline
+        }
+      };
+      
+    case SET_ONLINE_COUNT:
+      return {
+        ...state,
+        onlineCount: action.payload
+      };
+      
+    default:
+      return state;
+  }
+}
+```
+
+3. Kết hợp với socket:
+
+```javascript
+// socketMiddleware.js
+import { setOnlineUsers, updateUserOnlineStatus, setOnlineCount } from './actions';
+
+export const setupSocketListeners = (socket, store) => {
+  socket.on('user-came-online', (data) => {
+    store.dispatch(updateUserOnlineStatus(data.user.id, true));
+    store.dispatch(setOnlineCount(data.onlineCount));
+  });
+  
+  socket.on('user-went-offline', (data) => {
+    store.dispatch(updateUserOnlineStatus(data.user.id, false));
+    store.dispatch(setOnlineCount(data.onlineCount));
+  });
+  
+  socket.on('online-users-list', (data) => {
+    store.dispatch(setOnlineUsers(data.users));
+    store.dispatch(setOnlineCount(data.count));
+  });
+};
+```
+
+VII. TÍCH HỢP VỚI ADMIN DASHBOARD
+==================================================
+
+Nếu bạn là admin, bạn có thể sử dụng các API đặc biệt:
+
+1. Lấy dashboard online users:
+
+```javascript
+async function getOnlineUsersDashboard() {
+  try {
+    const token = localStorage.getItem('token');
+    
+    const response = await axios.get(`/api/v1/admin/online-tracking/dashboard`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching online users dashboard:', error);
+    throw error;
+  }
+}
+```
+
+2. Lấy thống kê online users:
+
+```javascript
+async function getOnlineUsersStatistics() {
+  try {
+    const token = localStorage.getItem('token');
+    
+    const response = await axios.get(`/api/v1/admin/online-tracking/statistics`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching online users statistics:', error);
+    throw error;
+  }
+}
+```
+
+3. Admin force logout user:
+
+```javascript
+async function forceLogoutUser(userId) {
+  try {
+    const token = localStorage.getItem('token');
+    
+    const response = await axios.post(`/api/v1/users/${userId}/force-offline`, {}, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    return response.data;
+  } catch (error) {
+    console.error('Error forcing user logout:', error);
+    throw error;
+  }
+}
+
+// Hoặc sử dụng socket
+function forceLogoutUserViaSocket(userId) {
+  socket.emit('admin-force-offline', { userId });
+}
+```
+
+VIII. TỔNG KẾT
+==================================================
+
+Để tích hợp chức năng online/offline tracking vào frontend:
+
+1. Thiết lập kết nối Socket.IO
+2. Đăng ký user online khi đăng nhập
+3. Thiết lập heartbeat để duy trì trạng thái online
+4. Lắng nghe các sự kiện online/offline
+5. Sử dụng API để lấy danh sách người dùng (đã được sắp xếp)
+6. Hiển thị trạng thái online/offline trong UI
+
+Lưu ý:
+- Đảm bảo đã xử lý đăng xuất khi user đóng tab/trình duyệt
+- Sử dụng heartbeat để tránh trường hợp user bị đánh dấu offline do mất kết nối tạm thời
+- Admin có các API đặc biệt để quản lý và theo dõi người dùng online
+
+IX. CÁC THAM SỐ QUAN TRỌNG
+==================================================
+
+1. Socket URL: http://your-server-url:4002
+2. Heartbeat interval: 30 giây
+3. Auto-cleanup inactive users: 10 phút
+4. API base URL: /api/v1/users
+5. Admin API base URL: /api/v1/admin/online-tracking 
+
+X. XỬ LÝ TRƯỜNG HỢP NGƯỜI DÙNG TẮT TRÌNH DUYỆT ĐỘT NGỘT
+==================================================
+
+Hệ thống đã được thiết kế để xử lý các trường hợp người dùng tắt trình duyệt đột ngột hoặc mất kết nối mạng mà không logout chính thức. Dưới đây là các cơ chế được triển khai:
+
+1. **Event beforeunload**:
+```javascript
+// Thêm vào file main của ứng dụng
+window.addEventListener('beforeunload', () => {
+  socket.emit('user-logout');
+});
+```
+
+2. **Ping/Pong Socket.IO**: 
+Server được cấu hình với các tham số ping timeout để phát hiện ngắt kết nối sớm:
+```javascript
+// Cấu hình trên server
+io.engine.pingTimeout = 20000; // 20 giây
+io.engine.pingInterval = 25000; // 25 giây
+```
+
+3. **Auto-cleanup inactive users**:
+Server tự động dọn dẹp người dùng không hoạt động sau 10 phút không có heartbeat.
+
+4. **Đồng bộ khi khởi động server**:
+Khi server khởi động lại, tất cả người dùng sẽ được đặt về trạng thái offline.
+
+5. **Xử lý reconnect**:
+```javascript
+// Xử lý khi socket tự động kết nối lại
+socket.on('reconnect', (attemptNumber) => {
+  console.log(`Socket reconnected after ${attemptNumber} attempts`);
+  
+  // Đăng ký lại trạng thái online nếu user đã đăng nhập
+  if (localStorage.getItem('userId')) {
+    socket.emit('user-login', { 
+      id: localStorage.getItem('userId') 
+    });
+    startHeartbeat();
+  }
+});
+
+// Cấu hình socket.io-client để tự động kết nối lại
+const socket = io('http://your-server-url:4002', {
+  withCredentials: true,
+  transports: ['websocket', 'polling'],
+  autoConnect: true,
+  reconnection: true,
+  reconnectionAttempts: 5,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax: 5000,
+  timeout: 20000
+});
+```
+
+6. **Kiểm tra trạng thái kết nối khi quay lại ứng dụng**:
+```javascript
+// Thêm vào file main của ứng dụng
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    // Người dùng quay lại tab
+    if (!socket.connected && localStorage.getItem('userId')) {
+      // Thử kết nối lại nếu socket đã mất kết nối
+      socket.connect();
+    }
+  }
+});
+```
+
+7. **Xử lý khi mất kết nối mạng**:
+```javascript
+window.addEventListener('online', () => {
+  console.log('Network connection restored');
+  if (!socket.connected && localStorage.getItem('userId')) {
+    socket.connect();
+  }
+});
+
+window.addEventListener('offline', () => {
+  console.log('Network connection lost');
+  // Có thể hiển thị thông báo cho người dùng
+});
+```
+
+8. **Xử lý trường hợp nhiều tab**:
+```javascript
+// Lưu trữ ID tab hiện tại
+const tabId = Date.now().toString();
+localStorage.setItem('currentTabId', tabId);
+
+// Kiểm tra xem tab này có phải là tab chính không
+function isMainTab() {
+  return localStorage.getItem('currentTabId') === tabId;
+}
+
+// Chỉ tab chính mới gửi heartbeat
+function startHeartbeat() {
+  if (heartbeatInterval) clearInterval(heartbeatInterval);
+  
+  heartbeatInterval = setInterval(() => {
+    if (socket.connected && isMainTab()) {
+      socket.emit('user-activity');
+    }
+  }, 30000);
+}
+
+// Khi tab đóng, kiểm tra nếu là tab cuối cùng thì logout
+window.addEventListener('beforeunload', () => {
+  if (isMainTab()) {
+    localStorage.removeItem('currentTabId');
+    socket.emit('user-logout');
+  }
+});
+```
+
+9. **Xử lý trạng thái giả (zombie state)**:
+```javascript
+// Kiểm tra trạng thái online định kỳ
+function verifyOnlineStatus() {
+  const userId = localStorage.getItem('userId');
+  if (!userId) return;
+  
+  axios.get(`/api/v1/users/${userId}/online-status`, {
+    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+  })
+  .then(response => {
+    const serverStatus = response.data.data.isOnline;
+    
+    // Nếu server nghĩ user offline nhưng client nghĩ online
+    if (!serverStatus && socket.connected) {
+      console.log('Zombie state detected, re-registering online status');
+      socket.emit('user-login', { id: userId });
+    }
+  })
+  .catch(error => console.error('Failed to verify online status:', error));
+}
+
+// Kiểm tra mỗi 2 phút
+setInterval(verifyOnlineStatus, 2 * 60 * 1000);
+```
+
+Với các cơ chế trên, hệ thống có thể xử lý tốt các trường hợp người dùng tắt trình duyệt đột ngột, mất kết nối mạng tạm thời, hoặc đóng tab mà không logout chính thức. 
