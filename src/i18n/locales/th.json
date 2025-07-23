@@ -268,7 +268,13 @@
     "min_amount": "ถอนขั้นต่ำ 20$. กรุณาลองใหม่อีกครั้ง",
     "success_message": "สร้างคำสั่งถอนเงินสำเร็จ!",
     "error_message": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง!",
-    "please_update_payment_account_before_withdrawing": "กรุณาอัปเดตบัญชีการชำระเงินก่อนถอนเงิน!"
+    "please_update_payment_account_before_withdrawing": "กรุณาอัปเดตบัญชีการชำระเงินก่อนถอนเงิน!",
+    "your_bank_account": "คุณยังไม่ได้เชื่อมต่อบัญชีธนาคาร",
+    "please_update_your_bank_account_before_withdrawing": "กรุณาอัปเดตบัญชีธนาคารของคุณก่อนถอนเงิน!",
+    "close": "ปิด",
+    "update": "อัปเดต",
+    "you_cannot_withdraw_money": "คุณไม่สามารถถอนเงินได้!",
+    "you_have_not_completed_30_orders": "คุณยังไม่ได้ทำการจองซื้อ 30 ครั้ง กรุณาทำการจองซื้อเพิ่มเติม!"
   },
   "menu": {
     "trust_level": "คะแนนความเชื่อมั่น",

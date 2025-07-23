@@ -268,7 +268,13 @@
     "min_amount": "Prelievo minimo 20$. Per favore riprova",
     "success_message": "Richiesta prelievo creata con successo!",
     "error_message": "Errore, per favore riprova!",
-    "please_update_payment_account_before_withdrawing": "Per favore aggiorna il metodo di pagamento prima di prelevare!"
+    "please_update_payment_account_before_withdrawing": "Per favore aggiorna il metodo di pagamento prima di prelevare!",
+    "your_bank_account": "Bạn chưa liên kết tài khoản ngân hàng",
+    "please_update_your_bank_account_before_withdrawing": "Per favore aggiorna il conto bancario prima di prelevare!",
+    "close": "Chiudi",
+    "update": "Aggiorna",
+    "you_cannot_withdraw_money": "Non puoi prelevare!",
+    "you_have_not_completed_30_orders": "Non hai completato 30 ordini, per favore completa per prelevare!"
   },
   "menu": {
     "trust_level": "Livello di fiducia",

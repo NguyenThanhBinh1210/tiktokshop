@@ -268,7 +268,13 @@
     "min_amount": "출금 최소 20$. 다시 시도해 주세요",
     "success_message": "출금 요청이 성공적으로 생성되었습니다!",
     "error_message": "오류, 다시 시도해 주세요!",
-    "please_update_payment_account_before_withdrawing": "출금 전에 결제 계좌를 업데이트해 주세요!"
+    "please_update_payment_account_before_withdrawing": "출금 전에 결제 계좌를 업데이트해 주세요!",
+    "your_bank_account": "은행 계좌를 업데이트해 주세요!",
+    "please_update_your_bank_account_before_withdrawing": "출금 전에 은행 계좌를 업데이트해 주세요!",
+    "close": "닫기",
+    "update": "업데이트",
+    "you_cannot_withdraw_money": "출금할 수 없습니다!",
+    "you_have_not_completed_30_orders": "30개의 주문을 완료하지 않았습니다. 주문을 완료한 후 출금할 수 있습니다!"
   },
   "menu": {
     "trust_level": "신뢰 수준",

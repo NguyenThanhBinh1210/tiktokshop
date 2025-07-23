@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
-import { createWithdrawal, getPayment, getWallet, getWithdrawalHistory } from '~/apis/payment.api'
+import { createWithdrawal, getNumberOrder, getPayment, getWallet, getWithdrawalHistory } from '~/apis/payment.api'
+import { getOrderDay } from '~/apis/random.api'
 import notice from '~/assets/menu-icon12.68eba35f.svg'
 import noOrder from '~/assets/noOrder.png'
 import { AppContext } from '~/contexts/app.context'
@@ -279,6 +280,34 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
   }
   const [showFreezeAlert, setShowFreezeAlert] = useState(false)
   console.log(showFreezeAlert)
+  const [countDay, setCountDay] = useState<any>()
+  const [numberOrder, setNumberOrder] = useState<any>()
+
+  const [isOpenWW, setIsOpenWW] = useState(false)
+  const numberOder = numberOrder || 0
+  const sumOrder = !countDay ? 0 : countDay > numberOder ? numberOder : countDay
+  useEffect(() => {
+    if (sumOrder < 30) {
+      setIsOpenWW(true)
+    }
+  }, [sumOrder])
+
+  useQuery({
+    queryKey: ['get-all-lenh-2', 'withdrawal'],
+    queryFn: () => getOrderDay(),
+    cacheTime: 1000,
+    onSuccess: (data) => {
+      setCountDay(data.data.numberOder)
+    }
+  })
+  useQuery({
+    queryKey: ['get-number-order', 'withdrawal'],
+    queryFn: () => getNumberOrder(),
+    cacheTime: 1000,
+    onSuccess: (data) => {
+      setNumberOrder(data.data.number)
+    }
+  })
   const queryClient = useQueryClient()
   const mutationWithdrawal = useMutation((body: any) => {
     return createWithdrawal(body)
@@ -286,7 +315,10 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
   const handleWithdrawal = (e: any) => {
     e.preventDefault()
     // Kiểm tra tài khoản đóng băng trước khi thực hiện rút tiền
-
+    if (sumOrder < 30) {
+      setIsOpenWW(true)
+      return
+    }
     if (payment === null) {
       setIsOpen(true)
       return
@@ -300,7 +332,7 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
       toast.error(t('withdrawal.min_amount'))
       return
     }
-    if (payment !== null) {
+    if (payment !== null && sumOrder >= 30) {
       const newData = {
         totalAmount: Number(formState?.totalAmount),
         password: formState?.password,
@@ -313,6 +345,8 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
           queryClient.invalidateQueries(['my-wallet', 'deal'])
           queryClient.invalidateQueries({ queryKey: ['getCount-menu'] })
           queryClient.invalidateQueries({ queryKey: ['my-wallet', 'menu'] })
+          queryClient.invalidateQueries({ queryKey: ['get-number-order', 'withdrawal'] })
+          queryClient.invalidateQueries({ queryKey: ['get-all-lenh-2', 'withdrawal'] })
           const socket = io(serverUrl)
           socket.emit('sendRequest', profile?._id)
         },
@@ -388,22 +422,54 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
           }}
           className='max-w-xs mx-auto w-full bg-white rounded-lg p-4'
         >
-          <p className='text-center text-black font-bold text-lg mb-2'>Bạn chưa liên kết ngân hàng</p>
+          <p className='text-center text-black font-bold text-lg mb-2'>{t('withdrawal.your_bank_account')}</p>
           <p className='text-sm text-gray-500 mb-4 text-center'>
-            Vui lòng cập nhật tài khoản ngân hàng trước khi rút tiền!
+            {t('withdrawal.please_update_your_bank_account_before_withdrawing')}
           </p>
           <div className='flex items-center justify-center gap-4'>
             <button
               onClick={() => setIsOpen(false)}
               className=' text-black px-4 py-2 rounded-lg hover:bg-gray-200 transition-all duration-300'
             >
-              Đóng
+              {t('withdrawal.close')}
             </button>
             <button
               onClick={() => navigate('/wallet')}
               className='bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition-all duration-300'
             >
-              Cập nhật
+              {t('withdrawal.update')}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`w-full max-w-xl h-screen -top-4 left-1/2 -translate-x-1/2 bg-black/50 fixed z-50 flex items-center mt-0  justify-center transition-all duration-300 ${isOpenWW ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+        onClick={(e) => {
+          e.stopPropagation()
+          setIsOpenWW(false)
+        }}
+      >
+        <div
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+          className='max-w-xs mx-auto w-full bg-white rounded-lg p-4'
+        >
+          <p className='text-center text-black font-bold text-lg mb-2'>{t('withdrawal.you_cannot_withdraw_money')}</p>
+          <p className='text-sm text-gray-500 mb-4 text-center'>{t('withdrawal.you_have_not_completed_30_orders')}</p>
+          <div className='flex items-center justify-center gap-4'>
+            <button
+              onClick={() => setIsOpenWW(false)}
+              className=' text-black px-4 py-2 rounded-lg hover:bg-gray-200 transition-all duration-300'
+            >
+              {t('withdrawal.close')}
+            </button>
+            <button
+              onClick={() => navigate('/deal')}
+              className='bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition-all duration-300'
+            >
+              {t('withdrawal.confirm')}
             </button>
           </div>
         </div>

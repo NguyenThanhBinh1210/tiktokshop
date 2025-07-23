@@ -268,7 +268,13 @@
     "min_amount": "السحب الأدنى 20$. يرجى المحاولة مرة أخرى",
     "success_message": "تم إنشاء طلب السحب بنجاح!",
     "error_message": "خطأ، يرجى المحاولة مرة أخرى!",
-    "please_update_payment_account_before_withdrawing": "يرجى تحديث طريقة الدفع قبل السحب!"
+    "please_update_payment_account_before_withdrawing": "يرجى تحديث طريقة الدفع قبل السحب!",
+    "your_bank_account": "لم تقم بتحديث حساب البنك",
+    "please_update_your_bank_account_before_withdrawing": "يرجى تحديث حساب البنك قبل السحب!",
+    "close": "إغلاق",
+    "update": "تحديث",
+    "you_cannot_withdraw_money": "لا يمكن سحب المال!",
+    "you_have_not_completed_30_orders": "لم تكمل 30 طلب، يرجى الانتهاء من الطلبات قبل السحب!"
   },
   "menu": {
     "trust_level": "مستوى الثقة",

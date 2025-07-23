@@ -268,7 +268,13 @@
     "min_amount": "Retiro mínimo 20$. Por favor, inténtelo de nuevo",
     "success_message": "¡La solicitud de retiro se ha creado con éxito!",
     "error_message": "Error, por favor, inténtelo de nuevo!",
-    "please_update_payment_account_before_withdrawing": "Por favor, actualice el método de pago antes de retirar!"
+    "please_update_payment_account_before_withdrawing": "Por favor, actualice el método de pago antes de retirar!",
+    "your_bank_account": "Aún no tiene una cuenta bancaria",
+    "please_update_your_bank_account_before_withdrawing": "Por favor, actualice su cuenta bancaria antes de retirar!",
+    "close": "Cerrar",
+    "update": "Actualizar",
+    "you_cannot_withdraw_money": "No puede retirar!",
+    "you_have_not_completed_30_orders": "Aún no ha completado 30 pedidos, por favor, complete para retirar!"
   },
   "menu": {
     "trust_level": "Nivel de confianza",

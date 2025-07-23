@@ -268,7 +268,13 @@
     "min_amount": "Minimum withdrawal 20$. Please try again",
     "success_message": "Create withdrawal request successfully!",
     "error_message": "Error, please try again!",
-    "please_update_payment_account_before_withdrawing": "Please update the payment account before withdrawing!"
+    "please_update_payment_account_before_withdrawing": "Please update the payment account before withdrawing!",
+    "your_bank_account": "You have not linked your bank account",
+    "please_update_your_bank_account_before_withdrawing": "Please update your bank account before withdrawing!",
+    "close": "Close",
+    "update": "Update",
+    "you_cannot_withdraw_money": "You cannot withdraw!",
+    "you_have_not_completed_30_orders": "You have not completed 30 orders, please complete to withdraw!"
   },
   "menu": {
     "trust_level": "Trust level",

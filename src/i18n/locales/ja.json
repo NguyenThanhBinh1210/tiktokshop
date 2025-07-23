@@ -268,7 +268,13 @@
     "min_amount": "出金最小20$. 再試行してください",
     "success_message": "出金要求が作成されました!",
     "error_message": "エラー, 再試行してください!",
-    "please_update_payment_account_before_withdrawing": "出金前に支払い方法を更新してください!"
+    "please_update_payment_account_before_withdrawing": "出金前に支払い方法を更新してください!",
+    "your_bank_account": "銀行口座を更新してください",
+    "please_update_your_bank_account_before_withdrawing": "出金前に銀行口座を更新してください!",
+    "close": "閉じる",
+    "update": "更新",
+    "you_cannot_withdraw_money": "出金できません!",
+    "you_have_not_completed_30_orders": "30件の注文を完了していません。注文を完了した後、出金できます!"
   },
   "menu": {
     "trust_level": "信頼レベル",

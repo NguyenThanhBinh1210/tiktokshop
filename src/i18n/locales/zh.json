@@ -268,7 +268,13 @@
     "min_amount": "提款至少20$. 请重试",
     "success_message": "提款请求创建成功！",
     "error_message": "错误，请重试！",
-    "please_update_payment_account_before_withdrawing": "请在提款前更新支付账户！"
+    "please_update_payment_account_before_withdrawing": "请在提款前更新支付账户！",
+    "your_bank_account": "您还没有链接银行账户",
+    "please_update_your_bank_account_before_withdrawing": "请在提款前更新您的银行账户！",
+    "close": "关闭",
+    "update": "更新",
+    "you_cannot_withdraw_money": "您不能提款！",
+    "you_have_not_completed_30_orders": "您还没有完成30个订单，请完成订单后再提款！"
   },
   "menu": {
     "trust_level": "信任等级",

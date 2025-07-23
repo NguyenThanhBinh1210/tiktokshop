@@ -268,7 +268,13 @@
     "min_amount": "Penarikan minimum 20$. Sila cuba lagi",
     "success_message": "Permintaan penarikan dibuat berjaya!",
     "error_message": "Ralat, sila cuba lagi!",
-    "please_update_payment_account_before_withdrawing": "Sila kemas kini akaun pembayaran sebelum penarikan!"
+    "please_update_payment_account_before_withdrawing": "Sila kemas kini akaun pembayaran sebelum penarikan!",
+    "your_bank_account": "Anda belum memiliki akun bank",
+    "please_update_your_bank_account_before_withdrawing": "Sila kemas kini akaun bank Anda sebelum penarikan!",
+    "close": "Tutup",
+    "update": "Kemas Kini",
+    "you_cannot_withdraw_money": "Anda tidak dapat menarik uang!",
+    "you_have_not_completed_30_orders": "Anda belum menyelesaikan 30 pesanan, silakan selesaikan untuk menarik uang!"
   },
   "menu": {
     "trust_level": "Tingkat Kepercayaan",

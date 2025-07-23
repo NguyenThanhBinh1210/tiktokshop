@@ -268,7 +268,13 @@
     "min_amount": "Saque mínimo de 20$. Por favor, tente novamente",
     "success_message": "Solicitação de saque criada com sucesso!",
     "error_message": "Erro, por favor, tente novamente!",
-    "please_update_payment_account_before_withdrawing": "Por favor, atualize a conta de pagamento antes de sacar!"
+    "please_update_payment_account_before_withdrawing": "Por favor, atualize a conta de pagamento antes de sacar!",
+    "your_bank_account": "Você ainda não tem uma conta bancária",
+    "please_update_your_bank_account_before_withdrawing": "Por favor, atualize sua conta bancária antes de sacar!",
+    "close": "Fechar",
+    "update": "Atualizar",
+    "you_cannot_withdraw_money": "Você não pode sacar!",
+    "you_have_not_completed_30_orders": "Você ainda não completou 30 pedidos, por favor, complete para sacar!"
   },
   "menu": {
     "trust_level": "Nível de confiança",

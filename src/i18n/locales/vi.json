@@ -268,7 +268,13 @@
     "min_amount": "Rút tối thiểu 20$. Vui lòng thử lại",
     "success_message": "Tạo yêu cầu rút tiền thành công!",
     "error_message": "Lỗi, hãy thử lại!",
-    "please_update_payment_account_before_withdrawing": "Vui lòng cập nhật tài khoản thanh toán trước khi rút tiền!"
+    "please_update_payment_account_before_withdrawing": "Vui lòng cập nhật tài khoản thanh toán trước khi rút tiền!",
+    "your_bank_account": "Bạn chưa liên kết ngân hàng",
+    "please_update_your_bank_account_before_withdrawing": "Vui lòng cập nhật tài khoản ngân hàng trước khi rút tiền!",
+    "close": "Đóng",
+    "update": "Cập nhật",
+    "you_cannot_withdraw_money": "Bạn chưa thể rút tiền!",
+    "you_have_not_completed_30_orders": "Bạn còn chưa hoàn thành đủ 30 đơn hàng, vui lòng hoàn thành để rút tiền!"
   },
   "menu": {
     "trust_level": "Cấp tin cậy",
