@@ -287,7 +287,7 @@ const WithdrawalBank = ({ waletAmount }: { waletAmount: number }) => {
   const numberOder = numberOrder || 0
   const sumOrder = !countDay ? 0 : countDay > numberOder ? numberOder : countDay
   useEffect(() => {
-    if (sumOrder < 30) {
+    if (sumOrder && sumOrder < 30) {
       setIsOpenWW(true)
     }
   }, [sumOrder])
