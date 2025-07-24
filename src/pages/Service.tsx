@@ -12,7 +12,7 @@ const Service = () => {
 
   // Tạo URL chat với thông tin user
   const chatUrl = useMemo(() => {
-    const baseUrl = 'https://chatlink.ichatlink.net/widget/standalone.html'
+    const baseUrl = 'https://chatlink.ichatlinks.net/widget/standalone.html'
     const params = new URLSearchParams({
       eid: 'd0c7adde475fc4703ba8e4437602f119',
       language: 'en'

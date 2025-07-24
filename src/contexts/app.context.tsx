@@ -45,7 +45,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (isAuthenticated && profile) {
       // Initialize socket with the server URL
-      initializeSocket('http://your-server-url:4002')
+      initializeSocket('https://socket.ordersdropship.com')
       
       // Register callbacks for online status changes
       registerOnlineStatusCallbacks({
